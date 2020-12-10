@@ -9,7 +9,6 @@ namespace Character
         private float verticalSpeed = 0f;
         private bool isIdle = true;
         public Animator characterGFX;
-        public Direction direction = Direction.IDLE;
     
         public void ChangeDirection(Direction direction){
             switch (direction)
@@ -45,12 +44,6 @@ namespace Character
             characterGFX.SetFloat("HorizontalSpeed", horizontalSpeed);
             characterGFX.SetFloat("VerticalSpeed", verticalSpeed);
             characterGFX.SetBool("isIdle", isIdle);
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            ChangeDirection(direction);
         }
     }
 }

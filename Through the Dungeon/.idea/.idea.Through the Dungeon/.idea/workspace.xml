@@ -20,14 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91cc55d1-195c-420c-86f9-06bb4d882670" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enums.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enums/Direction.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enums/Direction.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Through the Dungeon/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Through the Dungeon/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Through the Dungeon/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Through the Dungeon/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Through the Dungeon/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Through the Dungeon/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Through the Dungeon/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Through the Dungeon/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CharacterMovement.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CharacterMovement.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterAnimationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterAnimationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +41,7 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/Enums/Direction.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character/CharacterAnimationController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
       </list>
     </option>
   </component>
@@ -88,7 +88,7 @@
       <updated>1607546019313</updated>
       <workItem from="1607546047727" duration="1095000" />
       <workItem from="1607606567850" duration="127000" />
-      <workItem from="1607606737477" duration="2369000" />
+      <workItem from="1607606737477" duration="4825000" />
     </task>
     <servers />
   </component>
