@@ -16,7 +16,6 @@
     <explicitExcludes>
       <Path>.idea</Path>
       <Path>.vs</Path>
-      <Path>Library</Path>
       <Path>Temp</Path>
       <Path>obj</Path>
     </explicitExcludes>

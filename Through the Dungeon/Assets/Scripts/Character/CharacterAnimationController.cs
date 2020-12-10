@@ -1,56 +1,56 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Enums;
 
-public class CharacterAnimationController : MonoBehaviour
+namespace Character
 {
-    public float horizontalSpeed = 0f;
-    public float verticalSpeed = 0f;
-    public bool isIdle = true;
-    public Animator characterGFX;
-    public int direction = 0;
+    public class CharacterAnimationController : MonoBehaviour
+    {
+        private float horizontalSpeed = 0f;
+        private float verticalSpeed = 0f;
+        private bool isIdle = true;
+        public Animator characterGFX;
+        public Direction direction = Direction.IDLE;
     
-    // Start is called before the first frame update
-    void Start()
-    {
+        public void ChangeDirection(Direction direction){
+            switch (direction)
+            {
+                case Direction.DOWN:
+                    horizontalSpeed = 0f;
+                    verticalSpeed = -1f;
+                    isIdle = false;
+                    break;
+                case Direction.UP:
+                    horizontalSpeed = 0f;
+                    verticalSpeed = 1f;
+                    isIdle = false;
+                    break;
+                case Direction.RIGHT:
+                    horizontalSpeed = 1f;
+                    verticalSpeed = 0f;
+                    isIdle = false;
+                    break;
+                case Direction.LEFT:
+                    horizontalSpeed = -1f;
+                    verticalSpeed = 0f;
+                    isIdle = false;
+                    break;
+                default:
+                    horizontalSpeed = 0f;
+                    verticalSpeed = 0f;
+                    isIdle = true;
+                    break;
+            }
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        switch (direction)
-        {
-            case 1:
-                horizontalSpeed = 0f;
-                verticalSpeed = -1f;
-                isIdle = false;
-                break;
-            case 2:
-                horizontalSpeed = 0f;
-                verticalSpeed = 1f;
-                isIdle = false;
-                break;
-            case 3:
-                horizontalSpeed = 1f;
-                verticalSpeed = 0f;
-                isIdle = false;
-                break;
-            case 4:
-                horizontalSpeed = -1f;
-                verticalSpeed = 0f;
-                isIdle = false;
-                break;
-            default:
-                horizontalSpeed = 0f;
-                verticalSpeed = 0f;
-                isIdle = true;
-                break;
+        
+            characterGFX.SetFloat("HorizontalSpeed", horizontalSpeed);
+            characterGFX.SetFloat("VerticalSpeed", verticalSpeed);
+            characterGFX.SetBool("isIdle", isIdle);
         }
-        
-        
-        characterGFX.SetFloat("HorizontalSpeed", horizontalSpeed);
-        characterGFX.SetFloat("VerticalSpeed", verticalSpeed);
-        characterGFX.SetBool("isIdle", isIdle);
+
+        // Update is called once per frame
+        void Update()
+        {
+            ChangeDirection(direction);
+        }
     }
 }
