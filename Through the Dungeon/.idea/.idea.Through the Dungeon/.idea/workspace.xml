@@ -20,20 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91cc55d1-195c-420c-86f9-06bb4d882670" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DatabasesScripts/PlayerDatabaseConn.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DatabasesScripts/PlayerDatabaseConn.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Through the Dungeon/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Through the Dungeon/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Through the Dungeon/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Through the Dungeon/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Through the Dungeon/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Through the Dungeon/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Through the Dungeon/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Through the Dungeon/riderModule.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Characters/Player/Run_Down.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Characters/Player/Run_Down.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Characters/Player/Run_Left.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Characters/Player/Run_Left.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Characters/Player/Run_Right.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Characters/Player/Run_Right.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Characters/Player/Run_Up.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Characters/Player/Run_Up.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CharacterMovement.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CharacterMovement.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +34,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/Documents/Unity Projects/SQLite Tutorial/Assets/Scripts/DBConnection.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -50,8 +44,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Character/CharacterAnimationController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/CharacterMovement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character/CharacterMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/DatabasesScripts/PlayerDatabaseConn.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" />
       </list>
     </option>
   </component>
@@ -99,7 +94,8 @@
       <workItem from="1607546047727" duration="1095000" />
       <workItem from="1607606567850" duration="127000" />
       <workItem from="1607606737477" duration="5531000" />
-      <workItem from="1607679257713" duration="1957000" />
+      <workItem from="1607679257713" duration="5106000" />
+      <workItem from="1607684765435" duration="4953000" />
     </task>
     <servers />
   </component>
