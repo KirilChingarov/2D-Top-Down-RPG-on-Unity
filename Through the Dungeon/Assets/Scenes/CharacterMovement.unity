@@ -333,7 +333,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterGFX: {fileID: 761117376}
-  direction: 0
 --- !u!1 &793747754
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,8 +425,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1756602283}
-  - component: {fileID: 1756602285}
   - component: {fileID: 1756602284}
+  - component: {fileID: 1756602285}
+  - component: {fileID: 1756602286}
+  - component: {fileID: 1756602287}
   m_Layer: 11
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -483,8 +484,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0616bb12eee14090af23a5b7d03032fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 0
-  verticalSpeed: 0
+--- !u!58 &1756602286
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756602282}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.3}
+  serializedVersion: 2
+  m_Radius: 0.45
+--- !u!114 &1756602287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756602282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdbad4477a014822a4c05565e0cb9195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
 --- !u!1 &1902214551
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,12 +9,13 @@
         <e p="Scripts" t="Include">
           <e p="Character" t="Include">
             <e p="CharacterAnimationController.cs" t="Include" />
+            <e p="CharacterMovement.cs" t="Include" />
           </e>
           <e p="Enums" t="Include">
             <e p="Direction.cs" t="Include" />
           </e>
           <e p="Player" t="Include">
-            <e p="PlayerMovement.cs" t="Include" />
+            <e p="PlayerController.cs" t="Include" />
           </e>
         </e>
       </e>
