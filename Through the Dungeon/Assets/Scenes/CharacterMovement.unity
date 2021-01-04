@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 80067882}
   - component: {fileID: 80067883}
   - component: {fileID: 80067884}
+  - component: {fileID: 80067885}
   m_Layer: 0
   m_Name: EnemyGFX
   m_TagString: Untagged
@@ -223,6 +224,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &80067885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80067881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf3abab85e8e7a24a924d57c8f1ee56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterGFX: {fileID: 0}
 --- !u!1 &420062259
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,6 +544,7 @@ GameObject:
   - component: {fileID: 1380382378}
   - component: {fileID: 1380382380}
   - component: {fileID: 1380382379}
+  - component: {fileID: 1380382381}
   m_Layer: 0
   m_Name: EnemyCharacter
   m_TagString: Untagged
@@ -601,6 +616,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1380382381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380382376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb202e9c6e64034fb364f5927d14e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
 --- !u!1 &1756602282
 GameObject:
   m_ObjectHideFlags: 0
