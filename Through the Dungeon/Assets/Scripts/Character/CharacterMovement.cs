@@ -30,12 +30,33 @@ namespace Character
             return Direction.IDLE;
         }
 
+        public Direction getDirectionFromVector(Vector2 distance)
+        {
+            if (Mathf.Abs(distance.x) > Mathf.Abs(distance.y))
+            {
+                if (distance.x > 0.01f) return Direction.RIGHT;
+                if (distance.x < -0.01f) return Direction.LEFT;
+                return Direction.IDLE;
+            }
+            else
+            {
+                if (distance.y > 0.01f) return Direction.UP;
+                if (distance.y < -0.01f) return Direction.DOWN;
+                return Direction.IDLE;
+            }
+        }
+
         public void setCharacterVelocity(Vector2 direction)
         {
             rb.velocity = direction;
         
             currDirection = getDirectionFromSpeed(direction.x, direction.y);
-            characterGFX.ChangeDirection(currDirection);
+            //characterGFX.ChangeDirection(currDirection);
+        }
+
+        public void setCharacterDirection(Direction direction)
+        {
+            characterGFX.changeDirection(direction);
         }
 
         public void setRigidBody2D(Rigidbody2D newRb)

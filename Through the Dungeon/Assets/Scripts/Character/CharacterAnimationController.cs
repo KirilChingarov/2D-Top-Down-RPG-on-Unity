@@ -16,7 +16,7 @@ namespace Character
             characterGFX = GetComponent<Animator>();
         }
 
-        public void ChangeDirection(Direction direction){
+        public void changeDirection(Direction direction){
             switch (direction)
             {
                 case Direction.DOWN:

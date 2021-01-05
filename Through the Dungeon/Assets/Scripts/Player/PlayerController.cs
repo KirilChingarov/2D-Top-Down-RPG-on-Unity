@@ -1,6 +1,7 @@
 ﻿using System;
 using Character;
 using DatabasesScripts;
+using Enums;
 using UnityEngine;
 
 namespace Player
@@ -27,7 +28,10 @@ namespace Player
             horizontalSpeed = Input.GetAxisRaw("Horizontal");
             verticalSpeed = Input.GetAxisRaw("Vertical");
 
-            characterMovement.setCharacterVelocity(new Vector2(horizontalSpeed, verticalSpeed) * (moveSpeed * Time.deltaTime));
+            Vector2 force = new Vector2(horizontalSpeed, verticalSpeed) * (moveSpeed * Time.deltaTime);
+            Direction direction = characterMovement.getDirectionFromVector(force);
+            characterMovement.setCharacterVelocity(force);
+            characterMovement.setCharacterDirection(direction);
         }
     }
 }

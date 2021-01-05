@@ -81,7 +81,18 @@ namespace Enemy
             }
             
             characterMovement.setCharacterVelocity(force);
-            //Debug.Log("currDirection: " + characterMovement.getDirectionFromSpeed(force.x, force.y));
+            characterMovement.setCharacterDirection(characterMovement.getDirectionFromVector(getVectorToTarget()));
+        }
+
+        private Vector2 getVectorToTarget()
+        {
+            Vector2 currPosition = characterMovement.getCurrentPosition();
+            Vector2 targetPosition = target.position;
+
+            float distanceX = targetPosition.x - currPosition.x;
+            float distanceY = targetPosition.y - currPosition.y;
+            
+            return new Vector2(distanceX, distanceY);
         }
     }
 
