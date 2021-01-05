@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Character;
 using DatabasesScripts;
+using Enums;
 using UnityEngine;
 using Pathfinding;
 
@@ -19,7 +20,7 @@ namespace Enemy
         private float nextWaypointDistance = 2f;
         private Path aiPath;
         private int currentWaypoint;
-        private bool reachedEndOfPath = false;
+        private bool playerHit = false;
         private Seeker seeker;
         
         void Awake()
@@ -62,26 +63,33 @@ namespace Enemy
 
             if (currentWaypoint >= aiPath.vectorPath.Count)
             {
-                reachedEndOfPath = true;
                 return;
+            }
+
+            Vector2 force;
+            Direction targetDirection;
+            if (playerHit)
+            {
+                force = new Vector2(0f, 0f);
+                targetDirection = Direction.IDLE;
             }
             else
             {
-                reachedEndOfPath = false;
-            }
+                Vector2 direction = ((Vector2)aiPath.vectorPath[currentWaypoint] - characterMovement.getCurrentPosition()).normalized;
+                force = direction * (moveSpeed * Time.deltaTime);
 
-            Vector2 direction = ((Vector2)aiPath.vectorPath[currentWaypoint] - characterMovement.getCurrentPosition()).normalized;
-            Vector2 force = direction * (moveSpeed * Time.deltaTime);
+                float distance = Vector2.Distance(characterMovement.getCurrentPosition(),
+                    aiPath.vectorPath[currentWaypoint]);
+                if (distance < nextWaypointDistance)
+                {
+                    currentWaypoint++;
+                }
 
-            float distance = Vector2.Distance(characterMovement.getCurrentPosition(),
-                aiPath.vectorPath[currentWaypoint]);
-            if (distance < nextWaypointDistance)
-            {
-                currentWaypoint++;
+                targetDirection = characterMovement.getDirectionFromVector(getVectorToTarget());
             }
             
             characterMovement.setCharacterVelocity(force);
-            characterMovement.setCharacterDirection(characterMovement.getDirectionFromVector(getVectorToTarget()));
+            characterMovement.setCharacterDirection(targetDirection);
         }
 
         private Vector2 getVectorToTarget()
@@ -93,6 +101,11 @@ namespace Enemy
             float distanceY = targetPosition.y - currPosition.y;
             
             return new Vector2(distanceX, distanceY);
+        }
+
+        public void setReachedEndOfPath(bool check)
+        {
+            playerHit = check;
         }
     }
 
