@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Character;
 using DatabasesScripts;
@@ -10,14 +11,12 @@ namespace Enemy
     
     public class EnemyController : MonoBehaviour
     {
-        private float horizontalSpeed = 0f;
-        private float verticalSpeed = 0f;
         private float moveSpeed = 1f;
         private CharacterMovement characterMovement;
         private EnemyDatabaseConn dbConn;
 
         private Transform target;
-        private float nextWaypointDistance = 1.3f;
+        private float nextWaypointDistance = 2f;
         private Path aiPath;
         private int currentWaypoint;
         private bool reachedEndOfPath = false;
@@ -34,7 +33,15 @@ namespace Enemy
             target = GameObject.Find("PlayerCharacter").GetComponent<Transform>();
             seeker = GetComponent<Seeker>();
 
-            seeker.StartPath(characterMovement.getCurrentPosition(), target.position, onPathComplete);
+            InvokeRepeating("UpdatePath", 0f, 0.5f);
+        }
+
+        private void UpdatePath()
+        {
+            if (seeker.IsDone())
+            {
+                seeker.StartPath(characterMovement.getCurrentPosition(), target.position, onPathComplete);
+            }
         }
 
         private void onPathComplete(Path path)
@@ -74,6 +81,7 @@ namespace Enemy
             }
             
             characterMovement.setCharacterVelocity(force);
+            //Debug.Log("currDirection: " + characterMovement.getDirectionFromSpeed(force.x, force.y));
         }
     }
 

@@ -9,7 +9,7 @@ namespace Character
         private CharacterAnimationController characterGFX;
         private Direction currDirection = Direction.IDLE;
 
-        private Direction getDirectionFromSpeed(float horizontalSpeed, float verticalSpeed)
+        public Direction getDirectionFromSpeed(float horizontalSpeed, float verticalSpeed)
         {
             if (verticalSpeed > 0.01f)
             {
