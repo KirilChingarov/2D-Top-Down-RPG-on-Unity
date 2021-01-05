@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Enums;
 
 namespace Character
@@ -9,7 +10,12 @@ namespace Character
         private float verticalSpeed = 0f;
         private bool isIdle = true;
         public Animator characterGFX;
-    
+
+        public void Awake()
+        {
+            characterGFX = GetComponent<Animator>();
+        }
+
         public void ChangeDirection(Direction direction){
             switch (direction)
             {

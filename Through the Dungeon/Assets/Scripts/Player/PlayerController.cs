@@ -18,8 +18,7 @@ namespace Player
             characterMovement = GetComponent<CharacterMovement>();
             characterMovement.setRigidBody2D(GetComponent<Rigidbody2D>());
             characterMovement.setCharacterAnimationContrller(GetComponentInChildren<CharacterAnimationController>());
-            dbConn = new PlayerDatabaseConn("Player/CharacterMovement.db");
-            dbConn.setMoveSpeed(moveSpeed);
+            dbConn = new PlayerDatabaseConn("CharacterMovement.db");
             moveSpeed = dbConn.getPlayerMoveSpeed();
         }
 
