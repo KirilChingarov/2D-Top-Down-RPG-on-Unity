@@ -30,11 +30,11 @@ namespace Character
             return Direction.IDLE;
         }
 
-        public void setCharacterVelocity(float horizontalSpeed, float verticalSpeed, float moveSpeed)
+        public void setCharacterVelocity(Vector2 direction)
         {
-            rb.velocity = new Vector2(horizontalSpeed * moveSpeed, verticalSpeed * moveSpeed);
+            rb.velocity = direction;
         
-            currDirection = getDirectionFromSpeed(horizontalSpeed, verticalSpeed);
+            currDirection = getDirectionFromSpeed(direction.x, direction.y);
             characterGFX.ChangeDirection(currDirection);
         }
 
@@ -46,6 +46,11 @@ namespace Character
         public void setCharacterAnimationContrller(CharacterAnimationController newChAnimationControllerC)
         {
             characterGFX = newChAnimationControllerC;
+        }
+
+        public Vector2 getCurrentPosition()
+        {
+            return rb.position;
         }
     }
 }
