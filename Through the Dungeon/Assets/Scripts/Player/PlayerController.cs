@@ -27,9 +27,7 @@ namespace Player
             horizontalSpeed = Input.GetAxisRaw("Horizontal");
             verticalSpeed = Input.GetAxisRaw("Vertical");
             
-            Vector2 direction = new Vector2(horizontalSpeed, verticalSpeed);
-            Vector2 force = direction * (moveSpeed * Time.deltaTime);
-            characterMovement.setCharacterVelocity(force);
+            characterMovement.setCharacterVelocity(new Vector2(horizontalSpeed, verticalSpeed) * (moveSpeed * Time.deltaTime));
         }
     }
 }

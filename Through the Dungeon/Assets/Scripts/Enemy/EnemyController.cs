@@ -65,6 +65,15 @@ namespace Enemy
 
             Vector2 direction = ((Vector2)aiPath.vectorPath[currentWaypoint] - characterMovement.getCurrentPosition()).normalized;
             Vector2 force = direction * (moveSpeed * Time.deltaTime);
+
+            float distance = Vector2.Distance(characterMovement.getCurrentPosition(),
+                aiPath.vectorPath[currentWaypoint]);
+            if (distance < nextWaypointDistance)
+            {
+                currentWaypoint++;
+            }
+            
+            characterMovement.setCharacterVelocity(force);
         }
     }
 
