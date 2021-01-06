@@ -1,6 +1,7 @@
 ﻿using System;
 using Character;
 using DatabasesScripts;
+using Enums;
 using UnityEngine;
 
 namespace Player
@@ -18,8 +19,7 @@ namespace Player
             characterMovement = GetComponent<CharacterMovement>();
             characterMovement.setRigidBody2D(GetComponent<Rigidbody2D>());
             characterMovement.setCharacterAnimationContrller(GetComponentInChildren<CharacterAnimationController>());
-            dbConn = new PlayerDatabaseConn("Player/CharacterMovement.db");
-            dbConn.setMoveSpeed(moveSpeed);
+            dbConn = new PlayerDatabaseConn("CharacterMovement.db");
             moveSpeed = dbConn.getPlayerMoveSpeed();
         }
 
@@ -27,8 +27,11 @@ namespace Player
         {
             horizontalSpeed = Input.GetAxisRaw("Horizontal");
             verticalSpeed = Input.GetAxisRaw("Vertical");
-            
-            characterMovement.setCharacterVelocity(horizontalSpeed, verticalSpeed, moveSpeed);
+
+            Vector2 force = new Vector2(horizontalSpeed, verticalSpeed) * (moveSpeed * Time.deltaTime);
+            Direction direction = characterMovement.getDirectionFromVector(force);
+            characterMovement.setCharacterVelocity(force);
+            characterMovement.setCharacterDirection(direction);
         }
     }
 }

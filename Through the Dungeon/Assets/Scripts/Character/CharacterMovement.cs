@@ -9,7 +9,7 @@ namespace Character
         private CharacterAnimationController characterGFX;
         private Direction currDirection = Direction.IDLE;
 
-        private Direction getDirectionFromSpeed(float horizontalSpeed, float verticalSpeed)
+        public Direction getDirectionFromSpeed(float horizontalSpeed, float verticalSpeed)
         {
             if (verticalSpeed > 0.01f)
             {
@@ -30,12 +30,33 @@ namespace Character
             return Direction.IDLE;
         }
 
-        public void setCharacterVelocity(float horizontalSpeed, float verticalSpeed, float moveSpeed)
+        public Direction getDirectionFromVector(Vector2 distance)
         {
-            rb.velocity = new Vector2(horizontalSpeed * moveSpeed, verticalSpeed * moveSpeed);
+            if (Mathf.Abs(distance.x) > Mathf.Abs(distance.y))
+            {
+                if (distance.x > 0.01f) return Direction.RIGHT;
+                if (distance.x < -0.01f) return Direction.LEFT;
+                return Direction.IDLE;
+            }
+            else
+            {
+                if (distance.y > 0.01f) return Direction.UP;
+                if (distance.y < -0.01f) return Direction.DOWN;
+                return Direction.IDLE;
+            }
+        }
+
+        public void setCharacterVelocity(Vector2 direction)
+        {
+            rb.velocity = direction;
         
-            currDirection = getDirectionFromSpeed(horizontalSpeed, verticalSpeed);
-            characterGFX.ChangeDirection(currDirection);
+            currDirection = getDirectionFromSpeed(direction.x, direction.y);
+            //characterGFX.ChangeDirection(currDirection);
+        }
+
+        public void setCharacterDirection(Direction direction)
+        {
+            characterGFX.changeDirection(direction);
         }
 
         public void setRigidBody2D(Rigidbody2D newRb)
@@ -46,6 +67,11 @@ namespace Character
         public void setCharacterAnimationContrller(CharacterAnimationController newChAnimationControllerC)
         {
             characterGFX = newChAnimationControllerC;
+        }
+
+        public Vector2 getCurrentPosition()
+        {
+            return rb.position;
         }
     }
 }
