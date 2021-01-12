@@ -19,11 +19,16 @@ namespace Player
             characterMovement = GetComponent<CharacterMovement>();
             characterMovement.setRigidBody2D(GetComponent<Rigidbody2D>());
             characterMovement.setCharacterAnimationContrller(GetComponentInChildren<CharacterAnimationController>());
-            dbConn = new PlayerDatabaseConn("CharacterMovement.db");
+            dbConn = new PlayerDatabaseConn("CharacterStats.db");
             moveSpeed = dbConn.getPlayerMoveSpeed();
         }
 
         private void FixedUpdate()
+        {
+            Move();
+        }
+
+        private void Move()
         {
             horizontalSpeed = Input.GetAxisRaw("Horizontal");
             verticalSpeed = Input.GetAxisRaw("Vertical");

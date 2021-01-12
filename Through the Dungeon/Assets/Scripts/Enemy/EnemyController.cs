@@ -28,7 +28,7 @@ namespace Enemy
             characterMovement = GetComponent<CharacterMovement>();
             characterMovement.setRigidBody2D(GetComponent<Rigidbody2D>());
             characterMovement.setCharacterAnimationContrller(GetComponentInChildren<CharacterAnimationController>());
-            dbConn = new EnemyDatabaseConn("CharacterMovement.db", "testEnemyCharacter");
+            dbConn = new EnemyDatabaseConn("CharacterStats.db", "testEnemyCharacter");
             moveSpeed = dbConn.getEnemyMoveSpeed();
 
             target = GameObject.Find("PlayerCharacter").GetComponent<Transform>();
@@ -55,6 +55,11 @@ namespace Enemy
         }
         
         void FixedUpdate()
+        {
+            Move();
+        }
+
+        private void Move()
         {
             if (aiPath == null)
             {
