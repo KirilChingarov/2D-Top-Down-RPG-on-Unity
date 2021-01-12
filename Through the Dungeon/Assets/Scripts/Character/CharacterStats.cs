@@ -11,6 +11,7 @@ namespace Character
         private float moveSpeed;
         private float attackDamage;
         private float attackRange;
+        private float attackCooldown;
 
         public CharacterStats(PlayerDatabaseConn dbConn)
         {
@@ -18,6 +19,7 @@ namespace Character
             moveSpeed = dbConn.getPlayerMoveSpeed();
             attackDamage = dbConn.getPlayerAttackDamage();
             attackRange = dbConn.getPlayerAttackRange();
+            attackCooldown = dbConn.getPlayerAttackCooldown();
         }
         
         public CharacterStats(EnemyDatabaseConn dbConn)
@@ -26,6 +28,7 @@ namespace Character
             moveSpeed = dbConn.getEnemyMoveSpeed();
             attackDamage = dbConn.getEnemyAttackDamage();
             attackRange = dbConn.getEnemyAttackRange();
+            attackCooldown = dbConn.getEnemyAttackCooldown();
         }
 
         public float getMoveSpeed()
@@ -60,7 +63,22 @@ namespace Character
 
         public float getAttackRange()
         {
-            return attackDamage;
+            return attackRange;
+        }
+
+        public void setAttackRange(float attackRange)
+        {
+            this.attackRange = attackRange;
+        }
+
+        public float getAttackCooldown()
+        {
+            return attackCooldown;
+        }
+
+        public void setAttackCooldown(float attackCooldown)
+        {
+            this.attackCooldown = attackCooldown;
         }
     }    
 }

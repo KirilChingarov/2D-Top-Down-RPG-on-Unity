@@ -6,21 +6,22 @@ using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
 {
-    private PlayerController playerController;
     private CharacterAnimationController characterAnimationController;
+    private CircleCollider2D basicAttackRange;
     
     void Awake()
     {
-        playerController = GetComponentInParent<PlayerController>();
         characterAnimationController = GameObject.Find("CharacterGFX").GetComponent<CharacterAnimationController>();
+        basicAttackRange = this.transform.Find("BasicAttack").GetComponent<CircleCollider2D>();
     }
 
-    
-    void FixedUpdate()
+    public void Attack()
     {
-        if (Input.GetMouseButton(0))
-        {
-            characterAnimationController.attack();
-        }
+        characterAnimationController.attack();
+    }
+
+    public void setAttackRange(float attackRange)
+    {
+        basicAttackRange.radius = attackRange;
     }
 }

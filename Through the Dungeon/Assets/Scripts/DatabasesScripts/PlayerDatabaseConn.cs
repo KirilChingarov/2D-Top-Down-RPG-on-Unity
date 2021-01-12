@@ -174,5 +174,30 @@ namespace DatabasesScripts
 
             return attackRange;
         }
+        
+        public float getPlayerAttackCooldown()
+        {
+            conn.Open();
+
+            SqliteCommand cmd = conn.CreateCommand();
+            
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT attackCooldown FROM characterStats " + 
+                              "WHERE characterId = @characterId";
+            cmd.Parameters.Add(new SqliteParameter
+                {
+                    ParameterName = "characterId",
+                    Value = playerCharacterId
+                }
+            );
+
+            var result = cmd.ExecuteReader();
+            result.Read();
+            float attackCooldown = result.GetFloat(0);
+            
+            conn.Close();
+
+            return attackCooldown;
+        }
     }
 }

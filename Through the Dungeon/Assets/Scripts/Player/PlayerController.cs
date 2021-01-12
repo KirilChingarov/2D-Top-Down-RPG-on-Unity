@@ -11,6 +11,9 @@ namespace Player
         private CharacterMovement characterMovement;
         private PlayerDatabaseConn dbConn;
         private CharacterStats characterStats;
+        private PlayerAttackController playerAttackController;
+        private bool canMove = true;
+        private float nextAttack = 0f;
         
         private void Awake()
         {
@@ -19,15 +22,20 @@ namespace Player
             characterMovement.setCharacterAnimationContrller(GetComponentInChildren<CharacterAnimationController>());
             dbConn = new PlayerDatabaseConn("CharacterStats.db");
             characterStats = new CharacterStats(dbConn);
+            playerAttackController = GetComponentInChildren<PlayerAttackController>();
+            playerAttackController.setAttackRange(characterStats.getAttackRange());
         }
 
         private void FixedUpdate()
         {
             Move();
+            Attack();
         }
 
         private void Move()
         {
+            if(canMove != true) return;
+            
             float horizontalSpeed = Input.GetAxisRaw("Horizontal");
             float verticalSpeed = Input.GetAxisRaw("Vertical");
             float moveSpeed = characterStats.getMoveSpeed();
@@ -38,9 +46,14 @@ namespace Player
             characterMovement.setCharacterDirection(direction);
         }
 
-        public float getAttackRange()
+        private void Attack()
         {
-            return characterStats.getAttackRange();
+            if (Input.GetMouseButton(0) && Time.time >= nextAttack)
+            {
+                //canMove = false;
+                playerAttackController.Attack();
+                nextAttack = Time.time + characterStats.getAttackCooldown();
+            }
         }
     }
 }
