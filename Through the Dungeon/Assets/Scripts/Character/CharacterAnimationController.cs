@@ -51,5 +51,10 @@ namespace Character
             characterGFX.SetFloat("VerticalSpeed", verticalSpeed);
             characterGFX.SetBool("isIdle", isIdle);
         }
+
+        public void attack()
+        {
+            characterGFX.SetTrigger("Attack");
+        }
     }
 }

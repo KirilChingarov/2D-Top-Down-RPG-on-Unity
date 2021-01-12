@@ -114,6 +114,11 @@ namespace Enemy
         {
             playerHit = check;
         }
+
+        public float getAttackRange()
+        {
+            return characterStats.getAttackRange();
+        }
     }
 
 }

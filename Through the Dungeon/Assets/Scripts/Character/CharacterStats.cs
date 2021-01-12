@@ -10,12 +10,14 @@ namespace Character
         private float health;
         private float moveSpeed;
         private float attackDamage;
+        private float attackRange;
 
         public CharacterStats(PlayerDatabaseConn dbConn)
         {
             health = dbConn.getPlayerHealth();
             moveSpeed = dbConn.getPlayerMoveSpeed();
             attackDamage = dbConn.getPlayerAttackDamage();
+            attackRange = dbConn.getPlayerAttackRange();
         }
         
         public CharacterStats(EnemyDatabaseConn dbConn)
@@ -23,6 +25,7 @@ namespace Character
             health = dbConn.getEnemyHealth();
             moveSpeed = dbConn.getEnemyMoveSpeed();
             attackDamage = dbConn.getEnemyAttackDamage();
+            attackRange = dbConn.getEnemyAttackRange();
         }
 
         public float getMoveSpeed()
@@ -30,12 +33,32 @@ namespace Character
             return moveSpeed;
         }
 
+        public void setMoveSpeed(float moveSpeed)
+        {
+            this.moveSpeed = moveSpeed;
+        }
+
         public float getHealth()
         {
             return health;
         }
 
+        public void setHealth(float health)
+        {
+            this.health = health;
+        }
+
         public float getAttackDamage()
+        {
+            return attackDamage;
+        }
+
+        public void setAttackDamage(float attackDamage)
+        {
+            this.attackDamage = attackDamage;
+        }
+
+        public float getAttackRange()
         {
             return attackDamage;
         }

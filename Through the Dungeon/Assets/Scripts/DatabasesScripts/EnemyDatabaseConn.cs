@@ -144,5 +144,30 @@ namespace DatabasesScripts
 
             return attackDamage;
         }
+        
+        public float getEnemyAttackRange()
+        {
+            conn.Open();
+
+            SqliteCommand cmd = conn.CreateCommand();
+            
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT attackRange FROM characterStats " + 
+                              "WHERE characterId = @characterId";
+            cmd.Parameters.Add(new SqliteParameter
+                {
+                    ParameterName = "characterId",
+                    Value = enemyCharacterId
+                }
+            );
+
+            var result = cmd.ExecuteReader();
+            result.Read();
+            float attackRange = result.GetFloat(0);
+            
+            conn.Close();
+
+            return attackRange;
+        }
     }
 }

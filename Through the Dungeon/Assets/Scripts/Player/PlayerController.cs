@@ -37,5 +37,10 @@ namespace Player
             characterMovement.setCharacterVelocity(force);
             characterMovement.setCharacterDirection(direction);
         }
+
+        public float getAttackRange()
+        {
+            return characterStats.getAttackRange();
+        }
     }
 }
