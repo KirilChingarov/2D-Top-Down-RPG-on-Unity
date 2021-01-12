@@ -12,9 +12,10 @@ namespace Enemy
     
     public class EnemyController : MonoBehaviour
     {
-        private float moveSpeed = 1f;
+        //private float moveSpeed = 1f;
         private CharacterMovement characterMovement;
         private EnemyDatabaseConn dbConn;
+        private CharacterStats characterStats;
 
         private Transform target;
         private float nextWaypointDistance = 2f;
@@ -29,7 +30,7 @@ namespace Enemy
             characterMovement.setRigidBody2D(GetComponent<Rigidbody2D>());
             characterMovement.setCharacterAnimationContrller(GetComponentInChildren<CharacterAnimationController>());
             dbConn = new EnemyDatabaseConn("CharacterStats.db", "testEnemyCharacter");
-            moveSpeed = dbConn.getEnemyMoveSpeed();
+            characterStats = new CharacterStats(dbConn);
 
             target = GameObject.Find("PlayerCharacter").GetComponent<Transform>();
             seeker = GetComponent<Seeker>();
@@ -80,6 +81,7 @@ namespace Enemy
             }
             else
             {
+                float moveSpeed = characterStats.getMoveSpeed();
                 Vector2 direction = ((Vector2)aiPath.vectorPath[currentWaypoint] - characterMovement.getCurrentPosition()).normalized;
                 force = direction * (moveSpeed * Time.deltaTime);
 

@@ -8,11 +8,9 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        private float horizontalSpeed = 0f;
-        private float verticalSpeed = 0f;
-        public float moveSpeed = 1f;
         private CharacterMovement characterMovement;
         private PlayerDatabaseConn dbConn;
+        private CharacterStats characterStats;
         
         private void Awake()
         {
@@ -20,7 +18,7 @@ namespace Player
             characterMovement.setRigidBody2D(GetComponent<Rigidbody2D>());
             characterMovement.setCharacterAnimationContrller(GetComponentInChildren<CharacterAnimationController>());
             dbConn = new PlayerDatabaseConn("CharacterStats.db");
-            moveSpeed = dbConn.getPlayerMoveSpeed();
+            characterStats = new CharacterStats(dbConn);
         }
 
         private void FixedUpdate()
@@ -30,8 +28,9 @@ namespace Player
 
         private void Move()
         {
-            horizontalSpeed = Input.GetAxisRaw("Horizontal");
-            verticalSpeed = Input.GetAxisRaw("Vertical");
+            float horizontalSpeed = Input.GetAxisRaw("Horizontal");
+            float verticalSpeed = Input.GetAxisRaw("Vertical");
+            float moveSpeed = characterStats.getMoveSpeed();
 
             Vector2 force = new Vector2(horizontalSpeed, verticalSpeed) * (moveSpeed * Time.deltaTime);
             Direction direction = characterMovement.getDirectionFromVector(force);
