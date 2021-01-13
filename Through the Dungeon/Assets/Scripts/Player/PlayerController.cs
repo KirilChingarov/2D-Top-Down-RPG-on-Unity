@@ -8,6 +8,7 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
+        private GameObject thisGameObject;
         private CharacterMovement characterMovement;
         private PlayerDatabaseConn dbConn;
         private CharacterStats characterStats;
@@ -17,6 +18,7 @@ namespace Player
         
         private void Awake()
         {
+            thisGameObject = this.gameObject;
             characterMovement = GetComponent<CharacterMovement>();
             characterMovement.setRigidBody2D(GetComponent<Rigidbody2D>());
             characterMovement.setCharacterAnimationContrller(GetComponentInChildren<CharacterAnimationController>());
@@ -24,6 +26,7 @@ namespace Player
             characterStats = new CharacterStats(dbConn);
             playerAttackController = GetComponentInChildren<PlayerAttackController>();
             playerAttackController.setAttackRange(characterStats.getAttackRange());
+            playerAttackController.setBasicAttackDamage(characterStats.getAttackDamage());
         }
 
         private void FixedUpdate()
@@ -71,6 +74,16 @@ namespace Player
         public void unfreezePosition()
         {
             canMove = true;
+        }
+
+        public void takeDamage(float damage)
+        {
+            characterStats.takeDamage(damage);
+        }
+
+        public GameObject getGameObject()
+        {
+            return thisGameObject;
         }
     }
 }

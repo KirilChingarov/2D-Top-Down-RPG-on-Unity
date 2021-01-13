@@ -80,6 +80,15 @@ namespace Character
         {
             this.attackCooldown = attackCooldown;
         }
+
+        public void takeDamage(float damage)
+        {
+            health -= damage;
+            if (health < 0f)
+            {
+                health = 0f;
+            }
+        }
     }    
 }
 

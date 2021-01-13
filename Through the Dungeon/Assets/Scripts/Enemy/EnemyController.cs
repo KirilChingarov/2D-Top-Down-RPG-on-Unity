@@ -12,7 +12,8 @@ namespace Enemy
     
     public class EnemyController : MonoBehaviour
     {
-        //private float moveSpeed = 1f;
+        private GameObject thisGameObject;
+        
         private CharacterMovement characterMovement;
         private EnemyDatabaseConn dbConn;
         private CharacterStats characterStats;
@@ -26,6 +27,7 @@ namespace Enemy
         
         void Awake()
         {
+            thisGameObject = this.gameObject;
             characterMovement = GetComponent<CharacterMovement>();
             characterMovement.setRigidBody2D(GetComponent<Rigidbody2D>());
             characterMovement.setCharacterAnimationContrller(GetComponentInChildren<CharacterAnimationController>());
@@ -118,6 +120,21 @@ namespace Enemy
         public float getAttackRange()
         {
             return characterStats.getAttackRange();
+        }
+
+        public void takeDamage(float damage)
+        {
+            characterStats.takeDamage(damage);
+            Debug.Log(this.gameObject.name + " health : " + characterStats.getHealth());
+            if (characterStats.getHealth() == 0f)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+
+        public GameObject getGameObject()
+        {
+            return thisGameObject;
         }
     }
 

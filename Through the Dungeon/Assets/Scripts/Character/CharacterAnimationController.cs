@@ -67,5 +67,7 @@ namespace Character
         {
             GetComponentInParent<PlayerController>().unfreezePosition();
         }
+        
+        
     }
 }

@@ -8,6 +8,7 @@ public class PlayerAttackController : MonoBehaviour
 {
     private CharacterAnimationController characterAnimationController;
     private CircleCollider2D basicAttackRange;
+    private float basicAttackDamage = 0f;
     
     void Awake()
     {
@@ -23,5 +24,15 @@ public class PlayerAttackController : MonoBehaviour
     public void setAttackRange(float attackRange)
     {
         basicAttackRange.radius = attackRange;
+    }
+
+    public void setBasicAttackDamage(float attackDamage)
+    {
+        basicAttackDamage = attackDamage;
+    }
+
+    public void basicAttack()
+    {
+        GetComponentInChildren<BasicAttack>().attack(basicAttackDamage);
     }
 }

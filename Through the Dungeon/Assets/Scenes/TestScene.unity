@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 80067883}
   - component: {fileID: 80067884}
   - component: {fileID: 80067885}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,6 +343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 528607985}
   - component: {fileID: 528607986}
+  - component: {fileID: 528607987}
   m_Layer: 11
   m_Name: BasicAttack
   m_TagString: Untagged
@@ -380,6 +381,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!114 &528607987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528607984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a815db0cc84a6c4d8afdecc2f21de94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &761117374
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +520,7 @@ GameObject:
   - component: {fileID: 790350466}
   - component: {fileID: 790350467}
   - component: {fileID: 790350468}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: playerHitCheckbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -653,9 +666,9 @@ GameObject:
   - component: {fileID: 1380382379}
   - component: {fileID: 1380382381}
   - component: {fileID: 1380382382}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyCharacter
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -909,7 +922,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa702a2f160a91b4cb296817400e168c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextAttack: 0
 --- !u!1 &1756602282
 GameObject:
   m_ObjectHideFlags: 0
@@ -3482,7 +3494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2038102259}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AttackController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3513,7 +3525,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2094157890}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BasicAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
