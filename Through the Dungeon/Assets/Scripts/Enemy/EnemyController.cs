@@ -20,8 +20,12 @@ namespace Enemy
         private float nextWaypointDistance = 2f;
         private Path aiPath;
         private int currentWaypoint;
-        private bool playerHit = false;
+        private bool playerInRange = false;
         private Seeker seeker;
+
+        private EnemyAttackController enemyAttackController;
+        private bool canMove = false;
+        private float nextAttack = 0f;
         
         void Awake()
         {
@@ -30,6 +34,10 @@ namespace Enemy
             characterMovement.setCharacterAnimationContrller(GetComponentInChildren<CharacterAnimationController>());
             dbConn = new EnemyDatabaseConn("CharacterStats.db", "testEnemyCharacter");
             characterStats = new CharacterStats(dbConn);
+
+            enemyAttackController = GetComponentInChildren<EnemyAttackController>();
+            enemyAttackController.setAttackRange(characterStats.getAttackRange());
+            enemyAttackController.setBasicAttackDamage(characterStats.getAttackDamage());
 
             target = GameObject.Find("PlayerCharacter").GetComponent<Transform>();
             seeker = GetComponent<Seeker>();
@@ -57,6 +65,16 @@ namespace Enemy
         void FixedUpdate()
         {
             Move();
+            Attack();
+        }
+
+        private void Attack()
+        {
+            if (playerInRange && Time.time >= nextAttack)
+            {
+                enemyAttackController.Attack();
+                nextAttack = Time.time + characterStats.getAttackCooldown();
+            }
         }
 
         private void Move()
@@ -73,7 +91,7 @@ namespace Enemy
 
             Vector2 force;
             Direction targetDirection;
-            if (playerHit)
+            if (playerInRange || canMove)
             {
                 force = new Vector2(0f, 0f);
                 targetDirection = Direction.IDLE;
@@ -111,12 +129,17 @@ namespace Enemy
 
         public void setReachedEndOfPath(bool check)
         {
-            playerHit = check;
+            playerInRange = check;
         }
 
-        public float getAttackRange()
+        public void freezePosition()
         {
-            return characterStats.getAttackRange();
+            canMove = false;
+        }
+
+        public void unfreezePosition()
+        {
+            canMove = true;
         }
 
         public void takeDamage(float damage)

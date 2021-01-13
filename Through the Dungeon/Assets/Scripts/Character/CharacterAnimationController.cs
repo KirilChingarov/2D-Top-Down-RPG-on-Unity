@@ -1,4 +1,5 @@
 ﻿using System;
+using Enemy;
 using UnityEngine;
 using Enums;
 using Player;
@@ -10,7 +11,7 @@ namespace Character
         private float horizontalSpeed = 0f;
         private float verticalSpeed = 0f;
         private bool isIdle = true;
-        public Animator characterGFX;
+        private Animator characterGFX;
 
         public void Awake()
         {
@@ -53,21 +54,39 @@ namespace Character
             characterGFX.SetBool("isIdle", isIdle);
         }
 
-        public void attack()
+        public void startAttack()
         {
             characterGFX.SetTrigger("Attack");
         }
 
-        public void freezePosition()
+        public void applyDamageToEnemy()
+        {
+            transform.parent.gameObject.GetComponentInChildren<PlayerAttackController>().applyDamage();
+        }
+
+        public void applyDamageToPlayer()
+        {
+            transform.parent.gameObject.GetComponentInChildren<EnemyAttackController>().applyDamage();
+        }
+
+        public void freezePlayerPosition()
         {
             GetComponentInParent<PlayerController>().freezePosition();
         }
         
-        public void unfreezePosition()
+        public void freezeEnemyPosition()
+        {
+            GetComponentInParent<EnemyController>().freezePosition();
+        }
+
+        public void unfreezePlayerPosition()
         {
             GetComponentInParent<PlayerController>().unfreezePosition();
         }
         
-        
+        public void unfreezeEnemyPosition()
+        {
+            GetComponentInParent<EnemyController>().unfreezePosition();
+        }
     }
 }

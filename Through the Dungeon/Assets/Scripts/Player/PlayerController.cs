@@ -22,6 +22,7 @@ namespace Player
             characterMovement.setCharacterAnimationContrller(GetComponentInChildren<CharacterAnimationController>());
             dbConn = new PlayerDatabaseConn("CharacterStats.db");
             characterStats = new CharacterStats(dbConn);
+            
             playerAttackController = GetComponentInChildren<PlayerAttackController>();
             playerAttackController.setAttackRange(characterStats.getAttackRange());
             playerAttackController.setBasicAttackDamage(characterStats.getAttackDamage());
@@ -77,6 +78,11 @@ namespace Player
         public void takeDamage(float damage)
         {
             characterStats.takeDamage(damage);
+            Debug.Log(this.gameObject.name + " health : " + characterStats.getHealth());
+            if (characterStats.getHealth() == 0f)
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 }

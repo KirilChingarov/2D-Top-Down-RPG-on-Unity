@@ -236,7 +236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf3abab85e8e7a24a924d57c8f1ee56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterGFX: {fileID: 0}
 --- !u!1 &420062259
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,7 +507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf3abab85e8e7a24a924d57c8f1ee56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterGFX: {fileID: 0}
 --- !u!1 &790350465
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,9 +552,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.4}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.2
+  m_Radius: 1
 --- !u!114 &790350468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3494,6 +3492,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2038102259}
+  - component: {fileID: 2038102260}
   m_Layer: 10
   m_Name: AttackController
   m_TagString: Untagged
@@ -3516,6 +3515,18 @@ Transform:
   m_Father: {fileID: 1380382377}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2038102260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038102258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d776d517c33952b459c3129fc66dbb3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2094157889
 GameObject:
   m_ObjectHideFlags: 0
@@ -3525,6 +3536,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2094157890}
+  - component: {fileID: 2094157891}
+  - component: {fileID: 2094157892}
   m_Layer: 10
   m_Name: BasicAttack
   m_TagString: Untagged
@@ -3546,3 +3559,31 @@ Transform:
   m_Father: {fileID: 2038102259}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &2094157891
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094157889}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
+--- !u!114 &2094157892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094157889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d267112de9ea94ea7bbace734a5c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

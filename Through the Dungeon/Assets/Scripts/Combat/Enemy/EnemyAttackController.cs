@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Character;
 using UnityEngine;
 
-public class PlayerAttackController : MonoBehaviour
+public class EnemyAttackController : MonoBehaviour
 {
     private CharacterAnimationController characterAnimationController;
     private CircleCollider2D basicAttackRange;
@@ -19,12 +19,12 @@ public class PlayerAttackController : MonoBehaviour
     {
         characterAnimationController.startAttack();
     }
-
+    
     public void applyDamage()
     {
-        GetComponentInChildren<BasicAttack>().attack(basicAttackDamage);
+        GetComponentInChildren<EnemyBasicAttack>().attack(basicAttackDamage);
     }
-
+    
     public void setAttackRange(float attackRange)
     {
         basicAttackRange.radius = attackRange;
