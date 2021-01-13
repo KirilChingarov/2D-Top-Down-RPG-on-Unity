@@ -12,8 +12,6 @@ namespace Enemy
     
     public class EnemyController : MonoBehaviour
     {
-        private GameObject thisGameObject;
-        
         private CharacterMovement characterMovement;
         private EnemyDatabaseConn dbConn;
         private CharacterStats characterStats;
@@ -27,7 +25,6 @@ namespace Enemy
         
         void Awake()
         {
-            thisGameObject = this.gameObject;
             characterMovement = GetComponent<CharacterMovement>();
             characterMovement.setRigidBody2D(GetComponent<Rigidbody2D>());
             characterMovement.setCharacterAnimationContrller(GetComponentInChildren<CharacterAnimationController>());
@@ -130,11 +127,6 @@ namespace Enemy
             {
                 Destroy(this.gameObject);
             }
-        }
-
-        public GameObject getGameObject()
-        {
-            return thisGameObject;
         }
     }
 

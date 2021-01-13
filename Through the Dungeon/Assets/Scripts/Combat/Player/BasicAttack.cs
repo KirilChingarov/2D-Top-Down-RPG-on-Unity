@@ -7,23 +7,23 @@ using UnityEngine;
 
 public class BasicAttack : MonoBehaviour
 {
-    private List<EnemyController> enemies;
-    private List<bool> inRange = new List<bool> {false};
-
+    private List<GameObject> enemies = new List<GameObject>();
+    private List<bool> inRange = new List<bool>();
 
     public void Start()
     {
-        throw new NotImplementedException();
+        enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            inRange.Add(false);
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("Collided with " + other.gameObject.name);
-            EnemyController newEnemy = other.gameObject.GetComponent<EnemyController>() as EnemyController;
-            enemies.Add(newEnemy);
-            inRange.Add(true);
+            inRange[enemies.IndexOf(other.gameObject)] = true;
         }
     }
     
@@ -31,9 +31,7 @@ public class BasicAttack : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            int enemyIndex = enemies.IndexOf(other.gameObject.GetComponent<EnemyController>());
-            enemies.RemoveAt(enemyIndex);
-            inRange.RemoveAt(enemyIndex);
+            inRange[enemies.IndexOf(other.gameObject)] = false;
         }
     }
 
@@ -41,7 +39,10 @@ public class BasicAttack : MonoBehaviour
     {
         for (int i = 0; i < enemies.Count; i++)
         {
-            enemies[i].takeDamage(attackDamage);
+            if (inRange[i])
+            {
+                enemies[i].GetComponent<EnemyController>().takeDamage(attackDamage);
+            }
         }
     }
 }

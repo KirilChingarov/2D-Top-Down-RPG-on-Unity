@@ -19,6 +19,7 @@ public class PlayerAttackController : MonoBehaviour
     public void Attack()
     {
         characterAnimationController.attack();
+        GetComponentInChildren<BasicAttack>().attack(basicAttackDamage);
     }
 
     public void setAttackRange(float attackRange)
@@ -29,10 +30,5 @@ public class PlayerAttackController : MonoBehaviour
     public void setBasicAttackDamage(float attackDamage)
     {
         basicAttackDamage = attackDamage;
-    }
-
-    public void basicAttack()
-    {
-        GetComponentInChildren<BasicAttack>().attack(basicAttackDamage);
     }
 }
