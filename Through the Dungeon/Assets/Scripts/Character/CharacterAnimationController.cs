@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using Enums;
+using Player;
 
 namespace Character
 {
@@ -55,6 +56,16 @@ namespace Character
         public void attack()
         {
             characterGFX.SetTrigger("Attack");
+        }
+
+        public void freezePosition()
+        {
+            GetComponentInParent<PlayerController>().freezePosition();
+        }
+        
+        public void unfreezePosition()
+        {
+            GetComponentInParent<PlayerController>().unfreezePosition();
         }
     }
 }

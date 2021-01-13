@@ -34,14 +34,22 @@ namespace Player
 
         private void Move()
         {
-            if(canMove != true) return;
-            
             float horizontalSpeed = Input.GetAxisRaw("Horizontal");
             float verticalSpeed = Input.GetAxisRaw("Vertical");
             float moveSpeed = characterStats.getMoveSpeed();
+            Vector2 force;
+            Direction direction;
 
-            Vector2 force = new Vector2(horizontalSpeed, verticalSpeed) * (moveSpeed * Time.deltaTime);
-            Direction direction = characterMovement.getDirectionFromVector(force);
+            if(canMove){
+                force = new Vector2(horizontalSpeed, verticalSpeed) * (moveSpeed * Time.deltaTime);
+                direction = characterMovement.getDirectionFromVector(force);
+            }
+            else
+            {
+                force = new Vector2(0f,0f);
+                direction = Direction.IDLE;
+            }
+            
             characterMovement.setCharacterVelocity(force);
             characterMovement.setCharacterDirection(direction);
         }
@@ -50,10 +58,19 @@ namespace Player
         {
             if (Input.GetMouseButton(0) && Time.time >= nextAttack)
             {
-                //canMove = false;
                 playerAttackController.Attack();
                 nextAttack = Time.time + characterStats.getAttackCooldown();
             }
+        }
+
+        public void freezePosition()
+        {
+            canMove = false;
+        }
+
+        public void unfreezePosition()
+        {
+            canMove = true;
         }
     }
 }
