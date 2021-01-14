@@ -6,13 +6,11 @@ using UnityEngine;
 public class EnemyAttackController : MonoBehaviour
 {
     private CharacterAnimationController characterAnimationController;
-    private CircleCollider2D basicAttackRange;
     private float basicAttackDamage = 0f;
     
     void Awake()
     {
         characterAnimationController = transform.parent.gameObject.GetComponentInChildren<CharacterAnimationController>();
-        basicAttackRange = transform.Find("BasicAttack").GetComponent<CircleCollider2D>();
     }
 
     public void Attack()
@@ -27,7 +25,7 @@ public class EnemyAttackController : MonoBehaviour
     
     public void setAttackRange(float attackRange)
     {
-        basicAttackRange.radius = attackRange;
+        GetComponentInChildren<EnemyBasicAttack>().setAttackRange(attackRange);
     }
 
     public void setBasicAttackDamage(float attackDamage)

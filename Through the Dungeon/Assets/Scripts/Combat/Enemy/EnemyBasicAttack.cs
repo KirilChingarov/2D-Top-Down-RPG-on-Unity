@@ -37,4 +37,9 @@ public class EnemyBasicAttack : MonoBehaviour
             player.GetComponent<PlayerController>().takeDamage(attackDamage);
         }
     }
+
+    public void setAttackRange(float attackRange)
+    {
+        GetComponent<CircleCollider2D>().radius = attackRange;
+    }
 }

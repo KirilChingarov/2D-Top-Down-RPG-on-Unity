@@ -44,4 +44,9 @@ public class BasicAttack : MonoBehaviour
             }
         }
     }
+
+    public void setAttackRange(float attackRange)
+    {
+        GetComponent<CircleCollider2D>().radius = attackRange;
+    }
 }

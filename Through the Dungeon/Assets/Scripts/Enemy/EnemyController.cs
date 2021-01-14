@@ -91,7 +91,7 @@ namespace Enemy
 
             Vector2 force;
             Direction targetDirection;
-            if (playerInRange || canMove)
+            if (playerInRange && !canMove)
             {
                 force = new Vector2(0f, 0f);
                 targetDirection = Direction.IDLE;
