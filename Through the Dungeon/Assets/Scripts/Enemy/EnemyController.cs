@@ -24,8 +24,10 @@ namespace Enemy
         private Seeker seeker;
 
         private EnemyAttackController enemyAttackController;
-        private bool canMove = false;
+        private bool canMove = true;
         private float nextAttack = 0f;
+
+        private bool playerDead = false;
         
         void Awake()
         {
@@ -47,6 +49,7 @@ namespace Enemy
 
         private void UpdatePath()
         {
+            if(playerInRange || playerDead) return;
             if (seeker.IsDone())
             {
                 seeker.StartPath(characterMovement.getCurrentPosition(), target.position, onPathComplete);
@@ -84,17 +87,17 @@ namespace Enemy
                 return;
             }
 
-            if (currentWaypoint >= aiPath.vectorPath.Count)
-            {
-                return;
-            }
-
             Vector2 force;
             Direction targetDirection;
-            if (playerInRange && !canMove)
+            
+            if (playerInRange || !canMove)
             {
                 force = new Vector2(0f, 0f);
                 targetDirection = Direction.IDLE;
+            }
+            else if (currentWaypoint >= aiPath.vectorPath.Count)
+            {
+                return;
             }
             else
             {
@@ -150,6 +153,12 @@ namespace Enemy
             {
                 Destroy(this.gameObject);
             }
+        }
+
+        public void playerIsDead()
+        {
+            playerDead = true;
+            characterMovement.setCharacterDirection(Direction.IDLE);
         }
     }
 
