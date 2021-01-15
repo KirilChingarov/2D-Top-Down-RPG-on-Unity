@@ -12,24 +12,34 @@ namespace Enemy
     
     public class EnemyController : MonoBehaviour
     {
-        private float moveSpeed = 1f;
         private CharacterMovement characterMovement;
         private EnemyDatabaseConn dbConn;
+        private CharacterStats characterStats;
 
         private Transform target;
         private float nextWaypointDistance = 2f;
         private Path aiPath;
         private int currentWaypoint;
-        private bool playerHit = false;
+        private bool playerInRange = false;
         private Seeker seeker;
+
+        private EnemyAttackController enemyAttackController;
+        private bool canMove = true;
+        private float nextAttack = 0f;
+
+        private bool playerDead = false;
         
         void Awake()
         {
             characterMovement = GetComponent<CharacterMovement>();
             characterMovement.setRigidBody2D(GetComponent<Rigidbody2D>());
             characterMovement.setCharacterAnimationContrller(GetComponentInChildren<CharacterAnimationController>());
-            dbConn = new EnemyDatabaseConn("CharacterMovement.db", "testEnemyCharacter");
-            moveSpeed = dbConn.getEnemyMoveSpeed();
+            dbConn = new EnemyDatabaseConn("CharacterStats.db", "testEnemyCharacter");
+            characterStats = new CharacterStats(dbConn);
+
+            enemyAttackController = GetComponentInChildren<EnemyAttackController>();
+            enemyAttackController.setAttackRange(characterStats.getAttackRange());
+            enemyAttackController.setBasicAttackDamage(characterStats.getAttackDamage());
 
             target = GameObject.Find("PlayerCharacter").GetComponent<Transform>();
             seeker = GetComponent<Seeker>();
@@ -39,6 +49,7 @@ namespace Enemy
 
         private void UpdatePath()
         {
+            if(playerInRange || playerDead) return;
             if (seeker.IsDone())
             {
                 seeker.StartPath(characterMovement.getCurrentPosition(), target.position, onPathComplete);
@@ -56,25 +67,41 @@ namespace Enemy
         
         void FixedUpdate()
         {
-            if (aiPath == null)
-            {
-                return;
-            }
+            Move();
+            Attack();
+        }
 
-            if (currentWaypoint >= aiPath.vectorPath.Count)
+        private void Attack()
+        {
+            if (playerInRange && Time.time >= nextAttack)
+            {
+                enemyAttackController.Attack();
+                nextAttack = Time.time + characterStats.getAttackCooldown();
+            }
+        }
+
+        private void Move()
+        {
+            if (aiPath == null)
             {
                 return;
             }
 
             Vector2 force;
             Direction targetDirection;
-            if (playerHit)
+            
+            if (playerInRange || !canMove)
             {
                 force = new Vector2(0f, 0f);
                 targetDirection = Direction.IDLE;
             }
+            else if (currentWaypoint >= aiPath.vectorPath.Count)
+            {
+                return;
+            }
             else
             {
+                float moveSpeed = characterStats.getMoveSpeed();
                 Vector2 direction = ((Vector2)aiPath.vectorPath[currentWaypoint] - characterMovement.getCurrentPosition()).normalized;
                 force = direction * (moveSpeed * Time.deltaTime);
 
@@ -105,7 +132,33 @@ namespace Enemy
 
         public void setReachedEndOfPath(bool check)
         {
-            playerHit = check;
+            playerInRange = check;
+        }
+
+        public void freezePosition()
+        {
+            canMove = false;
+        }
+
+        public void unfreezePosition()
+        {
+            canMove = true;
+        }
+
+        public void takeDamage(float damage)
+        {
+            characterStats.takeDamage(damage);
+            Debug.Log(this.gameObject.name + " health : " + characterStats.getHealth());
+            if (characterStats.getHealth() == 0f)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+
+        public void playerIsDead()
+        {
+            playerDead = true;
+            characterMovement.setCharacterDirection(Direction.IDLE);
         }
     }
 
