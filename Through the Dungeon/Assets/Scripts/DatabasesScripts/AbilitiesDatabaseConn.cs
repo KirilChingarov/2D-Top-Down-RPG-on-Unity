@@ -46,12 +46,12 @@ namespace DatabasesScripts
             SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT t.typeName FROM AbilityIds ai" +
-                              "INNER JOIN AbilityTypesConnections t" +
-                              "ON ai.abilityId = t.abilityId" +
-                              "INNER JOIN AbilityTypes at" +
-                              "ON at.abilityTypeId = t.abilityTypeId" +
-                              "WHERE abilityId = @abilityId";
+            cmd.CommandText = "SELECT AbilityTypes.typeName FROM AbilityIds" +
+                              "INNER JOIN AbilityTypesConnections" +
+                              "ON AbilityIds.abilityId = AbilityTypesConnections.abilityId" +
+                              "INNER JOIN AbilityTypes" +
+                              "ON AbilityTypes.typeId = AbilityTypesConnections.abilityTypeId" +
+                              "WHERE AbilityIds.abilityId = @abilityId";
             cmd.Parameters.Add(new SqliteParameter
             {
                 ParameterName = "abilityId",
@@ -62,6 +62,11 @@ namespace DatabasesScripts
             result.Read();
             string abilityTypeName = result.GetString(0);
 
+            return AbilityTypeFromString(abilityTypeName);
+        }
+
+        public AbilityType AbilityTypeFromString(string abilityTypeName)
+        {
             switch (abilityTypeName)
             {
                 case "MeleeAttack":
