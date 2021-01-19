@@ -26,6 +26,7 @@ namespace Player
             playerAttackController = GetComponentInChildren<PlayerAttackController>();
             playerAttackController.setAttackRange(characterStats.getAttackRange());
             playerAttackController.setBasicAttackDamage(characterStats.getAttackDamage());
+            playerAttackController.setUpFireAttack();
         }
 
         private void FixedUpdate()
