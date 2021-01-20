@@ -64,6 +64,8 @@ namespace DatabasesScripts
             result.Read();
             string abilityTypeName = result.GetString(0);
 
+            conn.Close();
+
             return AbilityTypeFromString(abilityTypeName);
         }
 
@@ -113,6 +115,32 @@ namespace DatabasesScripts
             conn.Close();
 
             return cooldown;
+        }
+        
+        public float getAbilityAttackDamage()
+        {
+            float attackDamage = 0f;
+
+            conn.Open();
+
+            SqliteCommand cmd = conn.CreateCommand();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT attackDamage FROM AbilityStats " + 
+                              "WHERE abilityId = @abilityId";
+            cmd.Parameters.Add(new SqliteParameter
+            {
+                ParameterName = "abilityId",
+                Value = abilityId
+            });
+
+            SqliteDataReader result = cmd.ExecuteReader();
+            result.Read();
+            attackDamage = result.GetFloat(0);
+            
+            conn.Close();
+
+            return attackDamage;
         }
 
         public float getAbilityAttackRange()

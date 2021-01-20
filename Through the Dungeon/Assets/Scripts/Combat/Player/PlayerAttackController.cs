@@ -21,14 +21,28 @@ public class PlayerAttackController : MonoBehaviour
         characterAnimationController.startAttack();
     }
 
-    public void applyDamage()
+    public void applyDamage(string gameObjectName)
     {
-        GetComponentInChildren<BasicAttack>().attack(basicAttackDamage);
+        float damage;
+        switch (gameObjectName)
+        {
+            case "BasicAttack":
+                damage = basicAttackDamage;
+                break;
+            case "FireAttack":
+                damage = fireAttack.getFireAttackDamage();
+                break;
+            default:
+                damage = 0f;
+                break;
+        }
+        
+        transform.Find(gameObjectName).GetComponent<AttackHitbox>().attack(damage);
     }
 
     public void setAttackRange(float attackRange)
     {
-        GetComponentInChildren<BasicAttack>().setAttackRange(attackRange);
+        GetComponentInChildren<AttackHitbox>().setAttackRange(attackRange);
     }
 
     public void setBasicAttackDamage(float attackDamage)
@@ -41,7 +55,6 @@ public class PlayerAttackController : MonoBehaviour
         fireAttack = new FireAttack(GameObject.Find("FireAttack"), 
             new AbilitiesDatabaseConn("Abilities.db", "FireAttack"));
         fireAttack.setCharacterAnimationController(characterAnimationController);
-        fireAttack.setAttackRange();
     }
 
     public void FireAttack()

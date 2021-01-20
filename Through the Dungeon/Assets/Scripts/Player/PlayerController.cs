@@ -34,7 +34,7 @@ namespace Player
         {
             Move();
             Attack();
-            useAbilities();
+            useAttackAbilities();
         }
 
         private void Move()
@@ -68,7 +68,7 @@ namespace Player
             }
         }
 
-        private void useAbilities()
+        private void useAttackAbilities()
         {
             if(Input.GetKey(playerAttackController.getFireAttackKeyCode()) && Time.time >= nextFireAttack)
             {
