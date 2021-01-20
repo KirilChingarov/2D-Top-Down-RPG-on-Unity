@@ -37,6 +37,6 @@ public class PlayerAttackController : MonoBehaviour
 
     public void setUpFireAttack()
     {
-        
+        fireAttack = new FireAttack();
     }
 }

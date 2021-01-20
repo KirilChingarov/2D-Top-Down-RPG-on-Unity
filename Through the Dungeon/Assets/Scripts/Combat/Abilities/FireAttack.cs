@@ -9,8 +9,7 @@ namespace Abilities
     {
         private GameObject attackObject;
         private AbilitiesDatabaseConn dbConn;
-        
-        
+
         public FireAttack(GameObject attackObject, AbilitiesDatabaseConn dbConn) : base()
         {
             this.attackObject = attackObject;
@@ -24,7 +23,10 @@ namespace Abilities
 
         public override void startAbility()
         {
-            throw new System.NotImplementedException();
+            if (Input.GetKeyDown(keyCode))
+            {
+                Debug.Log("Fire Ability");
+            }
         }
 
         public override bool isAbilityActive()
