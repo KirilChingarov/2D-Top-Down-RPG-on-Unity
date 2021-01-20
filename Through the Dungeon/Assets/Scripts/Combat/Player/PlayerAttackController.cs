@@ -60,6 +60,7 @@ public class PlayerAttackController : MonoBehaviour
     public void FireAttack()
     {
         fireAttack.startAbility();
+        GameObject.Find("FireAttack").GetComponent<FireAttackAnimation>().triggerFireVFX();
     }
     
     public string getFireAttackKeyCode()

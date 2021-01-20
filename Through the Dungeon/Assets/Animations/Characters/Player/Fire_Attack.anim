@@ -28,7 +28,7 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 0.53333336
+        time: 0.6666667
         value: {x: 0, y: 0.1, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -47,32 +47,32 @@ AnimationClip:
     - time: 0
       value: {fileID: 7934079343574754981, guid: 18f5099097ff39c408e69fc5dbb0afe6,
         type: 3}
-    - time: 0.06666667
+    - time: 0.083333336
       value: {fileID: -3569596890568492918, guid: 18f5099097ff39c408e69fc5dbb0afe6,
         type: 3}
-    - time: 0.13333334
+    - time: 0.16666667
       value: {fileID: 4752422101211983347, guid: 18f5099097ff39c408e69fc5dbb0afe6,
         type: 3}
-    - time: 0.2
+    - time: 0.25
       value: {fileID: 1162461763723508672, guid: 18f5099097ff39c408e69fc5dbb0afe6,
         type: 3}
-    - time: 0.26666668
+    - time: 0.33333334
       value: {fileID: 6295042365111455300, guid: 18f5099097ff39c408e69fc5dbb0afe6,
         type: 3}
-    - time: 0.33333334
+    - time: 0.41666666
       value: {fileID: 6887719938759937145, guid: 18f5099097ff39c408e69fc5dbb0afe6,
         type: 3}
-    - time: 0.4
+    - time: 0.5
       value: {fileID: -1066807050975100026, guid: 18f5099097ff39c408e69fc5dbb0afe6,
         type: 3}
-    - time: 0.46666667
+    - time: 0.5833333
       value: {fileID: -7350092707204777986, guid: 18f5099097ff39c408e69fc5dbb0afe6,
         type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 15
+  m_SampleRate: 12
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -107,7 +107,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.53333336
+    m_StopTime: 0.6666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -136,7 +136,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.53333336
+        time: 0.6666667
         value: 0
         inSlope: 0
         outSlope: 0
@@ -164,7 +164,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.53333336
+        time: 0.6666667
         value: 0.1
         inSlope: 0
         outSlope: 0
@@ -192,7 +192,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.53333336
+        time: 0.6666667
         value: 0
         inSlope: 0
         outSlope: 0
@@ -218,14 +218,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.26666668
+  - time: 0.33333334
     functionName: applyFireDamageToEnemy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.53333336
+  - time: 0.6666667
     functionName: unfreezePlayerPosition
     data: 
     objectReferenceParameter: {fileID: 0}
