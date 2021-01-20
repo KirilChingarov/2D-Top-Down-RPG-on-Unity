@@ -12,9 +12,11 @@ namespace DatabasesScripts
         private string dbPath;
         private SqliteConnection conn;
         private int abilityId;
+        private string abilityName = "";
 
         public AbilitiesDatabaseConn(string databasePath, string abilityName)
         {
+            this.abilityName = abilityName;
             dbPath = "URI=file:" + Application.dataPath + "/Scripts/Databases/" + databasePath;
             conn = new SqliteConnection(dbPath);
             
@@ -80,6 +82,167 @@ namespace DatabasesScripts
             }
 
             return AbilityType.NotFound;
+        }
+
+        public string getAbiltyName()
+        {
+            return abilityName;
+        }
+
+        public float getAbilityCooldown()
+        {
+            float cooldown = 0f;
+
+            conn.Open();
+
+            SqliteCommand cmd = conn.CreateCommand();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT abilityCooldown FROM AbilityStats" + 
+                              "WHERE abilityId = @abilityId";
+            cmd.Parameters.Add(new SqliteParameter
+            {
+                ParameterName = "abilityId",
+                Value = abilityId
+            });
+
+            SqliteDataReader result = cmd.ExecuteReader();
+            result.Read();
+            cooldown = result.GetInt32(0);
+            
+            conn.Close();
+
+            return cooldown;
+        }
+
+        public float getAbilityAttackRange()
+        {
+            float attackRange = 0f;
+
+            conn.Open();
+
+            SqliteCommand cmd = conn.CreateCommand();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT abilityRange FROM AbilityStats" + 
+                              "WHERE abilityId = @abilityId";
+            cmd.Parameters.Add(new SqliteParameter
+            {
+                ParameterName = "abilityId",
+                Value = abilityId
+            });
+
+            SqliteDataReader result = cmd.ExecuteReader();
+            result.Read();
+            attackRange = result.GetFloat(0);
+            
+            conn.Close();
+
+            return attackRange;
+        }
+        
+        public int getAbilityDamageReduction()
+        {
+            int dmgReduction = 0;
+
+            conn.Open();
+
+            SqliteCommand cmd = conn.CreateCommand();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT damageReduction FROM AbilityStats" + 
+                              "WHERE abilityId = @abilityId";
+            cmd.Parameters.Add(new SqliteParameter
+            {
+                ParameterName = "abilityId",
+                Value = abilityId
+            });
+
+            SqliteDataReader result = cmd.ExecuteReader();
+            result.Read();
+            dmgReduction = result.GetInt32(0);
+            
+            conn.Close();
+
+            return dmgReduction;
+        }
+        
+        public float getAbilityDuration()
+        {
+            float abilityDuration = 0f;
+
+            conn.Open();
+
+            SqliteCommand cmd = conn.CreateCommand();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT abilityDuration FROM AbilityStats" + 
+                              "WHERE abilityId = @abilityId";
+            cmd.Parameters.Add(new SqliteParameter
+            {
+                ParameterName = "abilityId",
+                Value = abilityId
+            });
+
+            SqliteDataReader result = cmd.ExecuteReader();
+            result.Read();
+            abilityDuration = result.GetFloat(0);
+            
+            conn.Close();
+
+            return abilityDuration;
+        }
+        
+        public float getAbilityHealingAmount()
+        {
+            float healingAmount = 0f;
+
+            conn.Open();
+
+            SqliteCommand cmd = conn.CreateCommand();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT healingAmount FROM AbilityStats" + 
+                              "WHERE abilityId = @abilityId";
+            cmd.Parameters.Add(new SqliteParameter
+            {
+                ParameterName = "abilityId",
+                Value = abilityId
+            });
+
+            SqliteDataReader result = cmd.ExecuteReader();
+            result.Read();
+            healingAmount = result.GetFloat(0);
+            
+            conn.Close();
+
+            return healingAmount;
+        }
+
+        public string getAbilityKeyCode()
+        {
+            string keyCode = "";
+            
+            conn.Open();
+
+            SqliteCommand cmd = conn.CreateCommand();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT keyCode FROM AbilityKeyCodes" + 
+                              "WHERE abilityId = @abilityId";
+            cmd.Parameters.Add(new SqliteParameter
+            {
+                ParameterName = "abilityId",
+                Value = abilityId
+            });
+
+            SqliteDataReader result = cmd.ExecuteReader();
+            result.Read();
+            keyCode = result.GetString(0);
+
+            conn.Close();
+
+            return keyCode;
         }
     }
 }

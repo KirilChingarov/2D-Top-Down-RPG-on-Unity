@@ -8,10 +8,18 @@ namespace Abilities
     public class FireAttack : Ability
     {
         private GameObject attackObject;
+        private AbilitiesDatabaseConn dbConn;
         
-        public FireAttack(string abilityName, float cooldown, string keyCode, GameObject attackObject, AbilitiesDatabaseConn dbConn) : base(abilityName, cooldown, keyCode)
+        
+        public FireAttack(GameObject attackObject, AbilitiesDatabaseConn dbConn) : base()
         {
             this.attackObject = attackObject;
+            this.dbConn = dbConn;
+            abilityName = this.dbConn.getAbiltyName();
+            cooldown = this.dbConn.getAbilityCooldown();
+            keyCode = this.dbConn.getAbilityKeyCode();
+            abilityType = this.dbConn.getAbilityType();
+            isActive = false;
         }
 
         public override void startAbility()

@@ -1,4 +1,5 @@
 using Character;
+using Enums;
 
 namespace Abilities
 {
@@ -7,6 +8,7 @@ namespace Abilities
         protected string abilityName;
         protected float cooldown;
         protected string keyCode;
+        protected AbilityType abilityType;
         protected bool isActive;
         protected CharacterAnimationController characterGFX;
 
@@ -15,6 +17,15 @@ namespace Abilities
             this.abilityName = abilityName;
             this.cooldown = cooldown;
             this.keyCode = keyCode;
+            this.abilityType = AbilityType.NotFound;
+            isActive = false;
+        }
+
+        public Ability()
+        {
+            this.abilityName = "";
+            this.cooldown = 0f;
+            this.keyCode = "";
             isActive = false;
         }
 
