@@ -32,5 +32,20 @@ namespace Abilities
         public abstract void startAbility();
 
         public abstract bool isAbilityActive();
+        
+        public string getKeyCode()
+        {
+            return keyCode;
+        }
+
+        public float getCooldown()
+        {
+            return cooldown;
+        }
+
+        public AbilityType getAbilityType()
+        {
+            return abilityType;
+        }
     }
 }

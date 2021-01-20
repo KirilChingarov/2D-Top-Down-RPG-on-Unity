@@ -48,11 +48,11 @@ namespace DatabasesScripts
             SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT AbilityTypes.typeName FROM AbilityIds" +
-                              "INNER JOIN AbilityTypesConnections" +
-                              "ON AbilityIds.abilityId = AbilityTypesConnections.abilityId" +
-                              "INNER JOIN AbilityTypes" +
-                              "ON AbilityTypes.typeId = AbilityTypesConnections.abilityTypeId" +
+            cmd.CommandText = "SELECT AbilityTypes.typeName FROM AbilityIds " +
+                              "INNER JOIN AbilityTypesConnections " +
+                              "ON AbilityIds.abilityId = AbilityTypesConnections.abilityId " +
+                              "INNER JOIN AbilityTypes " +
+                              "ON AbilityTypes.typeId = AbilityTypesConnections.abilityTypeId " +
                               "WHERE AbilityIds.abilityId = @abilityId";
             cmd.Parameters.Add(new SqliteParameter
             {
@@ -98,7 +98,7 @@ namespace DatabasesScripts
             SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT abilityCooldown FROM AbilityStats" + 
+            cmd.CommandText = "SELECT abilityCooldown FROM AbilityStats " + 
                               "WHERE abilityId = @abilityId";
             cmd.Parameters.Add(new SqliteParameter
             {
@@ -108,7 +108,7 @@ namespace DatabasesScripts
 
             SqliteDataReader result = cmd.ExecuteReader();
             result.Read();
-            cooldown = result.GetInt32(0);
+            cooldown = result.GetFloat(0);
             
             conn.Close();
 
@@ -124,7 +124,7 @@ namespace DatabasesScripts
             SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT abilityRange FROM AbilityStats" + 
+            cmd.CommandText = "SELECT abilityRange FROM AbilityStats " + 
                               "WHERE abilityId = @abilityId";
             cmd.Parameters.Add(new SqliteParameter
             {
@@ -150,7 +150,7 @@ namespace DatabasesScripts
             SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT damageReduction FROM AbilityStats" + 
+            cmd.CommandText = "SELECT damageReduction FROM AbilityStats " + 
                               "WHERE abilityId = @abilityId";
             cmd.Parameters.Add(new SqliteParameter
             {
@@ -176,7 +176,7 @@ namespace DatabasesScripts
             SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT abilityDuration FROM AbilityStats" + 
+            cmd.CommandText = "SELECT abilityDuration FROM AbilityStats " + 
                               "WHERE abilityId = @abilityId";
             cmd.Parameters.Add(new SqliteParameter
             {
@@ -202,7 +202,7 @@ namespace DatabasesScripts
             SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT healingAmount FROM AbilityStats" + 
+            cmd.CommandText = "SELECT healingAmount FROM AbilityStats " + 
                               "WHERE abilityId = @abilityId";
             cmd.Parameters.Add(new SqliteParameter
             {
@@ -228,7 +228,7 @@ namespace DatabasesScripts
             SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT keyCode FROM AbilityKeyCodes" + 
+            cmd.CommandText = "SELECT keyCode FROM AbilityKeyCodes " + 
                               "WHERE abilityId = @abilityId";
             cmd.Parameters.Add(new SqliteParameter
             {

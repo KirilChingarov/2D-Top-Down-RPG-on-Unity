@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Abilities;
 using Character;
+using DatabasesScripts;
 using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
@@ -37,6 +38,24 @@ public class PlayerAttackController : MonoBehaviour
 
     public void setUpFireAttack()
     {
-        fireAttack = new FireAttack();
+        fireAttack = new FireAttack(GameObject.Find("FireAttack"), 
+            new AbilitiesDatabaseConn("Abilities.db", "FireAttack"));
+        fireAttack.setCharacterAnimationController(characterAnimationController);
+        fireAttack.setAttackRange();
+    }
+
+    public void FireAttack()
+    {
+        fireAttack.startAbility();
+    }
+    
+    public string getFireAttackKeyCode()
+    {
+        return fireAttack.getKeyCode();
+    }
+
+    public float getFireAttackCooldown()
+    {
+        return fireAttack.getCooldown();
     }
 }

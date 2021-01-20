@@ -14,6 +14,7 @@ namespace Player
         private PlayerAttackController playerAttackController;
         private bool canMove = true;
         private float nextAttack = 0f;
+        private float nextFireAttack = 0f;
         
         private void Awake()
         {
@@ -33,6 +34,7 @@ namespace Player
         {
             Move();
             Attack();
+            useAbilities();
         }
 
         private void Move()
@@ -63,6 +65,17 @@ namespace Player
             {
                 playerAttackController.Attack();
                 nextAttack = Time.time + characterStats.getAttackCooldown();
+            }
+        }
+
+        private void useAbilities()
+        {
+            if(Input.GetKey(playerAttackController.getFireAttackKeyCode()) && Time.time >= nextFireAttack)
+            {
+                Debug.Log("Fire attack");
+                playerAttackController.FireAttack();
+                nextFireAttack = Time.time + playerAttackController.getFireAttackCooldown();
+                Debug.Log(nextFireAttack);
             }
         }
 

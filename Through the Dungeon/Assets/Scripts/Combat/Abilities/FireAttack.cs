@@ -23,10 +23,7 @@ namespace Abilities
 
         public override void startAbility()
         {
-            if (Input.GetKeyDown(keyCode))
-            {
-                Debug.Log("Fire Ability");
-            }
+            Debug.Log("Starting Fire Ability");
         }
 
         public override bool isAbilityActive()
@@ -37,6 +34,12 @@ namespace Abilities
         public void setCharacterAnimationController(CharacterAnimationController characterGFX)
         {
             this.characterGFX = characterGFX;
+        }
+
+        public void setAttackRange()
+        {
+            float attackRange = dbConn.getAbilityAttackRange();
+            attackObject.GetComponent<CircleCollider2D>().radius = attackRange;
         }
     }
 }
