@@ -79,6 +79,12 @@ public class PlayerAttackController : MonoBehaviour
         rangedAttack = new RangedAttack(GameObject.Find("RangedAttack").transform,
             Resources.Load("Prefabs/VFX/WindSlash") as GameObject, 
             new AbilitiesDatabaseConn("RangedAttack"));
+        rangedAttack.setCharacterAnimationController(characterAnimationController);
+    }
+
+    public void RangedAttack()
+    {
+        rangedAttack.startAbility();
     }
 
     public string getRangedAttackKeyCode()

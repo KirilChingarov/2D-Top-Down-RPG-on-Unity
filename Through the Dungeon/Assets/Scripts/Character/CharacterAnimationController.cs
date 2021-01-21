@@ -64,6 +64,11 @@ namespace Character
             characterGFX.SetTrigger("FireAttack");
         }
 
+        public void startRangedAttack()
+        {
+            characterGFX.SetTrigger("RangedAttack");
+        }
+
         public void applyDamageToEnemy()
         {
             transform.parent.gameObject.GetComponentInChildren<PlayerAttackController>().applyDamage("BasicAttack");

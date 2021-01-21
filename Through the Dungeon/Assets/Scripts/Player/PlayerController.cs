@@ -82,6 +82,7 @@ namespace Player
             if(Input.GetKey(playerAttackController.getRangedAttackKeyCode()) && Time.time >= nextRangedAttack)
             {
                 Debug.Log("OGIN");
+                playerAttackController.RangedAttack();
                 nextRangedAttack = Time.time + playerAttackController.getRangedAttackCooldown();
             }
         }

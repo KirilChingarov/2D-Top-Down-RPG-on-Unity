@@ -24,6 +24,9 @@ namespace Abilities
         public override void startAbility()
         {
             Debug.Log("Shooting Wind Slash");
+            characterGFX.startRangedAttack();
+            projectile.GetComponent<ProjectileHitBox>().setProjectile(projectileSpeed, attackDamage);
+            MonoBehaviour.Instantiate(projectile, shootingPoint.position, shootingPoint.rotation);
         }
 
         public override bool isAbilityActive()

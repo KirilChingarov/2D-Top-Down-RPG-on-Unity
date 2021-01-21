@@ -11,14 +11,10 @@ namespace Abilities
         private float projectileSpeed = 0f;
         private float projectileDamage = 0f;
 
-        public ProjectileHitBox(float projectileSpeed)
-        {
-            this.projectileSpeed = projectileSpeed;
-        }
-
         public void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+            rb.velocity = transform.forward * projectileSpeed;
         }
 
         public void OnTriggerEnter2D(Collider2D other)
@@ -31,6 +27,12 @@ namespace Abilities
             {
                 Destroy(gameObject);
             }
+        }
+
+        public void setProjectile(float projectileSpeed, float projectileDamage)
+        {
+            this.projectileSpeed = projectileSpeed;
+            this.projectileDamage = projectileDamage;
         }
     }
 }

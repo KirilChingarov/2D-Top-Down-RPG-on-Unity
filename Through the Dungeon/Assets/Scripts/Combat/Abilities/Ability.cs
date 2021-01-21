@@ -51,5 +51,10 @@ namespace Abilities
         {
             return abilityType;
         }
+
+        public void setCharacterAnimationController(CharacterAnimationController characterGFX)
+        {
+            this.characterGFX = characterGFX;
+        }
     }
 }

@@ -29,11 +29,6 @@ namespace Abilities
             return isActive;
         }
 
-        public void setCharacterAnimationController(CharacterAnimationController characterGFX)
-        {
-            this.characterGFX = characterGFX;
-        }
-
         public float getFireAttackDamage()
         {
             return attackDamage;
