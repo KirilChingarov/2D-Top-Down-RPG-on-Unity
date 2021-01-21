@@ -14,10 +14,10 @@ namespace DatabasesScripts
         private int abilityId;
         private string abilityName = "";
 
-        public AbilitiesDatabaseConn(string databasePath, string abilityName)
+        public AbilitiesDatabaseConn(string abilityName)
         {
             this.abilityName = abilityName;
-            dbPath = "URI=file:" + Application.dataPath + "/Scripts/Databases/" + databasePath;
+            dbPath = "URI=file:" + Application.dataPath + "/Scripts/Database/Database.db";
             conn = new SqliteConnection(dbPath);
             
             conn.Open();

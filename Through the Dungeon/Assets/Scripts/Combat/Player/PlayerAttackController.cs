@@ -53,7 +53,7 @@ public class PlayerAttackController : MonoBehaviour
     public void setUpFireAttack()
     {
         fireAttack = new FireAttack(GameObject.Find("FireAttack"), 
-            new AbilitiesDatabaseConn("Abilities.db", "FireAttack"));
+            new AbilitiesDatabaseConn("FireAttack"));
         fireAttack.setCharacterAnimationController(characterAnimationController);
     }
 
