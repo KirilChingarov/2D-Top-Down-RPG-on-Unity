@@ -25,7 +25,7 @@ namespace Abilities
         {
             Debug.Log("Shooting Wind Slash");
             characterGFX.startRangedAttack();
-            projectile.GetComponent<ProjectileHitBox>().setProjectile(projectileSpeed, attackDamage);
+            Debug.Log(shootingPoint.rotation);
             MonoBehaviour.Instantiate(projectile, shootingPoint.position, shootingPoint.rotation);
         }
 

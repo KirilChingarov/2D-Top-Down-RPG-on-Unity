@@ -1,5 +1,6 @@
 using System;
 using System.Security.Cryptography;
+using DatabasesScripts;
 using Enemy;
 using UnityEngine;
 
@@ -14,7 +15,10 @@ namespace Abilities
         public void Start()
         {
             rb = GetComponent<Rigidbody2D>();
-            rb.velocity = transform.forward * projectileSpeed;
+            projectileSpeed = new AbilitiesDatabaseConn("RangedAttack").getProjectileSpeed();
+            projectileDamage = new AbilitiesDatabaseConn("RangedAttack").getAbilityAttackDamage();
+            Debug.Log("projectileSpeed = " + projectileSpeed);
+            rb.velocity = transform.right * projectileSpeed;
         }
 
         public void OnTriggerEnter2D(Collider2D other)
@@ -27,12 +31,6 @@ namespace Abilities
             {
                 Destroy(gameObject);
             }
-        }
-
-        public void setProjectile(float projectileSpeed, float projectileDamage)
-        {
-            this.projectileSpeed = projectileSpeed;
-            this.projectileDamage = projectileDamage;
         }
     }
 }
