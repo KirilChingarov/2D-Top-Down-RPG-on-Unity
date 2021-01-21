@@ -48,9 +48,9 @@ namespace DatabasesScripts
             SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT AbilityTypes.typeName FROM Abilities " +
+            cmd.CommandText = "SELECT AbilityTypes.abilityTypeName FROM Abilities " +
                               "LEFT JOIN AbilityTypes " +
-                              "ON Abilities.abilityTypeId = AbilityTypes.typeId " +
+                              "ON Abilities.abilityTypeId = AbilityTypes.abilityTypeId " +
                               "WHERE Abilities.abilityId = @abilityId";
             cmd.Parameters.Add(new SqliteParameter
             {
