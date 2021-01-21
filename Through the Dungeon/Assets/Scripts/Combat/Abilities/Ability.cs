@@ -1,4 +1,5 @@
 using Character;
+using DatabasesScripts;
 using Enums;
 
 namespace Abilities
@@ -11,13 +12,16 @@ namespace Abilities
         protected AbilityType abilityType;
         protected bool isActive;
         protected CharacterAnimationController characterGFX;
+        protected AbilitiesDatabaseConn dbConn;
 
-        public Ability(string abilityName, float cooldown, string keyCode)
+        public Ability(AbilitiesDatabaseConn dbConn)
         {
-            this.abilityName = abilityName;
-            this.cooldown = cooldown;
-            this.keyCode = keyCode;
-            this.abilityType = AbilityType.NotFound;
+            this.dbConn = dbConn;
+            
+            abilityName = this.dbConn.getAbiltyName();
+            cooldown = this.dbConn.getAbilityCooldown();
+            keyCode = this.dbConn.getAbilityKeyCode();
+            abilityType = this.dbConn.getAbilityType();
             isActive = false;
         }
 

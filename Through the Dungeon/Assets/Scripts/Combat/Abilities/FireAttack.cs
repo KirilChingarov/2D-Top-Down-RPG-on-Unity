@@ -8,19 +8,11 @@ namespace Abilities
     public class FireAttack : Ability
     {
         private GameObject attackObject;
-        private AbilitiesDatabaseConn dbConn;
         private float attackDamage = 0f;
 
-        public FireAttack(GameObject attackObject, AbilitiesDatabaseConn dbConn) : base()
+        public FireAttack(GameObject attackObject, AbilitiesDatabaseConn dbConn) : base(dbConn)
         {
             this.attackObject = attackObject;
-            this.dbConn = dbConn;
-            
-            abilityName = this.dbConn.getAbiltyName();
-            cooldown = this.dbConn.getAbilityCooldown();
-            keyCode = this.dbConn.getAbilityKeyCode();
-            abilityType = this.dbConn.getAbilityType();
-            isActive = false;
 
             attackDamage = this.dbConn.getAbilityAttackDamage();
             float attackRange = dbConn.getAbilityAttackRange();
