@@ -21,7 +21,6 @@ namespace Abilities
 
         public override void startAbility()
         {
-            Debug.Log("Starting Fire Ability");
             characterGFX.startFireAttack();
         }
 

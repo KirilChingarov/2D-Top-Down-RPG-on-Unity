@@ -15,6 +15,7 @@ namespace Player
         private bool canMove = true;
         private float nextAttack = 0f;
         private float nextFireAttack = 0f;
+        private float nextRangedAttack = 0f;
         
         private void Awake()
         {
@@ -28,6 +29,7 @@ namespace Player
             playerAttackController.setAttackRange(characterStats.getAttackRange());
             playerAttackController.setBasicAttackDamage(characterStats.getAttackDamage());
             playerAttackController.setUpFireAttack();
+            playerAttackController.setUpRangedAttack();
         }
 
         private void FixedUpdate()
@@ -70,12 +72,17 @@ namespace Player
 
         private void useAttackAbilities()
         {
+            //Vector3 mouseScreenSpace = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f);
+            //GameObject.Find("RangedAttack").transform.LookAt(Camera.main.ScreenToWorldPoint(mouseScreenSpace));
             if(Input.GetKey(playerAttackController.getFireAttackKeyCode()) && Time.time >= nextFireAttack)
             {
-                Debug.Log("Fire attack");
                 playerAttackController.FireAttack();
                 nextFireAttack = Time.time + playerAttackController.getFireAttackCooldown();
-                Debug.Log(nextFireAttack);
+            }
+            if(Input.GetKey(playerAttackController.getRangedAttackKeyCode()) && Time.time >= nextRangedAttack)
+            {
+                Debug.Log("OGIN");
+                nextRangedAttack = Time.time + playerAttackController.getRangedAttackCooldown();
             }
         }
 

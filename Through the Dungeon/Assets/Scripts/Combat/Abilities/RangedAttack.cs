@@ -9,7 +9,7 @@ namespace Abilities
         private GameObject projectile;
         private float abilityRange = 0f;
         private float projectileSpeed = 0f;
-        private float abilityDamage = 0f;
+        private float attackDamage = 0f;
 
         public RangedAttack(Transform shootingPoint, GameObject projectilePrefab, AbilitiesDatabaseConn dbConn) : base(dbConn)
         {
@@ -18,17 +18,22 @@ namespace Abilities
 
             abilityRange = dbConn.getAbilityAttackRange();
             projectileSpeed = dbConn.getProjectileSpeed();
-            abilityDamage = dbConn.getAbilityAttackDamage();
+            attackDamage = dbConn.getAbilityAttackDamage();
         }
         
         public override void startAbility()
         {
-            
+            Debug.Log("Shooting Wind Slash");
         }
 
         public override bool isAbilityActive()
         {
             return false;
+        }
+
+        public float getRangedAttackDamage()
+        {
+            return attackDamage;
         }
     }
 }

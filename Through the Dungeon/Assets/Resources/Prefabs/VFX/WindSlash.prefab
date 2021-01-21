@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3404119448822985944}
   - component: {fileID: 8560691453836069219}
   - component: {fileID: 5025957877696222044}
+  - component: {fileID: -5463435070462244493}
   m_Layer: 11
   m_Name: WindSlash
   m_TagString: Untagged
@@ -138,4 +139,16 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!114 &-5463435070462244493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3722716151664973973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5206442634ef40d99265476a499c4eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

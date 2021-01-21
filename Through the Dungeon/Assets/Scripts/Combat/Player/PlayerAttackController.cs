@@ -10,6 +10,7 @@ public class PlayerAttackController : MonoBehaviour
     private CharacterAnimationController characterAnimationController;
     private float basicAttackDamage = 0f;
     private FireAttack fireAttack;
+    private RangedAttack rangedAttack;
     
     void Awake()
     {
@@ -71,5 +72,22 @@ public class PlayerAttackController : MonoBehaviour
     public float getFireAttackCooldown()
     {
         return fireAttack.getCooldown();
+    }
+
+    public void setUpRangedAttack()
+    {
+        rangedAttack = new RangedAttack(GameObject.Find("RangedAttack").transform,
+            Resources.Load("Prefabs/VFX/WindSlash") as GameObject, 
+            new AbilitiesDatabaseConn("RangedAttack"));
+    }
+
+    public string getRangedAttackKeyCode()
+    {
+        return rangedAttack.getKeyCode();
+    }
+
+    public float getRangedAttackCooldown()
+    {
+        return rangedAttack.getCooldown();
     }
 }
