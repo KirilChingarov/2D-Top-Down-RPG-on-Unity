@@ -69,6 +69,11 @@ namespace Character
             characterGFX.SetTrigger("RangedAttack");
         }
 
+        public void startDefensiveAbility()
+        {
+            characterGFX.SetTrigger("DefensiveAbility");
+        }
+
         public void applyDamageToEnemy()
         {
             transform.parent.gameObject.GetComponentInChildren<PlayerAttackController>().applyDamage("BasicAttack");

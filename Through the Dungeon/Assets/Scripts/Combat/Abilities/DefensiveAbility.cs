@@ -1,4 +1,5 @@
 using DatabasesScripts;
+using UnityEngine;
 
 namespace Abilities
 {
@@ -15,12 +16,28 @@ namespace Abilities
         
         public override void startAbility()
         {
-            throw new System.NotImplementedException();
+            isActive = true;
+            characterGFX.startDefensiveAbility();
+        }
+
+        public void disableAbillity()
+        {
+            isActive = false;
         }
 
         public override bool isAbilityActive()
         {
-            throw new System.NotImplementedException();
+            return isActive;
+        }
+
+        public float getDamageReduction()
+        {
+            return damageReduction;
+        }
+
+        public float getAbilityDuration()
+        {
+            return abilityDuration;
         }
     }
 }

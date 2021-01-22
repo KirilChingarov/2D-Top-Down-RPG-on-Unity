@@ -16,6 +16,7 @@ namespace Player
         private float nextAttack = 0f;
         private float nextFireAttack = 0f;
         private float nextRangedAttack = 0f;
+        private float nextDefensiveAbility = 0f;
         
         private void Awake()
         {
@@ -30,6 +31,7 @@ namespace Player
             playerAttackController.setBasicAttackDamage(characterStats.getAttackDamage());
             playerAttackController.setUpFireAttack();
             playerAttackController.setUpRangedAttack();
+            playerAttackController.setUpDefensiveAbility();
         }
 
         private void FixedUpdate()
@@ -37,6 +39,7 @@ namespace Player
             Move();
             Attack();
             useAttackAbilities();
+            useDefensiveAbilities();
         }
 
         private void Move()
@@ -72,18 +75,25 @@ namespace Player
 
         private void useAttackAbilities()
         {
-            //Vector3 mouseScreenSpace = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f);
-            //GameObject.Find("RangedAttack").transform.LookAt(Camera.main.ScreenToWorldPoint(mouseScreenSpace));
             if(Input.GetKey(playerAttackController.getFireAttackKeyCode()) && Time.time >= nextFireAttack)
             {
                 playerAttackController.FireAttack();
                 nextFireAttack = Time.time + playerAttackController.getFireAttackCooldown();
             }
-            if(Input.GetKey(playerAttackController.getRangedAttackKeyCode()) && Time.time >= nextRangedAttack)
+            else if(Input.GetKey(playerAttackController.getRangedAttackKeyCode()) && Time.time >= nextRangedAttack)
             {
                 Debug.Log("OGIN");
                 playerAttackController.RangedAttack();
                 nextRangedAttack = Time.time + playerAttackController.getRangedAttackCooldown();
+            }
+        }
+
+        private void useDefensiveAbilities()
+        {
+            if (Input.GetKey(playerAttackController.getDefensiveAbilityKeyCode()) && Time.time >= nextDefensiveAbility)
+            {
+                playerAttackController.DefensiveAbility();
+                nextDefensiveAbility = Time.time + playerAttackController.getDefensiveAbilityCooldown();
             }
         }
 
@@ -99,10 +109,15 @@ namespace Player
 
         public void takeDamage(float damage)
         {
+            if (playerAttackController.isDefensiveAbilityActive())
+            {
+                damage -= damage * (playerAttackController.getDefensiveAbilityDmgReduction() / 100);
+            }
             characterStats.takeDamage(damage);
             Debug.Log(this.gameObject.name + " health : " + characterStats.getHealth());
             if (characterStats.getHealth() == 0f)
             {
+                Debug.Log("Player Died");
                 Destroy(this.gameObject);
             }
         }

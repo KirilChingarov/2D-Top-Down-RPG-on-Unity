@@ -11,6 +11,7 @@ public class PlayerAttackController : MonoBehaviour
     private float basicAttackDamage = 0f;
     private FireAttack fireAttack;
     private RangedAttack rangedAttack;
+    private DefensiveAbility defensiveAbility;
     
     void Awake()
     {
@@ -95,5 +96,44 @@ public class PlayerAttackController : MonoBehaviour
     public float getRangedAttackCooldown()
     {
         return rangedAttack.getCooldown();
+    }
+
+    public void setUpDefensiveAbility()
+    {
+        defensiveAbility = new DefensiveAbility(new AbilitiesDatabaseConn("DefensiveAbility"));
+        defensiveAbility.setCharacterAnimationController(characterAnimationController);
+    }
+
+    public void DefensiveAbility()
+    {
+        defensiveAbility.startAbility();
+        Debug.Log("Defensive Ability Enabled " + Time.time);
+        Invoke("disableDefensiveAbility", defensiveAbility.getAbilityDuration());
+    }
+
+    private void disableDefensiveAbility()
+    {
+        defensiveAbility.disableAbillity();
+        Debug.Log("Defensive Ability Disabled " + Time.time);
+    }
+
+    public bool isDefensiveAbilityActive()
+    {
+        return defensiveAbility.isAbilityActive();
+    }
+
+    public float getDefensiveAbilityDmgReduction()
+    {
+        return defensiveAbility.getDamageReduction();
+    }
+
+    public string getDefensiveAbilityKeyCode()
+    {
+        return defensiveAbility.getKeyCode();
+    }
+
+    public float getDefensiveAbilityCooldown()
+    {
+        return defensiveAbility.getCooldown();
     }
 }
