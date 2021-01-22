@@ -12,6 +12,7 @@ public class PlayerAttackController : MonoBehaviour
     private FireAttack fireAttack;
     private RangedAttack rangedAttack;
     private DefensiveAbility defensiveAbility;
+    private HealingAbility healingAbility;
     
     void Awake()
     {
@@ -135,5 +136,31 @@ public class PlayerAttackController : MonoBehaviour
     public float getDefensiveAbilityCooldown()
     {
         return defensiveAbility.getCooldown();
+    }
+
+    public void setUpHealingAbility()
+    {
+        healingAbility = new HealingAbility(new AbilitiesDatabaseConn("HealingAbility"));
+        healingAbility.setCharacterAnimationController(characterAnimationController);
+    }
+
+    public void Heal()
+    {
+        healingAbility.startAbility();
+    }
+
+    public string getHealingAbilityKeyCode()
+    {
+        return healingAbility.getKeyCode();
+    }
+
+    public float getHealingAbilityCooldown()
+    {
+        return healingAbility.getCooldown();
+    }
+
+    public float getHealingAmount()
+    {
+        return healingAbility.getHealingAmount();
     }
 }

@@ -74,6 +74,11 @@ namespace Character
             characterGFX.SetTrigger("DefensiveAbility");
         }
 
+        public void startHealingAbility()
+        {
+            characterGFX.SetTrigger("HealingAbility");
+        }
+
         public void applyDamageToEnemy()
         {
             transform.parent.gameObject.GetComponentInChildren<PlayerAttackController>().applyDamage("BasicAttack");
@@ -87,6 +92,11 @@ namespace Character
         public void applyDamageToPlayer()
         {
             transform.parent.gameObject.GetComponentInChildren<EnemyAttackController>().applyDamage();
+        }
+
+        public void healPlayer()
+        {
+            transform.parent.gameObject.GetComponent<PlayerController>().healPlayer();
         }
 
         public void freezePlayerPosition()

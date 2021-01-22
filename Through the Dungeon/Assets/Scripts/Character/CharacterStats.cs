@@ -7,6 +7,7 @@ namespace Character
     public class CharacterStats
     {
         private float health;
+        private float maxHealth;
         private float moveSpeed;
         private float attackDamage;
         private float attackRange;
@@ -15,6 +16,7 @@ namespace Character
         public CharacterStats(PlayerDatabaseConn dbConn)
         {
             health = dbConn.getPlayerHealth();
+            maxHealth = health;
             moveSpeed = dbConn.getPlayerMoveSpeed();
             attackDamage = dbConn.getPlayerAttackDamage();
             attackRange = dbConn.getPlayerAttackRange();
@@ -24,6 +26,7 @@ namespace Character
         public CharacterStats(EnemyDatabaseConn dbConn)
         {
             health = dbConn.getEnemyHealth();
+            maxHealth = health;
             moveSpeed = dbConn.getEnemyMoveSpeed();
             attackDamage = dbConn.getEnemyAttackDamage();
             attackRange = dbConn.getEnemyAttackRange();
@@ -86,6 +89,15 @@ namespace Character
             if (health < 0f)
             {
                 health = 0f;
+            }
+        }
+
+        public void heal(float healAmount)
+        {
+            health += healAmount;
+            if (health > maxHealth)
+            {
+                health = maxHealth;
             }
         }
     }    

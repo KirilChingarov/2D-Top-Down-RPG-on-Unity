@@ -17,6 +17,7 @@ namespace Player
         private float nextFireAttack = 0f;
         private float nextRangedAttack = 0f;
         private float nextDefensiveAbility = 0f;
+        private float nextHealingAbility = 0f;
         
         private void Awake()
         {
@@ -26,12 +27,7 @@ namespace Player
             dbConn = new PlayerDatabaseConn();
             characterStats = new CharacterStats(dbConn);
             
-            playerAttackController = GetComponentInChildren<PlayerAttackController>();
-            playerAttackController.setAttackRange(characterStats.getAttackRange());
-            playerAttackController.setBasicAttackDamage(characterStats.getAttackDamage());
-            playerAttackController.setUpFireAttack();
-            playerAttackController.setUpRangedAttack();
-            playerAttackController.setUpDefensiveAbility();
+            setUpPlayerAttackController();
         }
 
         private void FixedUpdate()
@@ -73,6 +69,17 @@ namespace Player
             }
         }
 
+        private void setUpPlayerAttackController()
+        {
+            playerAttackController = GetComponentInChildren<PlayerAttackController>();
+            playerAttackController.setAttackRange(characterStats.getAttackRange());
+            playerAttackController.setBasicAttackDamage(characterStats.getAttackDamage());
+            playerAttackController.setUpFireAttack();
+            playerAttackController.setUpRangedAttack();
+            playerAttackController.setUpDefensiveAbility();
+            playerAttackController.setUpHealingAbility();
+        }
+
         private void useAttackAbilities()
         {
             if(Input.GetKey(playerAttackController.getFireAttackKeyCode()) && Time.time >= nextFireAttack)
@@ -94,6 +101,11 @@ namespace Player
             {
                 playerAttackController.DefensiveAbility();
                 nextDefensiveAbility = Time.time + playerAttackController.getDefensiveAbilityCooldown();
+            }
+            else if (Input.GetKey(playerAttackController.getHealingAbilityKeyCode()) && Time.time >= nextHealingAbility)
+            {
+                playerAttackController.Heal();
+                nextHealingAbility = Time.time + playerAttackController.getHealingAbilityCooldown();
             }
         }
 
@@ -120,6 +132,12 @@ namespace Player
                 Debug.Log("Player Died");
                 Destroy(this.gameObject);
             }
+        }
+
+        public void healPlayer()
+        {
+            characterStats.heal(playerAttackController.getHealingAmount());
+            Debug.Log(this.gameObject.name + " health : " + characterStats.getHealth());
         }
     }
 }
