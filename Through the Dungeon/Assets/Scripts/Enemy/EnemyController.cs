@@ -34,7 +34,7 @@ namespace Enemy
             characterMovement = GetComponent<CharacterMovement>();
             characterMovement.setRigidBody2D(GetComponent<Rigidbody2D>());
             characterMovement.setCharacterAnimationContrller(GetComponentInChildren<CharacterAnimationController>());
-            dbConn = new EnemyDatabaseConn("CharacterStats.db", "testEnemyCharacter");
+            dbConn = new EnemyDatabaseConn("testEnemyCharacter");
             characterStats = new CharacterStats(dbConn);
 
             enemyAttackController = GetComponentInChildren<EnemyAttackController>();

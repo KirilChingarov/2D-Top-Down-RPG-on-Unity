@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Enemy;
 using UnityEngine;
 
-public class BasicAttack : MonoBehaviour
+public class AttackHitbox : MonoBehaviour
 {
     private List<GameObject> enemies = new List<GameObject>();
     private List<bool> inRange = new List<bool>();
