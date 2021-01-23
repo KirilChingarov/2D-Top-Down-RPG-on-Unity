@@ -52,6 +52,9 @@ TagManager:
   - name: Player
     uniqueID: 1055280785
     locked: 0
+  - name: Traps
+    uniqueID: 874736839
+    locked: 0
   - name: VFX
     uniqueID: 2718536269
     locked: 0

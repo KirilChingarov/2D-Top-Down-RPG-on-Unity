@@ -17,7 +17,6 @@ namespace Abilities
             rb = GetComponent<Rigidbody2D>();
             projectileSpeed = new AbilitiesDatabaseConn("RangedAttack").getProjectileSpeed();
             projectileDamage = new AbilitiesDatabaseConn("RangedAttack").getAbilityAttackDamage();
-            Debug.Log("projectileSpeed = " + projectileSpeed);
             rb.velocity = transform.right * projectileSpeed;
         }
 
