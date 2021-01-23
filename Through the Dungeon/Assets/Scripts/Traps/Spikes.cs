@@ -14,6 +14,7 @@ namespace Traps
         private float duration;
         private float damage;
         private float nextDamage = 0f;
+        public float timeToActivate = 1f;
 
         private void Awake()
         {
@@ -23,24 +24,28 @@ namespace Traps
             damage = new TrapsDatabaseConn("Spikes").getTrapDamage();
             GetComponent<Collider2D>().enabled = false;
             
-            Invoke("ActivateSpikes", 1f);
+            Invoke("ActivateSpikes", timeToActivate);
         }
 
         private void ActivateSpikes()
         {
-            GetComponentInChildren<SpriteRenderer>().sprite = (Sprite) sprites[1];
-            isActive = true;
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).GetComponentInChildren<SpriteRenderer>().sprite = sprites[1];
+            }
             GetComponent<Collider2D>().enabled = true;
-            Debug.Log("Spikes are active");
+            isActive = true;
             Invoke("DisableSpikes", duration);
         }
 
         private void DisableSpikes()
         {
-            GetComponentInChildren<SpriteRenderer>().sprite = (Sprite) sprites[0];
-            isActive = false;
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).GetComponentInChildren<SpriteRenderer>().sprite = sprites[0];
+            }
             GetComponent<Collider2D>().enabled = false;
-            Debug.Log("Spikes are disabled");
+            isActive = false;
             Invoke("ActivateSpikes", cooldown);
         }
 
@@ -49,7 +54,6 @@ namespace Traps
             if (other.gameObject.CompareTag("Player") && isActive && Time.time >= nextDamage)
             {
                 other.gameObject.GetComponent<PlayerController>().takeDamage(damage);
-                Debug.Log("Player spiked!");
                 nextDamage = Time.time + duration + 0.1f;
             }
         }
