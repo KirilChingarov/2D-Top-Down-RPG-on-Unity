@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: 85c68649f3c54f147977a7a76c458be4
+guid: 817ebc0ab6542064fa9ca41f4f01ab7d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5659955867655351803
-    second: Cannon_Sprite_0
+      213: 6723963429988506304
+    second: Spikes_0
   - first:
-      213: -1271649666314573952
-    second: Cannon_Sprite_1
-  - first:
-      213: 2076454344065656941
-    second: Cannon_Sprite_2
-  - first:
-      213: 4795355101444280476
-    second: Cannon_Sprite_3
+      213: -7010832575621253078
+    second: Spikes_1
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -57,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -134,7 +128,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cannon_Sprite_0
+      name: Spikes_0
       rect:
         serializedVersion: 2
         x: 0
@@ -148,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfd2cf7bfd33c8e40800000000000000
-      internalID: 5659955867655351803
+      spriteID: 0ca9e2f4d11505d50800000000000000
+      internalID: 6723963429988506304
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cannon_Sprite_1
+      name: Spikes_1
       rect:
         serializedVersion: 2
         x: 32
@@ -169,50 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0876390bd513a5ee0800000000000000
-      internalID: -1271649666314573952
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cannon_Sprite_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d68a952793c01dc10800000000000000
-      internalID: 2076454344065656941
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cannon_Sprite_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c909171de068c8240800000000000000
-      internalID: 4795355101444280476
+      spriteID: a28bb5edae484be90800000000000000
+      internalID: -7010832575621253078
       vertices: []
       indices: 
       edges: []

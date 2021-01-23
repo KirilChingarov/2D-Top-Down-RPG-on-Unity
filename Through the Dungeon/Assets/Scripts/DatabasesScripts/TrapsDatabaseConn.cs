@@ -68,6 +68,33 @@ namespace DatabasesScripts
             return cooldown;
         }
         
+        public float getTrapDuration()
+        {
+            float duration = 0f;
+            
+            conn.Open();
+            
+            SqliteCommand cmd = conn.CreateCommand();
+            
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT trapDuration FROM Traps " + 
+                              "WHERE trapId = @trapId";
+            cmd.Parameters.Add(new SqliteParameter
+                {
+                    ParameterName = "trapId",
+                    Value = trapId
+                }
+            );
+
+            SqliteDataReader result = cmd.ExecuteReader();
+            result.Read();
+            duration = result.GetFloat(0);
+            
+            conn.Close();
+
+            return duration;
+        }
+        
         public float getTrapDamage()
         {
             float damage = 0f;
