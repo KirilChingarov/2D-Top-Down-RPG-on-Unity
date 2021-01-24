@@ -8,6 +8,7 @@ TagManager:
   - Object
   - Trap
   - Projectile
+  - Water
   layers:
   - Default
   - TransparentFX

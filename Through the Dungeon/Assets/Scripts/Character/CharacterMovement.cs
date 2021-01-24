@@ -49,9 +49,6 @@ namespace Character
         public void setCharacterVelocity(Vector2 direction)
         {
             rb.velocity = direction;
-        
-            currDirection = getDirectionFromSpeed(direction.x, direction.y);
-            //characterGFX.ChangeDirection(currDirection);
         }
 
         public void setCharacterDirection(Direction direction)

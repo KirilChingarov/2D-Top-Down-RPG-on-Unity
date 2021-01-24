@@ -13,6 +13,7 @@ namespace Player
         private CharacterStats characterStats;
         private PlayerAttackController playerAttackController;
         private bool canMove = true;
+        private bool isSwimming = false;
         private float nextAttack = 0f;
         private float nextFireAttack = 0f;
         private float nextRangedAttack = 0f;
@@ -138,6 +139,22 @@ namespace Player
         {
             characterStats.heal(playerAttackController.getHealingAmount());
             Debug.Log(this.gameObject.name + " health : " + characterStats.getHealth());
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.tag == "Water")
+            {
+                isSwimming = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.gameObject.tag == "Water")
+            {
+                isSwimming = false;
+            }
         }
     }
 }
