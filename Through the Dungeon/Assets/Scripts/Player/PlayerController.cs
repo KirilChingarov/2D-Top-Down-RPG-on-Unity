@@ -13,6 +13,7 @@ namespace Player
         private CharacterStats characterStats;
         private PlayerAttackController playerAttackController;
         private bool canMove = true;
+        private bool isSwimming = false;
         private float nextAttack = 0f;
         private float nextFireAttack = 0f;
         private float nextRangedAttack = 0f;
@@ -55,9 +56,16 @@ namespace Player
                 force = new Vector2(0f,0f);
                 direction = Direction.IDLE;
             }
+
+            if (isSwimming)
+            {
+                force.x = force.x * 0.7f;
+                force.y = force.y * 0.7f;
+            }
             
             characterMovement.setCharacterVelocity(force);
             characterMovement.setCharacterDirection(direction);
+            characterMovement.setIsCharacterSwimming(isSwimming);
         }
 
         private void Attack()
@@ -137,7 +145,18 @@ namespace Player
         public void healPlayer()
         {
             characterStats.heal(playerAttackController.getHealingAmount());
-            Debug.Log(this.gameObject.name + " health : " + characterStats.getHealth());
+            Debug.Log(this.gameObject.name + "healed to health : " + characterStats.getHealth());
         }
+
+        public void setIsSwimming(bool isCharacterSwimming)
+        {
+            isSwimming = isCharacterSwimming;
+        }
+        
+        public bool getIsSwimming()
+        {
+            return isSwimming;
+        }
+        
     }
 }

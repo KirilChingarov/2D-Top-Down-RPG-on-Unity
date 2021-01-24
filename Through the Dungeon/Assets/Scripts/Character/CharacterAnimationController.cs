@@ -54,6 +54,11 @@ namespace Character
             characterGFX.SetBool("isIdle", isIdle);
         }
 
+        public void characterSwim(bool isSwimming)
+        {
+            characterGFX.SetBool("isSwimming", isSwimming);
+        }
+
         public void startAttack()
         {
             characterGFX.SetTrigger("Attack");

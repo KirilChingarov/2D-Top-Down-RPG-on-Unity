@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Object
+  - Trap
+  - Projectile
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -45,6 +48,15 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 1091013931
+    locked: 0
+  - name: Water
+    uniqueID: 379844261
+    locked: 0
+  - name: Buildings
+    uniqueID: 4061562079
+    locked: 0
+  - name: Traps
+    uniqueID: 874736839
     locked: 0
   - name: NPCs
     uniqueID: 370178429
