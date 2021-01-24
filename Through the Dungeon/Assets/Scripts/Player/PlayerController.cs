@@ -56,9 +56,16 @@ namespace Player
                 force = new Vector2(0f,0f);
                 direction = Direction.IDLE;
             }
+
+            if (isSwimming)
+            {
+                force.x = force.x * 0.7f;
+                force.y = force.y * 0.7f;
+            }
             
             characterMovement.setCharacterVelocity(force);
             characterMovement.setCharacterDirection(direction);
+            characterMovement.setIsCharacterSwimming(isSwimming);
         }
 
         private void Attack()
@@ -141,20 +148,11 @@ namespace Player
             Debug.Log(this.gameObject.name + " health : " + characterStats.getHealth());
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        public void setIsSwimming(bool isCharacterSwimming)
         {
-            if (other.gameObject.tag == "Water")
-            {
-                isSwimming = true;
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.gameObject.tag == "Water")
-            {
-                isSwimming = false;
-            }
+            Debug.Log("Setting bool isSwimming");
+            isSwimming = isCharacterSwimming;
+            Debug.Log(isSwimming);
         }
     }
 }

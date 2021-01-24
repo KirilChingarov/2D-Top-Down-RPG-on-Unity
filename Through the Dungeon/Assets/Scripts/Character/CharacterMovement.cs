@@ -7,7 +7,6 @@ namespace Character
     {
         private Rigidbody2D rb;
         private CharacterAnimationController characterGFX;
-        private Direction currDirection = Direction.IDLE;
 
         public Direction getDirectionFromSpeed(float horizontalSpeed, float verticalSpeed)
         {
@@ -54,6 +53,11 @@ namespace Character
         public void setCharacterDirection(Direction direction)
         {
             characterGFX.changeDirection(direction);
+        }
+
+        public void setIsCharacterSwimming(bool isSwimming)
+        {
+            characterGFX.characterSwim(isSwimming);
         }
 
         public void setRigidBody2D(Rigidbody2D newRb)
