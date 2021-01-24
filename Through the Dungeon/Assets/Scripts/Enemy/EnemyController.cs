@@ -6,6 +6,7 @@ using DatabasesScripts;
 using Enums;
 using UnityEngine;
 using Pathfinding;
+using Player;
 
 namespace Enemy
 {
@@ -90,7 +91,7 @@ namespace Enemy
             Vector2 force;
             Direction targetDirection;
             
-            if (playerInRange || !canMove)
+            if (playerInRange || !canMove || GameObject.Find("PlayerCharacter").GetComponent<PlayerController>().getIsSwimming())
             {
                 force = new Vector2(0f, 0f);
                 targetDirection = Direction.IDLE;

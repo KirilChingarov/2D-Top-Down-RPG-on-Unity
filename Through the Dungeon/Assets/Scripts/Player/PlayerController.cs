@@ -145,14 +145,18 @@ namespace Player
         public void healPlayer()
         {
             characterStats.heal(playerAttackController.getHealingAmount());
-            Debug.Log(this.gameObject.name + " health : " + characterStats.getHealth());
+            Debug.Log(this.gameObject.name + "healed to health : " + characterStats.getHealth());
         }
 
         public void setIsSwimming(bool isCharacterSwimming)
         {
-            Debug.Log("Setting bool isSwimming");
             isSwimming = isCharacterSwimming;
-            Debug.Log(isSwimming);
         }
+        
+        public bool getIsSwimming()
+        {
+            return isSwimming;
+        }
+        
     }
 }
