@@ -24,7 +24,7 @@ namespace Player
         {
             characterMovement = GetComponent<CharacterMovement>();
             characterMovement.setRigidBody2D(GetComponent<Rigidbody2D>());
-            characterMovement.setCharacterAnimationContrller(GetComponentInChildren<CharacterAnimationController>());
+            characterMovement.setCharacterAnimationController(GetComponentInChildren<CharacterAnimationController>());
             dbConn = new PlayerDatabaseConn();
             characterStats = new CharacterStats(dbConn);
             
