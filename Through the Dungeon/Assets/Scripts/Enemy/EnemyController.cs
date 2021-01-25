@@ -39,6 +39,7 @@ namespace Enemy
             characterName = gameObject.name;
             dbConn = new EnemyDatabaseConn(characterName);
             characterStats = new CharacterStats(dbConn);
+            Debug.Log(characterName + " health: " + characterStats.getHealth());
 
             enemyAttackController = GetComponentInChildren<EnemyAttackController>();
             enemyAttackController.setAttackRange(characterStats.getAttackRange());
@@ -152,7 +153,7 @@ namespace Enemy
         {
             characterStats.takeDamage(damage);
             Debug.Log(this.gameObject.name + " health : " + characterStats.getHealth());
-            if (characterStats.getHealth() == 0f)
+            if (characterStats.getHealth() <= 0f)
             {
                 characterMovement.characterDeath();
             }

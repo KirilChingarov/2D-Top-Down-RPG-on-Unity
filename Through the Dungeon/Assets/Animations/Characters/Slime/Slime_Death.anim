@@ -22,40 +22,40 @@ AnimationClip:
     - time: 0
       value: {fileID: 4934891022053039717, guid: 57a502d862d91bf4992d897ee9addc22,
         type: 3}
-    - time: 0.0625
+    - time: 0.125
       value: {fileID: 6652404225069881292, guid: 57a502d862d91bf4992d897ee9addc22,
         type: 3}
-    - time: 0.125
+    - time: 0.25
       value: {fileID: 6544494240758945821, guid: 57a502d862d91bf4992d897ee9addc22,
         type: 3}
-    - time: 0.1875
+    - time: 0.375
       value: {fileID: -2981453208084704482, guid: 57a502d862d91bf4992d897ee9addc22,
         type: 3}
-    - time: 0.25
+    - time: 0.5
       value: {fileID: -299498420054208910, guid: 57a502d862d91bf4992d897ee9addc22,
         type: 3}
-    - time: 0.3125
+    - time: 0.625
       value: {fileID: 7129963369634194193, guid: 57a502d862d91bf4992d897ee9addc22,
         type: 3}
-    - time: 0.375
+    - time: 0.75
       value: {fileID: -3711387581640687335, guid: 57a502d862d91bf4992d897ee9addc22,
         type: 3}
-    - time: 0.4375
+    - time: 0.875
       value: {fileID: -8861291311579153477, guid: 57a502d862d91bf4992d897ee9addc22,
         type: 3}
-    - time: 0.5
+    - time: 1
       value: {fileID: 2458472543660877323, guid: 57a502d862d91bf4992d897ee9addc22,
         type: 3}
-    - time: 0.5625
+    - time: 1.125
       value: {fileID: -934442930460287072, guid: 57a502d862d91bf4992d897ee9addc22,
         type: 3}
-    - time: 0.625
+    - time: 1.25
       value: {fileID: 20996556058392433, guid: 57a502d862d91bf4992d897ee9addc22, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 16
+  m_SampleRate: 8
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -86,7 +86,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6875
+    m_StopTime: 1.375
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -113,7 +113,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.6875
+  - time: 1.375
     functionName: destroyObject
     data: 
     objectReferenceParameter: {fileID: 0}
