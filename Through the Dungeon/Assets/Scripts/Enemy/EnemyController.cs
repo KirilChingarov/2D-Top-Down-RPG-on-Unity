@@ -32,11 +32,14 @@ namespace Enemy
         
         void Awake()
         {
+            string characterName = "";
             characterMovement = GetComponent<CharacterMovement>();
             characterMovement.setRigidBody2D(GetComponent<Rigidbody2D>());
-            characterMovement.setCharacterAnimationContrller(GetComponentInChildren<CharacterAnimationController>());
-            dbConn = new EnemyDatabaseConn("testEnemyCharacter");
+            characterMovement.setCharacterAnimationController(GetComponentInChildren<CharacterAnimationController>());
+            characterName = gameObject.name;
+            dbConn = new EnemyDatabaseConn(characterName);
             characterStats = new CharacterStats(dbConn);
+            Debug.Log(characterName + " health: " + characterStats.getHealth());
 
             enemyAttackController = GetComponentInChildren<EnemyAttackController>();
             enemyAttackController.setAttackRange(characterStats.getAttackRange());
@@ -150,9 +153,13 @@ namespace Enemy
         {
             characterStats.takeDamage(damage);
             Debug.Log(this.gameObject.name + " health : " + characterStats.getHealth());
-            if (characterStats.getHealth() == 0f)
+            if (characterStats.getHealth() <= 0f)
             {
-                Destroy(this.gameObject);
+                GetComponentInChildren<CharacterAnimationController>().characterDeath();
+            }
+            else
+            {
+                GetComponentInChildren<CharacterAnimationController>().takeHit();
             }
         }
 

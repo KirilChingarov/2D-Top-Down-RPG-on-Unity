@@ -65,7 +65,7 @@ namespace Character
             rb = newRb;
         }
 
-        public void setCharacterAnimationContrller(CharacterAnimationController newChAnimationControllerC)
+        public void setCharacterAnimationController(CharacterAnimationController newChAnimationControllerC)
         {
             characterGFX = newChAnimationControllerC;
         }
@@ -73,6 +73,11 @@ namespace Character
         public Vector2 getCurrentPosition()
         {
             return rb.position;
+        }
+
+        public void characterDeath()
+        {
+            characterGFX.characterDeath();
         }
     }
 }
