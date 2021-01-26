@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 3e5dd848729e827428585babffc00cf9
+guid: 0d3bde83bf1b5184594e30b3476cfd00
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6973191664251310759
-    second: summonIdle_0
+      213: 810067544611241264
+    second: summonAttack_0
   - first:
-      213: -4325375432071135373
-    second: summonIdle_1
+      213: -1767201117035405002
+    second: summonAttack_1
   - first:
-      213: 945793653771260252
-    second: summonIdle_2
+      213: 4376724724408855800
+    second: summonAttack_2
   - first:
-      213: -4601302620478663085
-    second: summonIdle_3
+      213: 3539987496265917334
+    second: summonAttack_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -134,7 +134,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: summonIdle_0
+      name: summonAttack_0
       rect:
         serializedVersion: 2
         x: 0
@@ -148,14 +148,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95de59d702f3a3f90800000000000000
-      internalID: -6973191664251310759
+      spriteID: 03d30a0d320fd3b00800000000000000
+      internalID: 810067544611241264
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: summonIdle_1
+      name: summonAttack_1
       rect:
         serializedVersion: 2
         x: 50
@@ -169,14 +169,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37fb23b16fd29f3c0800000000000000
-      internalID: -4325375432071135373
+      spriteID: 6316e6472f3a977e0800000000000000
+      internalID: -1767201117035405002
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: summonIdle_2
+      name: summonAttack_2
       rect:
         serializedVersion: 2
         x: 100
@@ -190,14 +190,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c51dadb2152202d00800000000000000
-      internalID: 945793653771260252
+      spriteID: 8fc2f0ea2ff3dbc30800000000000000
+      internalID: 4376724724408855800
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: summonIdle_3
+      name: summonAttack_3
       rect:
         serializedVersion: 2
         x: 150
@@ -211,8 +211,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3569b4a35a3e420c0800000000000000
-      internalID: -4601302620478663085
+      spriteID: 69321484fdf802130800000000000000
+      internalID: 3539987496265917334
       vertices: []
       indices: 
       edges: []
