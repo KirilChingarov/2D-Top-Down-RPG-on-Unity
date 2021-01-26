@@ -155,7 +155,11 @@ namespace Enemy
             Debug.Log(this.gameObject.name + " health : " + characterStats.getHealth());
             if (characterStats.getHealth() <= 0f)
             {
-                characterMovement.characterDeath();
+                GetComponentInChildren<CharacterAnimationController>().characterDeath();
+            }
+            else
+            {
+                GetComponentInChildren<CharacterAnimationController>().takeHit();
             }
         }
 

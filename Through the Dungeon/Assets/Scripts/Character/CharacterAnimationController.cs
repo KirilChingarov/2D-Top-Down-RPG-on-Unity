@@ -83,7 +83,12 @@ namespace Character
         {
             characterGFX.SetTrigger("HealingAbility");
         }
-        
+
+        public void takeHit()
+        {
+            characterGFX.SetTrigger("Hit");
+        }
+
         public void characterDeath()
         {
             characterGFX.SetTrigger("Death");
