@@ -1,6 +1,7 @@
 ﻿using System;
 using Character;
 using DatabasesScripts;
+using Enemy;
 using Enums;
 using UnityEngine;
 
@@ -140,6 +141,11 @@ namespace Player
             if (characterStats.getHealth() == 0f)
             {
                 Debug.Log("Player Died");
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                foreach (GameObject enemy in enemies)
+                {
+                    enemy.GetComponent<EnemyController>().playerIsDead();
+                }
                 Destroy(this.gameObject);
             }
         }

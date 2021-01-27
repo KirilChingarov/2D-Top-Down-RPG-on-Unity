@@ -16,6 +16,7 @@ namespace Enemy
         private CharacterMovement characterMovement;
         private EnemyDatabaseConn dbConn;
         private CharacterStats characterStats;
+        private bool isDead = false;
 
         private Transform target;
         private float nextWaypointDistance = 2f;
@@ -76,6 +77,7 @@ namespace Enemy
         
         void FixedUpdate()
         {
+            if(playerDead) return;
             Move();
             Attack();
         }
@@ -163,8 +165,9 @@ namespace Enemy
             if (characterStats.getHealth() <= 0f)
             {
                 GetComponentInChildren<CharacterAnimationController>().characterDeath();
+                isDead = true;
             }
-            else
+            else if(!isDead)
             {
                 GetComponentInChildren<CharacterAnimationController>().takeHit();
             }
