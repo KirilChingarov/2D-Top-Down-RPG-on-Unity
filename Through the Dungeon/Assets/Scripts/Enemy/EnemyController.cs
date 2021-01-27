@@ -29,6 +29,7 @@ namespace Enemy
         private float nextAttack = 0f;
 
         private bool playerDead = false;
+        public AggroRange aggroRange;
         
         void Awake()
         {
@@ -54,7 +55,11 @@ namespace Enemy
         private void UpdatePath()
         {
             if(playerInRange || playerDead) return;
-            if (seeker.IsDone())
+            if (!aggroRange.IsPlayerInAggroRange())
+            {
+                aiPath = null;
+            }
+            else if (seeker.IsDone())
             {
                 seeker.StartPath(characterMovement.getCurrentPosition(), target.position, onPathComplete);
             }
@@ -88,6 +93,8 @@ namespace Enemy
         {
             if (aiPath == null)
             {
+                characterMovement.setCharacterVelocity(new Vector2(0f, 0f));
+                characterMovement.setCharacterDirection(Direction.IDLE);
                 return;
             }
 
