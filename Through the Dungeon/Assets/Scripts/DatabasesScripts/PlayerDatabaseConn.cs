@@ -29,7 +29,7 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
                 {
                     ParameterName = "characterName",
-                    Value = "playerCharacter"
+                    Value = "PlayerCharacter"
                 }
             );
 
