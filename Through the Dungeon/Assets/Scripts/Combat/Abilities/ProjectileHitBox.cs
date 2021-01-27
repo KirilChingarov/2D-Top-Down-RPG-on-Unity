@@ -23,7 +23,6 @@ namespace Abilities
             projectileDamage = new AbilitiesDatabaseConn("RangedAttack").getAbilityAttackDamage();
             projectileRange = new AbilitiesDatabaseConn("RangedAttack").getAbilityAttackRange();
             rb.velocity = transform.right * projectileSpeed;
-            Debug.Log("startinPoint: " + startingPoint.x + ", " + startingPoint.y);
         }
 
         public void FixedUpdate()
@@ -31,7 +30,6 @@ namespace Abilities
             if (Vector2.Distance(startingPoint, transform.position) >= projectileRange)
             {
                 Destroy(gameObject);
-                Debug.Log("Ability Reached projectileRange");
             }
         }
 

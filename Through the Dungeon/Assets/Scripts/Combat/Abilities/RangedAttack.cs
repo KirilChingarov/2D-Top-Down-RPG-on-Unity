@@ -23,9 +23,7 @@ namespace Abilities
         
         public override void startAbility()
         {
-            Debug.Log("Shooting Wind Slash");
             characterGFX.startRangedAttack();
-            Debug.Log(shootingPoint.rotation);
             MonoBehaviour.Instantiate(projectile, shootingPoint.position, shootingPoint.rotation);
         }
 

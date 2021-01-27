@@ -35,8 +35,11 @@ namespace Player
         {
             Move();
             Attack();
-            useAttackAbilities();
-            useDefensiveAbilities();
+            if (!isSwimming)
+            {
+                useAttackAbilities();
+                useDefensiveAbilities();
+            }
         }
 
         private void Move()
@@ -97,7 +100,6 @@ namespace Player
             }
             else if(Input.GetKey(playerAttackController.getRangedAttackKeyCode()) && Time.time >= nextRangedAttack)
             {
-                Debug.Log("OGIN");
                 playerAttackController.RangedAttack();
                 nextRangedAttack = Time.time + playerAttackController.getRangedAttackCooldown();
             }

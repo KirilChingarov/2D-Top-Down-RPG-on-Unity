@@ -108,14 +108,12 @@ public class PlayerAttackController : MonoBehaviour
     public void DefensiveAbility()
     {
         defensiveAbility.startAbility();
-        Debug.Log("Defensive Ability Enabled " + Time.time);
         Invoke("disableDefensiveAbility", defensiveAbility.getAbilityDuration());
     }
 
     private void disableDefensiveAbility()
     {
         defensiveAbility.disableAbillity();
-        Debug.Log("Defensive Ability Disabled " + Time.time);
     }
 
     public bool isDefensiveAbilityActive()
