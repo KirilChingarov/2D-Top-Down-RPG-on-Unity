@@ -3,7 +3,9 @@ using Character;
 using DatabasesScripts;
 using Enemy;
 using Enums;
+using UIScripts;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Player
 {
@@ -20,6 +22,7 @@ namespace Player
         private float nextRangedAttack = 0f;
         private float nextDefensiveAbility = 0f;
         private float nextHealingAbility = 0f;
+        public HealthBar healthBar;
         
         private void Awake()
         {
@@ -28,6 +31,7 @@ namespace Player
             characterMovement.setCharacterAnimationController(GetComponentInChildren<CharacterAnimationController>());
             dbConn = new PlayerDatabaseConn();
             characterStats = new CharacterStats(dbConn);
+            healthBar.setMaxHealth(characterStats.getHealth());
             
             setUpPlayerAttackController();
         }
@@ -137,6 +141,7 @@ namespace Player
                 damage -= damage * (playerAttackController.getDefensiveAbilityDmgReduction() / 100);
             }
             characterStats.takeDamage(damage);
+            healthBar.takeDamage(damage);
             Debug.Log(this.gameObject.name + " health : " + characterStats.getHealth());
             if (characterStats.getHealth() == 0f)
             {
@@ -152,7 +157,9 @@ namespace Player
 
         public void healPlayer()
         {
-            characterStats.heal(playerAttackController.getHealingAmount());
+            float healingAmount = playerAttackController.getHealingAmount();
+            characterStats.heal(healingAmount);
+            healthBar.Heal(healingAmount);
             Debug.Log(this.gameObject.name + "healed to health : " + characterStats.getHealth());
         }
 
