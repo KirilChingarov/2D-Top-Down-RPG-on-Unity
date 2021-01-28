@@ -18,11 +18,17 @@ namespace Player
         private bool canMove = true;
         private bool isSwimming = false;
         private float nextAttack = 0f;
-        private float nextFireAttack = 0f;
-        private float nextRangedAttack = 0f;
-        private float nextDefensiveAbility = 0f;
-        private float nextHealingAbility = 0f;
         public HealthBar healthBar;
+        
+        
+        private float nextFireAttack = 0f;
+        public AbilityUICooldownController fireCooldown;
+        private float nextRangedAttack = 0f;
+        public AbilityUICooldownController rangedCooldown;
+        private float nextDefensiveAbility = 0f;
+        public AbilityUICooldownController defensiveCooldown;
+        private float nextHealingAbility = 0f;
+        public AbilityUICooldownController healingCooldown;
         
         private void Awake()
         {
@@ -91,9 +97,13 @@ namespace Player
             playerAttackController.setAttackRange(characterStats.getAttackRange());
             playerAttackController.setBasicAttackDamage(characterStats.getAttackDamage());
             playerAttackController.setUpFireAttack();
+            fireCooldown.setCooldown(playerAttackController.getFireAttackCooldown());
             playerAttackController.setUpRangedAttack();
+            rangedCooldown.setCooldown(playerAttackController.getRangedAttackCooldown());
             playerAttackController.setUpDefensiveAbility();
+            defensiveCooldown.setCooldown(playerAttackController.getDefensiveAbilityCooldown());
             playerAttackController.setUpHealingAbility();
+            healingCooldown.setCooldown(playerAttackController.getHealingAbilityCooldown());
         }
 
         private void useAttackAbilities()
@@ -102,11 +112,13 @@ namespace Player
             {
                 playerAttackController.FireAttack();
                 nextFireAttack = Time.time + playerAttackController.getFireAttackCooldown();
+                fireCooldown.StartCoroutine("cooldownFill");
             }
             else if(Input.GetKey(playerAttackController.getRangedAttackKeyCode()) && Time.time >= nextRangedAttack)
             {
                 playerAttackController.RangedAttack();
                 nextRangedAttack = Time.time + playerAttackController.getRangedAttackCooldown();
+                rangedCooldown.StartCoroutine("cooldownFill");
             }
         }
 
@@ -116,11 +128,13 @@ namespace Player
             {
                 playerAttackController.DefensiveAbility();
                 nextDefensiveAbility = Time.time + playerAttackController.getDefensiveAbilityCooldown();
+                defensiveCooldown.StartCoroutine("cooldownFill");
             }
             else if (Input.GetKey(playerAttackController.getHealingAbilityKeyCode()) && Time.time >= nextHealingAbility)
             {
                 playerAttackController.Heal();
                 nextHealingAbility = Time.time + playerAttackController.getHealingAbilityCooldown();
+                healingCooldown.StartCoroutine("cooldownFill");
             }
         }
 
