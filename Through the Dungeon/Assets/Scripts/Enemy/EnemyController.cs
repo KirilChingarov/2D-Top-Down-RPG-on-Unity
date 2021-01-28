@@ -7,6 +7,7 @@ using Enums;
 using UnityEngine;
 using Pathfinding;
 using Player;
+using UIScripts;
 
 namespace Enemy
 {
@@ -31,6 +32,7 @@ namespace Enemy
 
         private bool playerDead = false;
         public AggroRange aggroRange;
+        public HealthBar healthBar;
         
         void Awake()
         {
@@ -41,7 +43,7 @@ namespace Enemy
             characterName = gameObject.name;
             dbConn = new EnemyDatabaseConn(characterName);
             characterStats = new CharacterStats(dbConn);
-            Debug.Log(characterName + " health: " + characterStats.getHealth());
+            healthBar.setMaxHealth(characterStats.getHealth());
 
             enemyAttackController = GetComponentInChildren<EnemyAttackController>();
             enemyAttackController.setAttackRange(characterStats.getAttackRange());
@@ -161,6 +163,7 @@ namespace Enemy
         public void takeDamage(float damage)
         {
             characterStats.takeDamage(damage);
+            healthBar.takeDamage(damage);
             Debug.Log(this.gameObject.name + " health : " + characterStats.getHealth());
             if (characterStats.getHealth() <= 0f)
             {
