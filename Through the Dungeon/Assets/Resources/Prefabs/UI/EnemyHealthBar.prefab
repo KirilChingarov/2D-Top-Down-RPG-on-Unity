@@ -350,3 +350,6 @@ MonoBehaviour:
   flashColor:
     serializedVersion: 2
     rgba: 4294967295
+  baseColor:
+    serializedVersion: 2
+    rgba: 4278914026

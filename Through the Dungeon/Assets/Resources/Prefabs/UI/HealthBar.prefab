@@ -106,6 +106,9 @@ MonoBehaviour:
   flashColor:
     serializedVersion: 2
     rgba: 4291743487
+  baseColor:
+    serializedVersion: 2
+    rgba: 4278914026
 --- !u!1 &3386069756080946715
 GameObject:
   m_ObjectHideFlags: 0

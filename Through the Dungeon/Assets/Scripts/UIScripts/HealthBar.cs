@@ -10,6 +10,7 @@ namespace UIScripts
     {
         public Slider healthBar;
         public Color32 flashColor;
+        public Color32 baseColor;
 
         private void Awake()
         {
@@ -33,13 +34,12 @@ namespace UIScripts
         private IEnumerator FlashHealthBar(float targetValue)
         {
             Image fillImage = healthBar.transform.Find("Fill").GetComponent<Image>();
-            Color32 currentColor = fillImage.color;
 
             fillImage.color = flashColor;
             yield return new WaitForSeconds(0.2f);
 
             healthBar.value = targetValue;
-            fillImage.color = currentColor;
+            fillImage.color = baseColor;
         }
 
         public void Heal(float healingAmount)
