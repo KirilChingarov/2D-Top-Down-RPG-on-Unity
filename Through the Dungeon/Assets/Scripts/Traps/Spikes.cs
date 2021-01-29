@@ -8,20 +8,20 @@ namespace Traps
 {
     public class Spikes : MonoBehaviour
     {
-        private bool isActive = false;
-        private Sprite[] sprites;
-        private float cooldown;
-        private float duration;
-        private float damage;
-        private float nextDamage = 0f;
+        private bool m_IsActive = false;
+        private Sprite[] m_Sprites;
+        private float m_Cooldown;
+        private float m_Duration;
+        private float m_Damage;
+        private float m_NextDamage = 0f;
         public float timeToActivate = 1f;
 
         private void Awake()
         {
-            sprites = Resources.LoadAll<Sprite>("Sprites/Traps/Spikes");
-            cooldown = new TrapsDatabaseConn("Spikes").getTrapCooldown();
-            duration = new TrapsDatabaseConn("Spikes").getTrapDuration();
-            damage = new TrapsDatabaseConn("Spikes").getTrapDamage();
+            m_Sprites = Resources.LoadAll<Sprite>("Sprites/Traps/Spikes");
+            m_Cooldown = new TrapsDatabaseConn("Spikes").GETTrapCooldown();
+            m_Duration = new TrapsDatabaseConn("Spikes").GETTrapDuration();
+            m_Damage = new TrapsDatabaseConn("Spikes").GETTrapDamage();
             GetComponent<Collider2D>().enabled = false;
             
             Invoke("ActivateSpikes", timeToActivate);
@@ -31,30 +31,30 @@ namespace Traps
         {
             for (int i = 0; i < transform.childCount; i++)
             {
-                transform.GetChild(i).GetComponentInChildren<SpriteRenderer>().sprite = sprites[1];
+                transform.GetChild(i).GetComponentInChildren<SpriteRenderer>().sprite = m_Sprites[1];
             }
             GetComponent<Collider2D>().enabled = true;
-            isActive = true;
-            Invoke("DisableSpikes", duration);
+            m_IsActive = true;
+            Invoke("DisableSpikes", m_Duration);
         }
 
         private void DisableSpikes()
         {
             for (int i = 0; i < transform.childCount; i++)
             {
-                transform.GetChild(i).GetComponentInChildren<SpriteRenderer>().sprite = sprites[0];
+                transform.GetChild(i).GetComponentInChildren<SpriteRenderer>().sprite = m_Sprites[0];
             }
             GetComponent<Collider2D>().enabled = false;
-            isActive = false;
-            Invoke("ActivateSpikes", cooldown);
+            m_IsActive = false;
+            Invoke("ActivateSpikes", m_Cooldown);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag("Player") && isActive && Time.time >= nextDamage)
+            if (other.gameObject.CompareTag("Player") && m_IsActive && Time.time >= m_NextDamage)
             {
-                other.gameObject.GetComponent<PlayerController>().takeDamage(damage);
-                nextDamage = Time.time + duration + 0.1f;
+                other.gameObject.GetComponent<PlayerController>().TakeDamage(m_Damage);
+                m_NextDamage = Time.time + m_Duration + 0.1f;
             }
         }
     }

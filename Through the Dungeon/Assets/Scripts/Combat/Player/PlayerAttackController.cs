@@ -7,158 +7,158 @@ using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
 {
-    private CharacterAnimationController characterAnimationController;
-    private float basicAttackDamage = 0f;
-    private FireAttack fireAttack;
-    private RangedAttack rangedAttack;
-    private DefensiveAbility defensiveAbility;
-    private HealingAbility healingAbility;
+    private CharacterAnimationController m_CharacterAnimationController;
+    private float m_BasicAttackDamage = 0f;
+    private FireAttack m_FireAttack;
+    private RangedAttack m_RangedAttack;
+    private DefensiveAbility m_DefensiveAbility;
+    private HealingAbility m_HealingAbility;
     
     void Awake()
     {
-        characterAnimationController = transform.parent.gameObject.GetComponentInChildren<CharacterAnimationController>();
+        m_CharacterAnimationController = transform.parent.gameObject.GetComponentInChildren<CharacterAnimationController>();
     }
 
     public void Attack()
     {
-        characterAnimationController.startAttack();
+        m_CharacterAnimationController.StartAttack();
     }
 
-    public void applyDamage(string gameObjectName)
+    public void ApplyDamage(string gameObjectName)
     {
         float damage;
         switch (gameObjectName)
         {
             case "BasicAttack":
-                damage = basicAttackDamage;
+                damage = m_BasicAttackDamage;
                 break;
             case "FireAttack":
-                damage = fireAttack.getFireAttackDamage();
+                damage = m_FireAttack.GETFireAttackDamage();
                 break;
             default:
                 damage = 0f;
                 break;
         }
         
-        transform.Find(gameObjectName).GetComponent<AttackHitbox>().attack(damage);
+        transform.Find(gameObjectName).GetComponent<AttackHitbox>().Attack(damage);
     }
 
-    public void setAttackRange(float attackRange)
+    public void SetAttackRange(float attackRange)
     {
-        GetComponentInChildren<AttackHitbox>().setAttackRange(attackRange);
+        GetComponentInChildren<AttackHitbox>().SetAttackRange(attackRange);
     }
 
-    public void setBasicAttackDamage(float attackDamage)
+    public void SetBasicAttackDamage(float attackDamage)
     {
-        basicAttackDamage = attackDamage;
+        m_BasicAttackDamage = attackDamage;
     }
 
-    public void setUpFireAttack()
+    public void SetUpFireAttack()
     {
-        fireAttack = new FireAttack(GameObject.Find("FireAttack"), 
+        m_FireAttack = new FireAttack(GameObject.Find("FireAttack"), 
             new AbilitiesDatabaseConn("FireAttack"));
-        fireAttack.setCharacterAnimationController(characterAnimationController);
+        m_FireAttack.SetCharacterAnimationController(m_CharacterAnimationController);
     }
 
     public void FireAttack()
     {
-        fireAttack.startAbility();
-        GameObject.Find("FireAttack").GetComponent<FireAttackAnimation>().triggerFireVFX();
+        m_FireAttack.StartAbility();
+        GameObject.Find("FireAttack").GetComponent<FireAttackAnimation>().TriggerFireVFX();
     }
     
-    public string getFireAttackKeyCode()
+    public string GETFireAttackKeyCode()
     {
-        return fireAttack.getKeyCode();
+        return m_FireAttack.GETKeyCode();
     }
 
-    public float getFireAttackCooldown()
+    public float GETFireAttackCooldown()
     {
-        return fireAttack.getCooldown();
+        return m_FireAttack.GETCooldown();
     }
 
-    public void setUpRangedAttack()
+    public void SetUpRangedAttack()
     {
-        rangedAttack = new RangedAttack(GameObject.Find("RangedAttack").transform,
+        m_RangedAttack = new RangedAttack(GameObject.Find("RangedAttack").transform,
             Resources.Load("Prefabs/VFX/WindSlash") as GameObject, 
             new AbilitiesDatabaseConn("RangedAttack"));
-        rangedAttack.setCharacterAnimationController(characterAnimationController);
+        m_RangedAttack.SetCharacterAnimationController(m_CharacterAnimationController);
     }
 
     public void RangedAttack()
     {
-        rangedAttack.startAbility();
+        m_RangedAttack.StartAbility();
     }
 
-    public string getRangedAttackKeyCode()
+    public string GETRangedAttackKeyCode()
     {
-        return rangedAttack.getKeyCode();
+        return m_RangedAttack.GETKeyCode();
     }
 
-    public float getRangedAttackCooldown()
+    public float GETRangedAttackCooldown()
     {
-        return rangedAttack.getCooldown();
+        return m_RangedAttack.GETCooldown();
     }
 
-    public void setUpDefensiveAbility()
+    public void SetUpDefensiveAbility()
     {
-        defensiveAbility = new DefensiveAbility(new AbilitiesDatabaseConn("DefensiveAbility"));
-        defensiveAbility.setCharacterAnimationController(characterAnimationController);
+        m_DefensiveAbility = new DefensiveAbility(new AbilitiesDatabaseConn("DefensiveAbility"));
+        m_DefensiveAbility.SetCharacterAnimationController(m_CharacterAnimationController);
     }
 
     public void DefensiveAbility()
     {
-        defensiveAbility.startAbility();
-        Invoke("disableDefensiveAbility", defensiveAbility.getAbilityDuration());
+        m_DefensiveAbility.StartAbility();
+        Invoke("DisableDefensiveAbility", m_DefensiveAbility.GETAbilityDuration());
     }
 
-    private void disableDefensiveAbility()
+    private void DisableDefensiveAbility()
     {
-        defensiveAbility.disableAbillity();
+        m_DefensiveAbility.DisableAbillity();
     }
 
-    public bool isDefensiveAbilityActive()
+    public bool IsDefensiveAbilityActive()
     {
-        return defensiveAbility.isAbilityActive();
+        return m_DefensiveAbility.IsAbilityActive();
     }
 
-    public float getDefensiveAbilityDmgReduction()
+    public float GETDefensiveAbilityDmgReduction()
     {
-        return defensiveAbility.getDamageReduction();
+        return m_DefensiveAbility.GETDamageReduction();
     }
 
-    public string getDefensiveAbilityKeyCode()
+    public string GETDefensiveAbilityKeyCode()
     {
-        return defensiveAbility.getKeyCode();
+        return m_DefensiveAbility.GETKeyCode();
     }
 
-    public float getDefensiveAbilityCooldown()
+    public float GETDefensiveAbilityCooldown()
     {
-        return defensiveAbility.getCooldown();
+        return m_DefensiveAbility.GETCooldown();
     }
 
-    public void setUpHealingAbility()
+    public void SetUpHealingAbility()
     {
-        healingAbility = new HealingAbility(new AbilitiesDatabaseConn("HealingAbility"));
-        healingAbility.setCharacterAnimationController(characterAnimationController);
+        m_HealingAbility = new HealingAbility(new AbilitiesDatabaseConn("HealingAbility"));
+        m_HealingAbility.SetCharacterAnimationController(m_CharacterAnimationController);
     }
 
     public void Heal()
     {
-        healingAbility.startAbility();
+        m_HealingAbility.StartAbility();
     }
 
-    public string getHealingAbilityKeyCode()
+    public string GETHealingAbilityKeyCode()
     {
-        return healingAbility.getKeyCode();
+        return m_HealingAbility.GETKeyCode();
     }
 
-    public float getHealingAbilityCooldown()
+    public float GETHealingAbilityCooldown()
     {
-        return healingAbility.getCooldown();
+        return m_HealingAbility.GETCooldown();
     }
 
-    public float getHealingAmount()
+    public float GETHealingAmount()
     {
-        return healingAbility.getHealingAmount();
+        return m_HealingAbility.GETHealingAmount();
     }
 }

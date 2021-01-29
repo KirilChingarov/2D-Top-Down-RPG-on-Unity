@@ -88,21 +88,21 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: freezeEnemyPosition
+    functionName: FreezeEnemyPosition
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.5
-    functionName: applyDamageToPlayer
+    functionName: ApplyDamageToPlayer
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.6666667
-    functionName: unfreezeEnemyPosition
+    functionName: UnfreezeEnemyPosition
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

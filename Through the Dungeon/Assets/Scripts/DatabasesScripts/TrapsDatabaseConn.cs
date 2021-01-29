@@ -6,18 +6,18 @@ namespace DatabasesScripts
 {
     public class TrapsDatabaseConn
     {
-        private string dbPath;
-        private SqliteConnection conn;
-        private int trapId;
+        private string m_DBPath;
+        private SqliteConnection m_Conn;
+        private int m_TrapId;
 
         public TrapsDatabaseConn(string trapName)
         {
-            dbPath = "URI=file:" + Application.dataPath + "/Scripts/Database/Database.db";
-            conn = new SqliteConnection(dbPath);
+            m_DBPath = "URI=file:" + Application.dataPath + "/Scripts/Database/Database.db";
+            m_Conn = new SqliteConnection(m_DBPath);
             
-            conn.Open();
+            m_Conn.Open();
             
-            SqliteCommand cmd = conn.CreateCommand();
+            SqliteCommand cmd = m_Conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT trapId FROM Traps " + 
@@ -31,23 +31,23 @@ namespace DatabasesScripts
 
             SqliteDataReader result = cmd.ExecuteReader();
             result.Read();
-            trapId = result.GetInt32(0);
+            m_TrapId = result.GetInt32(0);
             
-            conn.Close();
+            m_Conn.Close();
         }
 
-        public int getTrapId()
+        public int GETTrapId()
         {
-            return trapId;
+            return m_TrapId;
         }
 
-        public float getTrapCooldown()
+        public float GETTrapCooldown()
         {
             float cooldown = 0f;
             
-            conn.Open();
+            m_Conn.Open();
             
-            SqliteCommand cmd = conn.CreateCommand();
+            SqliteCommand cmd = m_Conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT trapCooldown FROM Traps " + 
@@ -55,7 +55,7 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
                 {
                     ParameterName = "trapId",
-                    Value = trapId
+                    Value = m_TrapId
                 }
             );
 
@@ -63,18 +63,18 @@ namespace DatabasesScripts
             result.Read();
             cooldown = result.GetFloat(0);
             
-            conn.Close();
+            m_Conn.Close();
 
             return cooldown;
         }
         
-        public float getTrapDuration()
+        public float GETTrapDuration()
         {
             float duration = 0f;
             
-            conn.Open();
+            m_Conn.Open();
             
-            SqliteCommand cmd = conn.CreateCommand();
+            SqliteCommand cmd = m_Conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT trapDuration FROM Traps " + 
@@ -82,7 +82,7 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
                 {
                     ParameterName = "trapId",
-                    Value = trapId
+                    Value = m_TrapId
                 }
             );
 
@@ -90,18 +90,18 @@ namespace DatabasesScripts
             result.Read();
             duration = result.GetFloat(0);
             
-            conn.Close();
+            m_Conn.Close();
 
             return duration;
         }
         
-        public float getTrapDamage()
+        public float GETTrapDamage()
         {
             float damage = 0f;
             
-            conn.Open();
+            m_Conn.Open();
             
-            SqliteCommand cmd = conn.CreateCommand();
+            SqliteCommand cmd = m_Conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT trapDamage FROM Traps " + 
@@ -109,7 +109,7 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
                 {
                     ParameterName = "trapId",
-                    Value = trapId
+                    Value = m_TrapId
                 }
             );
 
@@ -117,18 +117,18 @@ namespace DatabasesScripts
             result.Read();
             damage = result.GetFloat(0);
             
-            conn.Close();
+            m_Conn.Close();
 
             return damage;
         }
         
-        public float getTrapRange()
+        public float GETTrapRange()
         {
             float range = 0f;
             
-            conn.Open();
+            m_Conn.Open();
             
-            SqliteCommand cmd = conn.CreateCommand();
+            SqliteCommand cmd = m_Conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT trapRange FROM Traps " + 
@@ -136,7 +136,7 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
                 {
                     ParameterName = "trapId",
-                    Value = trapId
+                    Value = m_TrapId
                 }
             );
 
@@ -144,18 +144,18 @@ namespace DatabasesScripts
             result.Read();
             range = result.GetFloat(0);
             
-            conn.Close();
+            m_Conn.Close();
 
             return range;
         }
         
-        public float getTrapProjectileSpeed()
+        public float GETTrapProjectileSpeed()
         {
             float speed = 0f;
             
-            conn.Open();
+            m_Conn.Open();
             
-            SqliteCommand cmd = conn.CreateCommand();
+            SqliteCommand cmd = m_Conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT trapProjectileSpeed FROM Traps " + 
@@ -163,7 +163,7 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
                 {
                     ParameterName = "trapId",
-                    Value = trapId
+                    Value = m_TrapId
                 }
             );
 
@@ -171,7 +171,7 @@ namespace DatabasesScripts
             result.Read();
             speed = result.GetFloat(0);
             
-            conn.Close();
+            m_Conn.Close();
 
             return speed;
         }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DatabasesScripts;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,30 +9,37 @@ namespace UIScripts
     public class HealthBar : MonoBehaviour
     {
         public Slider healthBar;
+        public Color32 flashColor;
 
         private void Awake()
         {
             healthBar = GetComponent<Slider>();
         }
 
-        public void setMaxHealth(float maxHealth)
+        public void SetMaxHealth(float maxHealth)
         {
             healthBar.maxValue = maxHealth;
             healthBar.value = maxHealth;
         }
 
-        public void setCurrentHealth(float currentHealth)
+        public void TakeDamage(float damage)
         {
-            healthBar.value = currentHealth;
+            float targethealth = healthBar.value - damage;
+            if (targethealth <= 0f) targethealth = 0f;
+
+            StartCoroutine(FlashHealthBar(targethealth));
         }
 
-        public void takeDamage(float damage)
+        private IEnumerator FlashHealthBar(float targetValue)
         {
-            healthBar.value -= damage;
-            if (healthBar.value <= 0f)
-            {
-                healthBar.value = 0f;
-            }
+            Image fillImage = healthBar.transform.Find("Fill").GetComponent<Image>();
+            Color32 currentColor = fillImage.color;
+
+            fillImage.color = flashColor;
+            yield return new WaitForSeconds(0.2f);
+
+            healthBar.value = targetValue;
+            fillImage.color = currentColor;
         }
 
         public void Heal(float healingAmount)

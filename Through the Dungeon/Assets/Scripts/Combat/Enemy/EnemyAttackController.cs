@@ -5,31 +5,31 @@ using UnityEngine;
 
 public class EnemyAttackController : MonoBehaviour
 {
-    private CharacterAnimationController characterAnimationController;
-    private float basicAttackDamage = 0f;
+    private CharacterAnimationController m_CharacterAnimationController;
+    private float m_BasicAttackDamage = 0f;
     
     void Awake()
     {
-        characterAnimationController = transform.parent.gameObject.GetComponentInChildren<CharacterAnimationController>();
+        m_CharacterAnimationController = transform.parent.gameObject.GetComponentInChildren<CharacterAnimationController>();
     }
 
     public void Attack()
     {
-        characterAnimationController.startAttack();
+        m_CharacterAnimationController.StartAttack();
     }
     
-    public void applyDamage()
+    public void ApplyDamage()
     {
-        GetComponentInChildren<EnemyBasicAttack>().attack(basicAttackDamage);
+        GetComponentInChildren<EnemyBasicAttack>().Attack(m_BasicAttackDamage);
     }
     
-    public void setAttackRange(float attackRange)
+    public void SetAttackRange(float attackRange)
     {
-        GetComponentInChildren<EnemyBasicAttack>().setAttackRange(attackRange);
+        GetComponentInChildren<EnemyBasicAttack>().SetAttackRange(attackRange);
     }
 
-    public void setBasicAttackDamage(float attackDamage)
+    public void SetBasicAttackDamage(float attackDamage)
     {
-        basicAttackDamage = attackDamage;
+        m_BasicAttackDamage = attackDamage;
     }
 }

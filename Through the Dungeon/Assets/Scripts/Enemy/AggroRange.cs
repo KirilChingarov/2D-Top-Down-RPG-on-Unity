@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class AggroRange : MonoBehaviour
 {
-    private Collider2D collider;
-    private bool isPlayerInAggroRange = false;
+    private Collider2D m_Collider;
+    private bool m_IsPlayerInAggroRange = false;
     
     void Start()
     {
-        collider = GetComponent<Collider2D>();
+        m_Collider = GetComponent<Collider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            isPlayerInAggroRange = true;
+            m_IsPlayerInAggroRange = true;
         }
     }
 
@@ -25,12 +25,12 @@ public class AggroRange : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            isPlayerInAggroRange = false;
+            m_IsPlayerInAggroRange = false;
         }
     }
 
     public bool IsPlayerInAggroRange()
     {
-        return isPlayerInAggroRange;
+        return m_IsPlayerInAggroRange;
     }
 }

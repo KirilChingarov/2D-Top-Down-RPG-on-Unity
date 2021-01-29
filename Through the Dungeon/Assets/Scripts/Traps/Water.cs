@@ -12,7 +12,7 @@ namespace Traps
             if (other.gameObject.tag == "Player")
             {
                 Debug.Log("Colliding With Player");
-                other.gameObject.GetComponent<PlayerController>().setIsSwimming(true);
+                other.gameObject.GetComponent<PlayerController>().SetIsSwimming(true);
             }
         }
         
@@ -20,7 +20,7 @@ namespace Traps
         {
             if (other.gameObject.tag == "Player")
             {
-                other.gameObject.GetComponent<PlayerController>().setIsSwimming(false);
+                other.gameObject.GetComponent<PlayerController>().SetIsSwimming(false);
             }
         }
     }

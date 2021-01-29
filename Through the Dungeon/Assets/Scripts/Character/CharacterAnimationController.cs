@@ -8,133 +8,133 @@ namespace Character
 {
     public class CharacterAnimationController : MonoBehaviour
     {
-        private float horizontalSpeed = 0f;
-        private float verticalSpeed = 0f;
-        private bool isIdle = true;
-        private Animator characterGFX;
+        private float m_HorizontalSpeed = 0f;
+        private float m_VerticalSpeed = 0f;
+        private bool m_IsIdle = true;
+        private Animator m_CharacterGfx;
 
         public void Awake()
         {
-            characterGFX = GetComponent<Animator>();
+            m_CharacterGfx = GetComponent<Animator>();
         }
 
-        public void changeDirection(Direction direction){
+        public void ChangeDirection(Direction direction){
             switch (direction)
             {
-                case Direction.DOWN:
-                    horizontalSpeed = 0f;
-                    verticalSpeed = -1f;
-                    isIdle = false;
+                case Direction.Down:
+                    m_HorizontalSpeed = 0f;
+                    m_VerticalSpeed = -1f;
+                    m_IsIdle = false;
                     break;
-                case Direction.UP:
-                    horizontalSpeed = 0f;
-                    verticalSpeed = 1f;
-                    isIdle = false;
+                case Direction.Up:
+                    m_HorizontalSpeed = 0f;
+                    m_VerticalSpeed = 1f;
+                    m_IsIdle = false;
                     break;
-                case Direction.RIGHT:
-                    horizontalSpeed = 1f;
-                    verticalSpeed = 0f;
-                    isIdle = false;
+                case Direction.Right:
+                    m_HorizontalSpeed = 1f;
+                    m_VerticalSpeed = 0f;
+                    m_IsIdle = false;
                     break;
-                case Direction.LEFT:
-                    horizontalSpeed = -1f;
-                    verticalSpeed = 0f;
-                    isIdle = false;
+                case Direction.Left:
+                    m_HorizontalSpeed = -1f;
+                    m_VerticalSpeed = 0f;
+                    m_IsIdle = false;
                     break;
                 default:
-                    horizontalSpeed = 0f;
-                    verticalSpeed = 0f;
-                    isIdle = true;
+                    m_HorizontalSpeed = 0f;
+                    m_VerticalSpeed = 0f;
+                    m_IsIdle = true;
                     break;
             }
         
         
-            characterGFX.SetFloat("HorizontalSpeed", horizontalSpeed);
-            characterGFX.SetFloat("VerticalSpeed", verticalSpeed);
-            characterGFX.SetBool("isIdle", isIdle);
+            m_CharacterGfx.SetFloat("HorizontalSpeed", m_HorizontalSpeed);
+            m_CharacterGfx.SetFloat("VerticalSpeed", m_VerticalSpeed);
+            m_CharacterGfx.SetBool("isIdle", m_IsIdle);
         }
 
-        public void characterSwim(bool isSwimming)
+        public void CharacterSwim(bool isSwimming)
         {
-            characterGFX.SetBool("isSwimming", isSwimming);
+            m_CharacterGfx.SetBool("isSwimming", isSwimming);
         }
 
-        public void startAttack()
+        public void StartAttack()
         {
-            characterGFX.SetTrigger("Attack");
+            m_CharacterGfx.SetTrigger("Attack");
         }
 
-        public void startFireAttack()
+        public void StartFireAttack()
         {
-            characterGFX.SetTrigger("FireAttack");
+            m_CharacterGfx.SetTrigger("FireAttack");
         }
 
-        public void startRangedAttack()
+        public void StartRangedAttack()
         {
-            characterGFX.SetTrigger("RangedAttack");
+            m_CharacterGfx.SetTrigger("RangedAttack");
         }
 
-        public void startDefensiveAbility()
+        public void StartDefensiveAbility()
         {
-            characterGFX.SetTrigger("DefensiveAbility");
+            m_CharacterGfx.SetTrigger("DefensiveAbility");
         }
 
-        public void startHealingAbility()
+        public void StartHealingAbility()
         {
-            characterGFX.SetTrigger("HealingAbility");
+            m_CharacterGfx.SetTrigger("HealingAbility");
         }
 
-        public void takeHit()
+        public void TakeHit()
         {
-            characterGFX.SetTrigger("Hit");
+            m_CharacterGfx.SetTrigger("Hit");
         }
 
-        public void characterDeath()
+        public void CharacterDeath()
         {
-            characterGFX.SetTrigger("Death");
+            m_CharacterGfx.SetTrigger("Death");
         }
 
-        public void applyDamageToEnemy()
+        public void ApplyDamageToEnemy()
         {
-            transform.parent.gameObject.GetComponentInChildren<PlayerAttackController>().applyDamage("BasicAttack");
+            transform.parent.gameObject.GetComponentInChildren<PlayerAttackController>().ApplyDamage("BasicAttack");
         }
 
-        public void applyFireDamageToEnemy()
+        public void ApplyFireDamageToEnemy()
         {
-            transform.parent.gameObject.GetComponentInChildren<PlayerAttackController>().applyDamage("FireAttack");
+            transform.parent.gameObject.GetComponentInChildren<PlayerAttackController>().ApplyDamage("FireAttack");
         }
 
-        public void applyDamageToPlayer()
+        public void ApplyDamageToPlayer()
         {
-            transform.parent.gameObject.GetComponentInChildren<EnemyAttackController>().applyDamage();
+            transform.parent.gameObject.GetComponentInChildren<EnemyAttackController>().ApplyDamage();
         }
 
-        public void healPlayer()
+        public void HealPlayer()
         {
-            transform.parent.gameObject.GetComponent<PlayerController>().healPlayer();
+            transform.parent.gameObject.GetComponent<PlayerController>().HealPlayer();
         }
 
-        public void freezePlayerPosition()
+        public void FreezePlayerPosition()
         {
-            GetComponentInParent<PlayerController>().freezePosition();
+            GetComponentInParent<PlayerController>().FreezePosition();
         }
         
-        public void freezeEnemyPosition()
+        public void FreezeEnemyPosition()
         {
-            GetComponentInParent<EnemyController>().freezePosition();
+            GetComponentInParent<EnemyController>().FreezePosition();
         }
 
-        public void unfreezePlayerPosition()
+        public void UnfreezePlayerPosition()
         {
-            GetComponentInParent<PlayerController>().unfreezePosition();
+            GetComponentInParent<PlayerController>().UnfreezePosition();
         }
         
-        public void unfreezeEnemyPosition()
+        public void UnfreezeEnemyPosition()
         {
-            GetComponentInParent<EnemyController>().unfreezePosition();
+            GetComponentInParent<EnemyController>().UnfreezePosition();
         }
 
-        public void destroyObject()
+        public void DestroyObject()
         {
             Destroy(transform.parent.gameObject);
         }

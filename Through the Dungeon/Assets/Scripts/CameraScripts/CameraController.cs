@@ -5,13 +5,13 @@ namespace CameraScripts
 {
     public class CameraController : MonoBehaviour
     {
-        private Transform target;
-        private float horizontalDiviation = 1.5f;
-        private float verticalDiviation = 1.5f;
+        private Transform m_Target;
+        private float m_HorizontalDiviation = 1.5f;
+        private float m_VerticalDiviation = 1.5f;
 
         public void Awake()
         {
-            target = GameObject.Find("PlayerCharacter").transform;
+            m_Target = GameObject.Find("PlayerCharacter").transform;
         }
 
         public void FixedUpdate()
@@ -20,10 +20,10 @@ namespace CameraScripts
             float newPositionY = transform.position.y;
             float moveDistance;
             
-            if (Math.Abs(target.position.x - transform.position.x) >= horizontalDiviation)
+            if (Math.Abs(m_Target.position.x - transform.position.x) >= m_HorizontalDiviation)
             {
-                moveDistance = Math.Abs(target.position.x - transform.position.x) - horizontalDiviation;
-                if (target.position.x > transform.position.x)
+                moveDistance = Math.Abs(m_Target.position.x - transform.position.x) - m_HorizontalDiviation;
+                if (m_Target.position.x > transform.position.x)
                 {
                     newPositionX = transform.position.x + moveDistance;
                 }
@@ -32,10 +32,10 @@ namespace CameraScripts
                     newPositionX = transform.position.x - moveDistance;
                 }
             }
-            if (Math.Abs(target.position.y - transform.position.y) >= verticalDiviation)
+            if (Math.Abs(m_Target.position.y - transform.position.y) >= m_VerticalDiviation)
             {
-                moveDistance = Math.Abs(target.position.y - transform.position.y) - verticalDiviation;
-                if (target.position.y > transform.position.y)
+                moveDistance = Math.Abs(m_Target.position.y - transform.position.y) - m_VerticalDiviation;
+                if (m_Target.position.y > transform.position.y)
                 {
                     newPositionY = transform.position.y + moveDistance;
                 }

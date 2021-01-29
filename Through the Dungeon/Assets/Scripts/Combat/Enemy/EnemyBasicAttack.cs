@@ -6,19 +6,19 @@ using UnityEngine;
 
 public class EnemyBasicAttack : MonoBehaviour
 {
-    private GameObject player;
-    private bool inRange = false;
+    private GameObject m_Player;
+    private bool m_InRange = false;
 
     void Start()
     {
-        player = GameObject.Find("PlayerCharacter");
+        m_Player = GameObject.Find("PlayerCharacter");
     }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            inRange = true;
+            m_InRange = true;
         }
     }
 
@@ -26,19 +26,19 @@ public class EnemyBasicAttack : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            inRange = false;
+            m_InRange = false;
         }
     }
 
-    public void attack(float attackDamage)
+    public void Attack(float attackDamage)
     {
-        if (inRange)
+        if (m_InRange)
         {
-            player.GetComponent<PlayerController>().takeDamage(attackDamage);
+            m_Player.GetComponent<PlayerController>().TakeDamage(attackDamage);
         }
     }
 
-    public void setAttackRange(float attackRange)
+    public void SetAttackRange(float attackRange)
     {
         GetComponent<CircleCollider2D>().radius = attackRange;
     }

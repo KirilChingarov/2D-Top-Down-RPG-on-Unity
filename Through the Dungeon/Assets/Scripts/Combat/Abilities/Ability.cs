@@ -6,55 +6,55 @@ namespace Abilities
 {
     public abstract class Ability
     {
-        protected string abilityName;
-        protected float cooldown;
-        protected string keyCode;
-        protected AbilityType abilityType;
-        protected bool isActive;
-        protected CharacterAnimationController characterGFX;
-        protected AbilitiesDatabaseConn dbConn;
+        protected string AbilityName;
+        protected float Cooldown;
+        protected string KeyCode;
+        protected AbilityType AbilityType;
+        protected bool IsActive;
+        protected CharacterAnimationController CharacterGfx;
+        protected AbilitiesDatabaseConn DBConn;
 
         public Ability(AbilitiesDatabaseConn dbConn)
         {
-            this.dbConn = dbConn;
+            this.DBConn = dbConn;
             
-            abilityName = this.dbConn.getAbiltyName();
-            cooldown = this.dbConn.getAbilityCooldown();
-            keyCode = this.dbConn.getAbilityKeyCode();
-            abilityType = this.dbConn.getAbilityType();
-            isActive = false;
+            AbilityName = this.DBConn.GETAbiltyName();
+            Cooldown = this.DBConn.GETAbilityCooldown();
+            KeyCode = this.DBConn.GETAbilityKeyCode();
+            AbilityType = this.DBConn.GETAbilityType();
+            IsActive = false;
         }
 
         public Ability()
         {
-            this.abilityName = "";
-            this.cooldown = 0f;
-            this.keyCode = "";
-            isActive = false;
+            this.AbilityName = "";
+            this.Cooldown = 0f;
+            this.KeyCode = "";
+            IsActive = false;
         }
 
-        public abstract void startAbility();
+        public abstract void StartAbility();
 
-        public abstract bool isAbilityActive();
+        public abstract bool IsAbilityActive();
         
-        public string getKeyCode()
+        public string GETKeyCode()
         {
-            return keyCode;
+            return KeyCode;
         }
 
-        public float getCooldown()
+        public float GETCooldown()
         {
-            return cooldown;
+            return Cooldown;
         }
 
-        public AbilityType getAbilityType()
+        public AbilityType GETAbilityType()
         {
-            return abilityType;
+            return AbilityType;
         }
 
-        public void setCharacterAnimationController(CharacterAnimationController characterGFX)
+        public void SetCharacterAnimationController(CharacterAnimationController characterGfx)
         {
-            this.characterGFX = characterGFX;
+            this.CharacterGfx = characterGfx;
         }
     }
 }

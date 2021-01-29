@@ -9,25 +9,25 @@ namespace Abilities
 {
     public class ProjectileHitBox : MonoBehaviour
     {
-        private Rigidbody2D rb;
-        private float projectileSpeed = 0f;
-        private float projectileDamage = 0f;
-        private float projectileRange = 0f;
-        private Vector2 startingPoint;
+        private Rigidbody2D m_Rb;
+        private float m_ProjectileSpeed = 0f;
+        private float m_ProjectileDamage = 0f;
+        private float m_ProjectileRange = 0f;
+        private Vector2 m_StartingPoint;
 
         public void Start()
         {
-            startingPoint = transform.position;
-            rb = GetComponent<Rigidbody2D>();
-            projectileSpeed = new AbilitiesDatabaseConn("RangedAttack").getProjectileSpeed();
-            projectileDamage = new AbilitiesDatabaseConn("RangedAttack").getAbilityAttackDamage();
-            projectileRange = new AbilitiesDatabaseConn("RangedAttack").getAbilityAttackRange();
-            rb.velocity = transform.right * projectileSpeed;
+            m_StartingPoint = transform.position;
+            m_Rb = GetComponent<Rigidbody2D>();
+            m_ProjectileSpeed = new AbilitiesDatabaseConn("RangedAttack").GETProjectileSpeed();
+            m_ProjectileDamage = new AbilitiesDatabaseConn("RangedAttack").GETAbilityAttackDamage();
+            m_ProjectileRange = new AbilitiesDatabaseConn("RangedAttack").GETAbilityAttackRange();
+            m_Rb.velocity = transform.right * m_ProjectileSpeed;
         }
 
         public void FixedUpdate()
         {
-            if (Vector2.Distance(startingPoint, transform.position) >= projectileRange)
+            if (Vector2.Distance(m_StartingPoint, transform.position) >= m_ProjectileRange)
             {
                 Destroy(gameObject);
             }
@@ -37,7 +37,7 @@ namespace Abilities
         {
             if (other.gameObject.tag == "Enemy")
             {
-                other.gameObject.GetComponent<EnemyController>().takeDamage(projectileDamage);
+                other.gameObject.GetComponent<EnemyController>().TakeDamage(m_ProjectileDamage);
             }
         }
     }

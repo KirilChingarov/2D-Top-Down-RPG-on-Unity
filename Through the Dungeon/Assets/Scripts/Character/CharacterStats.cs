@@ -6,98 +6,98 @@ namespace Character
 {
     public class CharacterStats
     {
-        private float health;
-        private float maxHealth;
-        private float moveSpeed;
-        private float attackDamage;
-        private float attackRange;
-        private float attackCooldown;
+        private float m_Health;
+        private float m_MAXHealth;
+        private float m_MoveSpeed;
+        private float m_AttackDamage;
+        private float m_AttackRange;
+        private float m_AttackCooldown;
 
         public CharacterStats(PlayerDatabaseConn dbConn)
         {
-            health = dbConn.getPlayerHealth();
-            maxHealth = health;
-            moveSpeed = dbConn.getPlayerMoveSpeed();
-            attackDamage = dbConn.getPlayerAttackDamage();
-            attackRange = dbConn.getPlayerAttackRange();
-            attackCooldown = dbConn.getPlayerAttackCooldown();
+            m_Health = dbConn.GETPlayerHealth();
+            m_MAXHealth = m_Health;
+            m_MoveSpeed = dbConn.GETPlayerMoveSpeed();
+            m_AttackDamage = dbConn.GETPlayerAttackDamage();
+            m_AttackRange = dbConn.GETPlayerAttackRange();
+            m_AttackCooldown = dbConn.GETPlayerAttackCooldown();
         }
         
         public CharacterStats(EnemyDatabaseConn dbConn)
         {
-            health = dbConn.getEnemyHealth();
-            maxHealth = health;
-            moveSpeed = dbConn.getEnemyMoveSpeed();
-            attackDamage = dbConn.getEnemyAttackDamage();
-            attackRange = dbConn.getEnemyAttackRange();
-            attackCooldown = dbConn.getEnemyAttackCooldown();
+            m_Health = dbConn.GETEnemyHealth();
+            m_MAXHealth = m_Health;
+            m_MoveSpeed = dbConn.GETEnemyMoveSpeed();
+            m_AttackDamage = dbConn.GETEnemyAttackDamage();
+            m_AttackRange = dbConn.GETEnemyAttackRange();
+            m_AttackCooldown = dbConn.GETEnemyAttackCooldown();
         }
 
-        public float getMoveSpeed()
+        public float GETMoveSpeed()
         {
-            return moveSpeed;
+            return m_MoveSpeed;
         }
 
-        public void setMoveSpeed(float moveSpeed)
+        public void SetMoveSpeed(float moveSpeed)
         {
-            this.moveSpeed = moveSpeed;
+            this.m_MoveSpeed = moveSpeed;
         }
 
-        public float getHealth()
+        public float GETHealth()
         {
-            return health;
+            return m_Health;
         }
 
-        public void setHealth(float health)
+        public void SetHealth(float health)
         {
-            this.health = health;
+            this.m_Health = health;
         }
 
-        public float getAttackDamage()
+        public float GETAttackDamage()
         {
-            return attackDamage;
+            return m_AttackDamage;
         }
 
-        public void setAttackDamage(float attackDamage)
+        public void SetAttackDamage(float attackDamage)
         {
-            this.attackDamage = attackDamage;
+            this.m_AttackDamage = attackDamage;
         }
 
-        public float getAttackRange()
+        public float GETAttackRange()
         {
-            return attackRange;
+            return m_AttackRange;
         }
 
-        public void setAttackRange(float attackRange)
+        public void SetAttackRange(float attackRange)
         {
-            this.attackRange = attackRange;
+            this.m_AttackRange = attackRange;
         }
 
-        public float getAttackCooldown()
+        public float GETAttackCooldown()
         {
-            return attackCooldown;
+            return m_AttackCooldown;
         }
 
-        public void setAttackCooldown(float attackCooldown)
+        public void SetAttackCooldown(float attackCooldown)
         {
-            this.attackCooldown = attackCooldown;
+            this.m_AttackCooldown = attackCooldown;
         }
 
-        public void takeDamage(float damage)
+        public void TakeDamage(float damage)
         {
-            health -= damage;
-            if (health < 0f)
+            m_Health -= damage;
+            if (m_Health < 0f)
             {
-                health = 0f;
+                m_Health = 0f;
             }
         }
 
-        public void heal(float healAmount)
+        public void Heal(float healAmount)
         {
-            health += healAmount;
-            if (health > maxHealth)
+            m_Health += healAmount;
+            if (m_Health > m_MAXHealth)
             {
-                health = maxHealth;
+                m_Health = m_MAXHealth;
             }
         }
     }    

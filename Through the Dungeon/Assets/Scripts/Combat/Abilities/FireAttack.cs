@@ -7,31 +7,31 @@ namespace Abilities
 {
     public class FireAttack : Ability
     {
-        private GameObject attackObject;
-        private float attackDamage = 0f;
+        private GameObject m_AttackObject;
+        private float m_AttackDamage = 0f;
 
         public FireAttack(GameObject attackObject, AbilitiesDatabaseConn dbConn) : base(dbConn)
         {
-            this.attackObject = attackObject;
+            this.m_AttackObject = attackObject;
 
-            attackDamage = this.dbConn.getAbilityAttackDamage();
-            float attackRange = dbConn.getAbilityAttackRange();
+            m_AttackDamage = this.DBConn.GETAbilityAttackDamage();
+            float attackRange = dbConn.GETAbilityAttackRange();
             attackObject.GetComponent<CircleCollider2D>().radius = attackRange;
         }
 
-        public override void startAbility()
+        public override void StartAbility()
         {
-            characterGFX.startFireAttack();
+            CharacterGfx.StartFireAttack();
         }
 
-        public override bool isAbilityActive()
+        public override bool IsAbilityActive()
         {
-            return isActive;
+            return IsActive;
         }
 
-        public float getFireAttackDamage()
+        public float GETFireAttackDamage()
         {
-            return attackDamage;
+            return m_AttackDamage;
         }
     }
 }
