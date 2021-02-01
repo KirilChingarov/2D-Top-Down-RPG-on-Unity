@@ -35,5 +35,10 @@ namespace UIScripts
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
         }
+
+        public void SaveAndQuit()
+        {
+            
+        }
     }
 }
