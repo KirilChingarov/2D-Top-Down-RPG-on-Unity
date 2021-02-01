@@ -2,6 +2,7 @@ using System;
 using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace SaveScripts
 {
@@ -9,8 +10,8 @@ namespace SaveScripts
     {
         public static GameStateController instance { get; private set; }
         public bool isLoaded = false;
-        public string levelName;
-        public float[] playerPosition = new float[3];
+        [FormerlySerializedAs("levelName")] public string levelPath;
+        public float[] playerPosition;
         public float playerHealth;
         public void Awake()
         {
@@ -25,17 +26,15 @@ namespace SaveScripts
             }
         }
 
-        /*public void LoadPlayerData(PlayerData data)
-        {
-            PlayerController player = GameObject.Find("PlayerController").GetComponent<PlayerController>();
-
-            player.transform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
-        }*/
-
         public void SavePlayerData()
         {
             PlayerData data = new PlayerData(SceneManager.GetActiveScene().name, GameObject.Find("PlayerCharacter").GetComponent<PlayerController>());
             
+        }
+
+        public GameStateController GetInstance()
+        {
+            return instance;
         }
     }
 }

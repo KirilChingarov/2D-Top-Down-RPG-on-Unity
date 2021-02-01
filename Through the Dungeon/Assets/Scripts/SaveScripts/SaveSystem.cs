@@ -13,7 +13,7 @@ namespace SaveScripts
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(Application.persistentDataPath + "/player.bin", FileMode.Create);
             
-            PlayerData data = new PlayerData(SceneManager.GetActiveScene().name, player);
+            PlayerData data = new PlayerData(SceneManager.GetActiveScene().path, player);
             
             formatter.Serialize(stream, data);
             stream.Close();

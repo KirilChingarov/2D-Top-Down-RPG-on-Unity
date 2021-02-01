@@ -3,6 +3,7 @@ using Character;
 using DatabasesScripts;
 using Enemy;
 using Enums;
+using SaveScripts;
 using UIScripts;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -29,9 +30,13 @@ namespace Player
         public AbilityUICooldownController defensiveCooldown;
         private float m_NextHealingAbility = 0f;
         public AbilityUICooldownController healingCooldown;
+
+        private GameStateController gameStateController;
         
         private void Awake()
         {
+            gameStateController = GameObject.Find("GameStateController").GetComponent<GameStateController>().GetInstance();
+            
             m_CharacterMovement = GetComponent<CharacterMovement>();
             m_CharacterMovement.SetRigidBody2D(GetComponent<Rigidbody2D>());
             m_CharacterMovement.SetCharacterAnimationController(GetComponentInChildren<CharacterAnimationController>());
@@ -40,6 +45,12 @@ namespace Player
             healthBar.SetMaxHealth(m_CharacterStats.GETHealth());
             
             SetUpPlayerAttackController();
+            
+            if (gameStateController.isLoaded)
+            {
+                m_CharacterStats.SetHealth(gameStateController.playerHealth);
+                transform.position = new Vector3(gameStateController.playerPosition[0], gameStateController.playerPosition[1], gameStateController.playerPosition[2]);
+            }
         }
 
         private void FixedUpdate()
@@ -156,6 +167,7 @@ namespace Player
             }
             m_CharacterStats.TakeDamage(damage);
             healthBar.TakeDamage(damage);
+            Debug.Log("Damage to Player: " + damage);
             Debug.Log(this.gameObject.name + " health : " + m_CharacterStats.GETHealth());
             if (m_CharacterStats.GETHealth() == 0f)
             {

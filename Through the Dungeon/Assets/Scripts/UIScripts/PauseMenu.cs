@@ -51,6 +51,7 @@ namespace UIScripts
         {
             SaveSystem.SavePlayerData(GameObject.Find("PlayerCharacter").GetComponent<PlayerController>());
             SceneManager.LoadScene("Scenes/Menus/MainMenu", LoadSceneMode.Single);
+            Resume();
         }
     }
 }
