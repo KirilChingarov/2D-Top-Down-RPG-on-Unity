@@ -43,23 +43,14 @@ namespace UIScripts
         public void Restart()
         {
             Scene scene = SceneManager.GetActiveScene();
-            AsyncOperation loading = SceneManager.LoadSceneAsync(scene.name, LoadSceneMode.Single);
-            StartCoroutine(ShowLoadingProgress(loading));
+            SceneManager.LoadScene(scene.name);
             Resume();
-        }
-
-        IEnumerator ShowLoadingProgress(AsyncOperation loading)
-        {
-            while (!loading.isDone)
-            {
-                Debug.Log("Progress: " + loading.progress);
-                yield return null;
-            }
         }
 
         public void SaveAndQuit()
         {
             SaveSystem.SavePlayerData(GameObject.Find("PlayerCharacter").GetComponent<PlayerController>());
+            SceneManager.LoadScene("Scenes/Menus/MainMenu", LoadSceneMode.Single);
         }
     }
 }
