@@ -12,7 +12,7 @@ namespace Abilities
 
         public FireAttack(GameObject attackObject, AbilitiesDatabaseConn dbConn) : base(dbConn)
         {
-            this.m_AttackObject = attackObject;
+            m_AttackObject = attackObject;
 
             m_AttackDamage = this.DBConn.GETAbilityAttackDamage();
             float attackRange = dbConn.GETAbilityAttackRange();

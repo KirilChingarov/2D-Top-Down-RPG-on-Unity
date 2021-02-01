@@ -186,6 +186,15 @@ namespace Player
         {
             return m_IsSwimming;
         }
-        
+
+        public float GETPlayerHealth()
+        {
+            return m_CharacterStats.GETHealth();
+        }
+
+        public Transform GETPlayerTransform()
+        {
+            return transform;
+        }
     }
 }
