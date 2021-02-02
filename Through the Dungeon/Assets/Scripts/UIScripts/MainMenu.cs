@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using SaveScripts;
+using UnityEditor;
 
 namespace UIScripts
 {
@@ -28,6 +29,12 @@ namespace UIScripts
             }
             
             SceneManager.LoadScene(playerData.levelPath);
+        }
+
+        public void Quit()
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+            Application.Quit();
         }
     }
 }
