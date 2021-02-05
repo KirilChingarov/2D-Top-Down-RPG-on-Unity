@@ -12058,7 +12058,7 @@ EdgeCollider2D:
   - {x: 21.5, y: -1.5}
   - {x: 32.5, y: -1.5}
   - {x: 32.5, y: -14.5}
-  - {x: 38, y: -15}
+  - {x: 40, y: -14.5}
 --- !u!1 &555376734
 GameObject:
   m_ObjectHideFlags: 0
@@ -14224,6 +14224,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 8655858298606588097, guid: 54ab21da127a9524a89b4aeeb7bd4961,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8655858298606588100, guid: 54ab21da127a9524a89b4aeeb7bd4961,
         type: 3}
       propertyPath: aggroRange
@@ -15399,6 +15404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1379739174}
   - component: {fileID: 1379739173}
+  - component: {fileID: 1379739175}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -15416,7 +15422,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -15446,6 +15452,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1379739175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379739172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4424b9e27af64c13b77ed1f0af12d9a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 0
 --- !u!1001 &1383554795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15467,6 +15486,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655858298606588097, guid: 54ab21da127a9524a89b4aeeb7bd4961,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8655858298606588100, guid: 54ab21da127a9524a89b4aeeb7bd4961,
         type: 3}
@@ -15630,7 +15654,7 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 41, y: -15}
+  - {x: 39, y: -14.5}
   - {x: 55, y: -14.5}
   - {x: 55, y: 15}
 --- !u!1 &1454654195
@@ -74799,6 +74823,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655858298606588097, guid: 54ab21da127a9524a89b4aeeb7bd4961,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8655858298606588100, guid: 54ab21da127a9524a89b4aeeb7bd4961,
         type: 3}

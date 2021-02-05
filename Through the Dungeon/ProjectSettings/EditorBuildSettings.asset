@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Rooms/Forest_Entry.unity
     guid: e1d634b03cf9bc64f9cc679a11266e8c
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Forest_1.unity
+    guid: 2a7621b214b53454793a760d011e267e
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Forest_2.unity
+    guid: bcad8754e3656e74bad4e1ac0a1e4a76
   m_configObjects: {}
