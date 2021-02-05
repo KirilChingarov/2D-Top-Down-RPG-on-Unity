@@ -7,6 +7,7 @@ namespace Objects
     public class Door : MonoBehaviour
     {
         public bool isOpen = false;
+        public string nextScene = "";
 
         public void Update()
         {
@@ -23,7 +24,7 @@ namespace Objects
             {
                 Debug.Log("Collided With Door");
                 Debug.Log("Loading next scene");
-                SceneManager.LoadScene("Forest_1");
+                SceneManager.LoadScene(nextScene);
             }
         }
     }

@@ -15465,6 +15465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpen: 0
+  nextScene: Forest_1
 --- !u!1001 &1383554795
 PrefabInstance:
   m_ObjectHideFlags: 0
