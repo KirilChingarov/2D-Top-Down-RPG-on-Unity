@@ -30,6 +30,11 @@ namespace Abilities
             return IsActive;
         }
 
+        public void BuffDamageReduction(float amount)
+        {
+            m_DamageReduction += amount;
+        }
+        
         public float GETDamageReduction()
         {
             return m_DamageReduction;

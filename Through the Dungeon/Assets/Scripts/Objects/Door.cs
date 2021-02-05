@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Traps
+namespace Objects
 {
     public class Door : MonoBehaviour
     {

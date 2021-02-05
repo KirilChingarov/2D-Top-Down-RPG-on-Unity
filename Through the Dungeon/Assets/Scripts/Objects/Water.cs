@@ -2,7 +2,7 @@ using System;
 using Player;
 using UnityEngine;
 
-namespace Traps
+namespace Objects
 {
     public class Water : MonoBehaviour
     {

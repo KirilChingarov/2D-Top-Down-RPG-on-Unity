@@ -2,7 +2,7 @@ using System;
 using DatabasesScripts;
 using UnityEngine;
 
-namespace Traps
+namespace Objects
 {
     public class Cannon : MonoBehaviour
     {

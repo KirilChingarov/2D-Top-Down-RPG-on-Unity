@@ -149,6 +149,26 @@ namespace Player
             }
         }
 
+        public void BuffFireAttackDamage(float damage)
+        {
+            m_PlayerAttackController.BuffFireAttackDamage(damage);
+        }
+
+        public void BuffRangedAttackDamage(float damage)
+        {
+            m_PlayerAttackController.BuffRangedAttackDamage(damage);
+        }
+
+        public void BuffDefensiveAbilityDamageReduction(float amount)
+        {
+            m_PlayerAttackController.BuffDefensiveDamageReduction(amount);
+        }
+
+        public void BuffHealingAbilityAmount(float amount)
+        {
+            m_PlayerAttackController.BuffHealingAbilityAmount(amount);
+        }
+
         public void FreezePosition()
         {
             m_CanMove = false;

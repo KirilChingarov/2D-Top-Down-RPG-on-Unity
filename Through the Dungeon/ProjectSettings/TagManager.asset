@@ -61,6 +61,9 @@ TagManager:
   - name: Traps
     uniqueID: 874736839
     locked: 0
+  - name: PickUps
+    uniqueID: 4177045531
+    locked: 0
   - name: NPCs
     uniqueID: 370178429
     locked: 0

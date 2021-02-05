@@ -29,6 +29,11 @@ namespace Abilities
             return IsActive;
         }
 
+        public void BuffAttackDamage(float damage)
+        {
+            m_AttackDamage += damage;
+        }
+        
         public float GETFireAttackDamage()
         {
             return m_AttackDamage;

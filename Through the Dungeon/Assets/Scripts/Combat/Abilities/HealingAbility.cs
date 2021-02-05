@@ -21,6 +21,11 @@ namespace Abilities
             return false;
         }
 
+        public void BuffHealingAmount(float amount)
+        {
+            m_HealAmount += amount;
+        }
+        
         public float GETHealingAmount()
         {
             return m_HealAmount;

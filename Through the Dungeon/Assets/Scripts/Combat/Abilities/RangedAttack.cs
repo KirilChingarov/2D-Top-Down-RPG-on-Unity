@@ -32,6 +32,11 @@ namespace Abilities
             return false;
         }
 
+        public void BuffRangedAttackDamage(float damage)
+        {
+            m_AttackDamage += damage;
+        }
+        
         public float GETRangedAttackDamage()
         {
             return m_AttackDamage;

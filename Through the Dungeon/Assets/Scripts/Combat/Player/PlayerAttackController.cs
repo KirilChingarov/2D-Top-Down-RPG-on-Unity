@@ -65,6 +65,11 @@ public class PlayerAttackController : MonoBehaviour
         m_FireAttack.StartAbility();
         GameObject.Find("FireAttack").GetComponent<FireAttackAnimation>().TriggerFireVFX();
     }
+
+    public void BuffFireAttackDamage(float damage)
+    {
+        m_FireAttack.BuffAttackDamage(damage);
+    }
     
     public string GETFireAttackKeyCode()
     {
@@ -87,6 +92,11 @@ public class PlayerAttackController : MonoBehaviour
     public void RangedAttack()
     {
         m_RangedAttack.StartAbility();
+    }
+
+    public void BuffRangedAttackDamage(float damage)
+    {
+        m_RangedAttack.BuffRangedAttackDamage(damage);
     }
 
     public string GETRangedAttackKeyCode()
@@ -119,6 +129,11 @@ public class PlayerAttackController : MonoBehaviour
     public bool IsDefensiveAbilityActive()
     {
         return m_DefensiveAbility.IsAbilityActive();
+    }
+
+    public void BuffDefensiveDamageReduction(float amount)
+    {
+        m_DefensiveAbility.BuffDamageReduction(amount);
     }
 
     public float GETDefensiveAbilityDmgReduction()
@@ -155,6 +170,11 @@ public class PlayerAttackController : MonoBehaviour
     public float GETHealingAbilityCooldown()
     {
         return m_HealingAbility.GETCooldown();
+    }
+
+    public void BuffHealingAbilityAmount(float amount)
+    {
+        m_HealingAbility.BuffHealingAmount(amount);
     }
 
     public float GETHealingAmount()

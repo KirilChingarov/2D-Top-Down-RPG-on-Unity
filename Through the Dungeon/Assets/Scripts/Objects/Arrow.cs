@@ -3,7 +3,7 @@ using DatabasesScripts;
 using Player;
 using UnityEngine;
 
-namespace Traps
+namespace Objects
 {
     public class Arrow : MonoBehaviour
     {

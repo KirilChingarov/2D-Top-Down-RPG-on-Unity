@@ -4,7 +4,7 @@ using Player;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Traps
+namespace Objects
 {
     public class Spikes : MonoBehaviour
     {
