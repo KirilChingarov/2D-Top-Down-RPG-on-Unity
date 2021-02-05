@@ -46,7 +46,7 @@ namespace Player
             
             SetUpPlayerAttackController();
             
-            if (gameStateController.isLoaded)
+            if (gameStateController != null && gameStateController.isLoaded)
             {
                 m_CharacterStats.SetHealth(gameStateController.playerHealth);
                 transform.position = new Vector3(gameStateController.playerPosition[0], gameStateController.playerPosition[1], gameStateController.playerPosition[2]);

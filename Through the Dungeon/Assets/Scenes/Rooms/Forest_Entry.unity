@@ -15339,8 +15339,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1258386571}
+  - component: {fileID: 1258386572}
   m_Layer: 0
-  m_Name: GameState
+  m_Name: GameStateController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15360,6 +15361,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1258386572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258386570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b379008ff9dc41118f7d427e84807a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoaded: 0
+  levelPath: 
+  playerPosition: []
+  playerHealth: 0
 --- !u!114 &1356725456 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5507027695827398467, guid: 4c5283b67e0e98244840d0ca1720d87b,
