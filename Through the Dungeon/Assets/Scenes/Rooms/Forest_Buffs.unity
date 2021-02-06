@@ -5576,7 +5576,7 @@ PrefabInstance:
     - target: {fileID: 5618671283939911044, guid: 4c5283b67e0e98244840d0ca1720d87b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 5618671283939911044, guid: 4c5283b67e0e98244840d0ca1720d87b,
         type: 3}
@@ -17832,6 +17832,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4239495728696819940, guid: 029343839a9a8d744bb5b9ec796e2988,
+        type: 3}
+      propertyPath: nextScene
+      value: Forest_Boss
+      objectReference: {fileID: 0}
     - target: {fileID: 4239495728696819941, guid: 029343839a9a8d744bb5b9ec796e2988,
         type: 3}
       propertyPath: m_LocalPosition.x
