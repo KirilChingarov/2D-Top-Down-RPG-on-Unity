@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Rooms/Forest_3.unity
     guid: 1d4a43deb47ed99438692a99fc7f9c37
   - enabled: 1
+    path: Assets/Scenes/Rooms/Forest_4.unity
+    guid: 37295815ecf548246a178da046da9123
+  - enabled: 1
     path: Assets/Scenes/Rooms/Forest_Buffs.unity
     guid: 958c782672e848948aaaeda4b3060dc7
   - enabled: 1

@@ -1,4 +1,5 @@
 using System;
+using SaveScripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,8 +23,9 @@ namespace Objects
         {
             if (other.gameObject.tag == "Player" && isOpen)
             {
-                Debug.Log("Collided With Door");
-                Debug.Log("Loading next scene");
+                GameStateController gameStateController = GameObject.Find("GameStateController").GetComponent<GameStateController>().GetInstance();
+                gameStateController.SaveCombatStats();
+                gameStateController.isTransition = true;
                 SceneManager.LoadScene(nextScene);
             }
         }

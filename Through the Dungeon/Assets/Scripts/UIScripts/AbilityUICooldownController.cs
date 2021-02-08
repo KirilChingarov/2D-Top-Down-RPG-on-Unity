@@ -29,6 +29,21 @@ namespace UIScripts
             }
         }
 
+        public IEnumerator CooldownFillTime(float targetCooldown)
+        {
+            fillImage.fillAmount = 0f;
+            float startCooldownTime = Time.time;
+            float endCooldownTime = Time.time + targetCooldown;
+            float fillAmount;
+
+            while (Time.time < endCooldownTime)
+            {
+                fillAmount = MapFloat(Time.time, startCooldownTime, endCooldownTime, 0f, 1f);
+                fillImage.fillAmount = fillAmount;
+                yield return null;
+            }
+        }
+
         public float MapFloat(float value, float low1, float high1, float low2, float high2)
         {
             return low2 + (value - low1) * (high2 - low2) / (high1 - low1);

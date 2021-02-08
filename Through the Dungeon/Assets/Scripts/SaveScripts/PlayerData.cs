@@ -7,16 +7,27 @@ namespace SaveScripts
     {
         public string levelPath;
         public float health;
-        public float[] position;
+        public float fireCooldown;
+        public float fireDamage;
+        public float windCooldown;
+        public float windDamage;
+        public float earthCooldown;
+        public float earthDamageReduction;
+        public float waterCooldown;
+        public float waterHealingAmount;
 
         public PlayerData(string levelPath, PlayerController player)
         {
             this.levelPath = levelPath;
             health = player.GETPlayerHealth();
-            position = new float[3];
-            for (int i = 0;i < 3;i++){
-                position[i] = player.GETPlayerTransform().position[i];
-            }
+            fireCooldown = player.getFireCooldown();
+            fireDamage = player.getFireDamage();
+            windCooldown = player.getWindCooldown();
+            windDamage = player.getWindDamage();
+            earthCooldown = player.getEarthCooldown();
+            earthDamageReduction = player.getEarthDamageReduction();
+            waterCooldown = player.getWaterCooldown();
+            waterHealingAmount = player.getWaterHealingAmount();
         }
         
         

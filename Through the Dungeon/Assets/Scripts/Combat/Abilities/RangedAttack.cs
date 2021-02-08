@@ -36,6 +36,11 @@ namespace Abilities
         {
             m_AttackDamage += damage;
         }
+
+        public void setAttackDamage(float damage)
+        {
+            m_AttackDamage = damage;
+        }
         
         public float GETRangedAttackDamage()
         {

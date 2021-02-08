@@ -34,6 +34,11 @@ namespace Abilities
         {
             m_DamageReduction += amount;
         }
+
+        public void setDamageReduction(float damageReduction)
+        {
+            m_DamageReduction = damageReduction;
+        }
         
         public float GETDamageReduction()
         {

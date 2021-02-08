@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Abilities;
 using Character;
 using DatabasesScripts;
+using SaveScripts;
 using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
@@ -66,6 +67,16 @@ public class PlayerAttackController : MonoBehaviour
         GameObject.Find("FireAttack").GetComponent<FireAttackAnimation>().TriggerFireVFX();
     }
 
+    public void setFireAttackDamage(float damage)
+    {
+        m_FireAttack.setAttackDamage(damage);
+    }
+
+    public float getFireAttackDamage()
+    {
+        return m_FireAttack.GETFireAttackDamage();
+    }
+
     public void BuffFireAttackDamage(float damage)
     {
         m_FireAttack.BuffAttackDamage(damage);
@@ -92,6 +103,16 @@ public class PlayerAttackController : MonoBehaviour
     public void RangedAttack()
     {
         m_RangedAttack.StartAbility();
+    }
+
+    public void setRangedAttackDamage(float damage)
+    {
+        m_RangedAttack.setAttackDamage(damage);
+    }
+
+    public float getRangedAttackDamage()
+    {
+        return m_RangedAttack.GETRangedAttackDamage();
     }
 
     public void BuffRangedAttackDamage(float damage)
@@ -121,6 +142,21 @@ public class PlayerAttackController : MonoBehaviour
         Invoke("DisableDefensiveAbility", m_DefensiveAbility.GETAbilityDuration());
     }
 
+    public void setDefenseDamageReduction(float damageReduction)
+    {
+        m_DefensiveAbility.setDamageReduction(damageReduction);
+    }
+
+    public float getDefensiveDamageReduction()
+    {
+        return m_DefensiveAbility.GETDamageReduction();
+    }
+
+    public void BuffDefensiveDamageReduction(float amount)
+    {
+        m_DefensiveAbility.BuffDamageReduction(amount);
+    }
+    
     private void DisableDefensiveAbility()
     {
         m_DefensiveAbility.DisableAbillity();
@@ -129,11 +165,6 @@ public class PlayerAttackController : MonoBehaviour
     public bool IsDefensiveAbilityActive()
     {
         return m_DefensiveAbility.IsAbilityActive();
-    }
-
-    public void BuffDefensiveDamageReduction(float amount)
-    {
-        m_DefensiveAbility.BuffDamageReduction(amount);
     }
 
     public float GETDefensiveAbilityDmgReduction()
@@ -175,6 +206,11 @@ public class PlayerAttackController : MonoBehaviour
     public void BuffHealingAbilityAmount(float amount)
     {
         m_HealingAbility.BuffHealingAmount(amount);
+    }
+
+    public void setHealingAmount(float healingAmount)
+    {
+        m_HealingAbility.setHealingAmount(healingAmount);
     }
 
     public float GETHealingAmount()

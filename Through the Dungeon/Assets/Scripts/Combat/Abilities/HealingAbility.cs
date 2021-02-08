@@ -25,6 +25,11 @@ namespace Abilities
         {
             m_HealAmount += amount;
         }
+
+        public void setHealingAmount(float amount)
+        {
+            m_HealAmount = amount;
+        }
         
         public float GETHealingAmount()
         {

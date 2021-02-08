@@ -10,6 +10,11 @@ namespace UIScripts
         public void Play()
         {
             SceneManager.LoadScene("Scenes/Rooms/Forest_Entry", LoadSceneMode.Single);
+            
+            GameObject gameStateControllerObject = GameObject.Find("GameStateController");
+            GameStateController gameStateController = gameStateControllerObject.GetComponent<GameStateController>();
+
+            gameStateController.isLoadedFromSave = false;
         }
 
         public void LoadSave()
@@ -19,14 +24,17 @@ namespace UIScripts
             GameObject gameStateControllerObject = GameObject.Find("GameStateController");
             GameStateController gameStateController = gameStateControllerObject.GetComponent<GameStateController>();
 
-            gameStateController.isLoaded = true;
+            gameStateController.isLoadedFromSave = true;
             gameStateController.levelPath = playerData.levelPath;
             gameStateController.playerHealth = playerData.health;
-            gameStateController.playerPosition = new float[3];
-            for (int i = 0; i < 3; i++)
-            {
-                gameStateController.playerPosition[i] = playerData.position[i];
-            }
+            gameStateController.fireCooldown = playerData.fireCooldown;
+            gameStateController.fireDamage = playerData.fireDamage;
+            gameStateController.windCooldown = playerData.windCooldown;
+            gameStateController.windDamage = playerData.windDamage;
+            gameStateController.earthCooldown = playerData.earthCooldown;
+            gameStateController.earthDamageReduction = playerData.earthDamageReduction;
+            gameStateController.waterCooldown = playerData.waterCooldown;
+            gameStateController.waterHealingAmount = playerData.waterHealingAmount;
             
             SceneManager.LoadScene(playerData.levelPath);
         }

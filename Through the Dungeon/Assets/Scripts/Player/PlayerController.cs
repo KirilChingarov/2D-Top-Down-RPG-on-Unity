@@ -46,10 +46,25 @@ namespace Player
             
             SetUpPlayerAttackController();
             
-            if (gameStateController != null && gameStateController.isLoaded)
+            if (gameStateController != null && gameStateController.isLoadedFromSave)
             {
                 m_CharacterStats.SetHealth(gameStateController.playerHealth);
-                transform.position = new Vector3(gameStateController.playerPosition[0], gameStateController.playerPosition[1], gameStateController.playerPosition[2]);
+                m_NextFireAttack = Time.time + gameStateController.fireCooldown;
+                fireCooldown.StartCoroutine(fireCooldown.CooldownFillTime(gameStateController.fireCooldown));
+                m_NextRangedAttack = Time.time + gameStateController.windCooldown;
+                rangedCooldown.StartCoroutine(rangedCooldown.CooldownFillTime(gameStateController.windCooldown));
+                m_NextDefensiveAbility = Time.time + gameStateController.earthCooldown;
+                defensiveCooldown.StartCoroutine(defensiveCooldown.CooldownFillTime(gameStateController.earthCooldown));
+                m_NextHealingAbility = Time.time + gameStateController.waterCooldown;
+                healingCooldown.StartCoroutine(healingCooldown.CooldownFillTime(gameStateController.waterCooldown));
+            }
+            if (gameStateController != null && gameStateController.isTransition)
+            {
+                m_CharacterStats.SetHealth(gameStateController.playerHealth);
+                m_PlayerAttackController.setFireAttackDamage(gameStateController.fireDamage);
+                m_PlayerAttackController.setRangedAttackDamage(gameStateController.windDamage);
+                m_PlayerAttackController.setDefenseDamageReduction(gameStateController.earthDamageReduction);
+                m_PlayerAttackController.setHealingAmount(gameStateController.waterHealingAmount);
             }
         }
 
@@ -224,9 +239,44 @@ namespace Player
             return m_CharacterStats.GETHealth();
         }
 
-        public Transform GETPlayerTransform()
+        public float getFireCooldown()
         {
-            return transform;
+            return m_NextFireAttack - Time.time;
+        }
+
+        public float getFireDamage()
+        {
+            return m_PlayerAttackController.getFireAttackDamage();
+        }
+
+        public float getWindCooldown()
+        {
+            return m_NextRangedAttack - Time.time;
+        }
+
+        public float getWindDamage()
+        {
+            return m_PlayerAttackController.getRangedAttackDamage();
+        }
+
+        public float getEarthCooldown()
+        {
+            return m_NextDefensiveAbility - Time.time;
+        }
+
+        public float getEarthDamageReduction()
+        {
+            return m_PlayerAttackController.getDefensiveDamageReduction();
+        }
+
+        public float getWaterCooldown()
+        {
+            return m_NextHealingAbility - Time.time;
+        }
+
+        public float getWaterHealingAmount()
+        {
+            return m_PlayerAttackController.GETHealingAmount();
         }
     }
 }
