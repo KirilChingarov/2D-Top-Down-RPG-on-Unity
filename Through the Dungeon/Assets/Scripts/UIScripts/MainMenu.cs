@@ -38,6 +38,11 @@ namespace UIScripts
             SceneManager.LoadScene(playerData.levelPath);
         }
 
+        public void LoadLevels()
+        {
+            
+        }
+
         public void Quit()
         {
             UnityEditor.EditorApplication.isPlaying = false;
