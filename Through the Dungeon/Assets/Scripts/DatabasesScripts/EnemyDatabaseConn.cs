@@ -18,7 +18,6 @@ namespace DatabasesScripts
             // databasePath - the path to the .db file in Databases folder
             m_DBPath = "URI=file:" + Application.dataPath + "/Scripts/Database/Database.db";
             m_Conn = new SqliteConnection(m_DBPath);
-            Debug.Log(enemyName);
             
             m_Conn.Open();
 

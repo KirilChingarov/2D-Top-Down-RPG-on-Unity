@@ -71,9 +71,9 @@ namespace Player
         private void FixedUpdate()
         {
             Move();
-            Attack();
             if (!m_IsSwimming)
             {
+                Attack();
                 UseAttackAbilities();
                 UseDefensiveAbilities();
             }

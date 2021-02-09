@@ -10,6 +10,11 @@ namespace Objects
         public bool isOpen = false;
         public string nextScene = "";
 
+        private void Awake()
+        {
+            isOpen = false;
+        }
+
         public void Update()
         {
             int enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
@@ -28,6 +33,7 @@ namespace Objects
                 gameStateController.isTransition = true;
                 gameStateController.nextLevel++;
                 nextScene = gameStateController.levels[gameStateController.nextLevel];
+                Debug.Log(nextScene);
                 SceneManager.LoadScene(nextScene);
             }
         }

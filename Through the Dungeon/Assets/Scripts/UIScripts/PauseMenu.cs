@@ -49,7 +49,8 @@ namespace UIScripts
 
         public void SaveAndQuit()
         {
-            SaveSystem.SavePlayerData(GameObject.Find("PlayerCharacter").GetComponent<PlayerController>());
+            SaveSystem.SavePlayerData(GameObject.Find("PlayerCharacter").GetComponent<PlayerController>(),
+                GameObject.Find("GameStateController").GetComponent<GameStateController>().GetInstance());
             SceneManager.LoadScene("Scenes/Menus/MainMenu", LoadSceneMode.Single);
             Resume();
         }

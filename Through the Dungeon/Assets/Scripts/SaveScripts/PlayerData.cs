@@ -16,7 +16,10 @@ namespace SaveScripts
         public float waterCooldown;
         public float waterHealingAmount;
 
-        public PlayerData(string levelPath, PlayerController player)
+        public string[] levels;
+        public int nextLevel;
+
+        public PlayerData(string levelPath, PlayerController player, GameStateController gameStateController)
         {
             this.levelPath = levelPath;
             health = player.GETPlayerHealth();
@@ -28,6 +31,13 @@ namespace SaveScripts
             earthDamageReduction = player.getEarthDamageReduction();
             waterCooldown = player.getWaterCooldown();
             waterHealingAmount = player.getWaterHealingAmount();
+            
+            levels = new string[gameStateController.levels.Length];
+            for (int i = 0; i < levels.Length; i++)
+            {
+                levels[i] = gameStateController.levels[i];
+            }
+            nextLevel = gameStateController.nextLevel;
         }
         
         

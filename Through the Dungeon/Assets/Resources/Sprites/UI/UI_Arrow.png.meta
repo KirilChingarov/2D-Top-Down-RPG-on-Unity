@@ -8,6 +8,18 @@ TextureImporter:
   - first:
       213: 883829250299688867
     second: UI_Arrow_1
+  - first:
+      213: 4007266155743205446
+    second: UI_Arrow_0
+  - first:
+      213: 2160173041036795661
+    second: UI_Arrow_1
+  - first:
+      213: -6176875294234513765
+    second: UI_Arrow_2
+  - first:
+      213: -1717060669301515014
+    second: UI_Arrow_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -132,6 +144,48 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 648d485565bac9730800000000000000
+      internalID: 4007266155743205446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Arrow_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0f9f5c8fe97afd10800000000000000
+      internalID: 2160173041036795661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Arrow_2
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 32
         height: 32
@@ -142,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88d14b27a4c8aee10800000000000000
-      internalID: 2227747217068006792
+      spriteID: b9ee34975a4574aa0800000000000000
+      internalID: -6176875294234513765
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_Arrow_1
+      name: UI_Arrow_3
       rect:
         serializedVersion: 2
         x: 32
@@ -163,8 +217,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a7763a350ef34c00800000000000000
-      internalID: 883829250299688867
+      spriteID: afc1d7c2b66cb28e0800000000000000
+      internalID: -1717060669301515014
       vertices: []
       indices: 
       edges: []
