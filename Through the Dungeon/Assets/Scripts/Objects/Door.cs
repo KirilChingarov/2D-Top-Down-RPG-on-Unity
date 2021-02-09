@@ -26,6 +26,8 @@ namespace Objects
                 GameStateController gameStateController = GameObject.Find("GameStateController").GetComponent<GameStateController>().GetInstance();
                 gameStateController.SaveCombatStats();
                 gameStateController.isTransition = true;
+                gameStateController.nextLevel++;
+                nextScene = gameStateController.levels[gameStateController.nextLevel];
                 SceneManager.LoadScene(nextScene);
             }
         }

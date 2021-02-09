@@ -25,7 +25,6 @@ namespace UIScripts
             GameStateController gameStateController = gameStateControllerObject.GetComponent<GameStateController>();
 
             gameStateController.isLoadedFromSave = true;
-            gameStateController.levelPath = playerData.levelPath;
             gameStateController.playerHealth = playerData.health;
             gameStateController.fireCooldown = playerData.fireCooldown;
             gameStateController.fireDamage = playerData.fireDamage;

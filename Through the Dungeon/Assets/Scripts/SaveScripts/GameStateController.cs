@@ -11,7 +11,6 @@ namespace SaveScripts
         public static GameStateController instance { get; private set; }
         public bool isLoadedFromSave = false;
         public bool isTransition = false;
-        public string levelPath;
         public float playerHealth;
         public float fireCooldown;
         public float fireDamage;
@@ -21,6 +20,10 @@ namespace SaveScripts
         public float earthDamageReduction;
         public float waterCooldown;
         public float waterHealingAmount;
+
+        public bool isLevelPresets = false;
+        public string[] levels = new[] {"Forest_1", "Forest_2", "Forest_3", "Forest_Buffs"};
+        public int nextLevel = -1;
         public void Awake()
         {
             if (instance == null)
