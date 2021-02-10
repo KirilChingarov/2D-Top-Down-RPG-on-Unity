@@ -6,6 +6,7 @@ using Enums;
 using SaveScripts;
 using UIScripts;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace Player
@@ -214,6 +215,7 @@ namespace Player
                     enemy.GetComponent<EnemyController>().PlayerIsDead();
                 }
                 Destroy(this.gameObject);
+                SceneManager.LoadScene("Scenes/Menus/DeathScreen");
             }
         }
 
