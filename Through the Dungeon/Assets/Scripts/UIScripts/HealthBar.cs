@@ -17,6 +17,11 @@ namespace UIScripts
             healthBar = GetComponent<Slider>();
         }
 
+        public void SetHealth(float health)
+        {
+            healthBar.value = health;
+        }
+
         public void SetMaxHealth(float maxHealth)
         {
             healthBar.maxValue = maxHealth;

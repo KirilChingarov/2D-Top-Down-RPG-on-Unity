@@ -27,7 +27,9 @@ namespace UIScripts
                 Debug.Log(i + " " + levels[i].getCurrentLevel());
                 gameStateController.levels[i] = levels[i].getCurrentLevel();
             }
-            
+
+            gameStateController.levels[3] = "Forest_Buffs";
+
         }
     }
 }

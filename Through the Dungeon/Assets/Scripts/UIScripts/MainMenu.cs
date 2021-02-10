@@ -1,3 +1,4 @@
+using DatabasesScripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using SaveScripts;
@@ -9,6 +10,7 @@ namespace UIScripts
     {
         public GameObject mainScreen;
         public GameObject levelsScreen;
+        public GameObject controlsScreen;
         public LevelSelectController levels;
         
         public void Play()
@@ -19,6 +21,7 @@ namespace UIScripts
             GameStateController gameStateController = gameStateControllerObject.GetComponent<GameStateController>().GetInstance();
 
             gameStateController.isLoadedFromSave = false;
+            gameStateController.playerHealth = new PlayerDatabaseConn().GETPlayerHealth();
             levels.Load();
         }
 
@@ -53,23 +56,29 @@ namespace UIScripts
         public void LoadLevelsScreen()
         {
             mainScreen.SetActive(false);
+            controlsScreen.SetActive(false);
             levelsScreen.SetActive(true);
-        }
-
-        public void LoadLevels()
-        {
-            
         }
 
         public void BackLevels()
         {
             levelsScreen.SetActive(false);
+            controlsScreen.SetActive(false);
             mainScreen.SetActive(true);
+        }
+
+        public void Controls()
+        {
+            mainScreen.SetActive(false);
+            levelsScreen.SetActive(false);
+            controlsScreen.SetActive(true);
         }
 
         public void BackControls()
         {
-            
+            controlsScreen.SetActive(false);
+            levelsScreen.SetActive(false);
+            mainScreen.SetActive(true);
         }
 
         public void Quit()

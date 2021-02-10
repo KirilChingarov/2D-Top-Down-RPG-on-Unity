@@ -66,6 +66,7 @@ namespace Player
                 m_PlayerAttackController.setDefenseDamageReduction(gameStateController.earthDamageReduction);
                 m_PlayerAttackController.setHealingAmount(gameStateController.waterHealingAmount);
             }
+            healthBar.SetHealth(gameStateController.playerHealth);
         }
 
         private void FixedUpdate()
