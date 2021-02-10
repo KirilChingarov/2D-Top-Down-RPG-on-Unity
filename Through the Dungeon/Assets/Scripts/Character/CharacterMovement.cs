@@ -5,79 +5,79 @@ namespace Character
 {
     public class CharacterMovement : MonoBehaviour
     {
-        private Rigidbody2D rb;
-        private CharacterAnimationController characterGFX;
+        private Rigidbody2D m_Rb;
+        private CharacterAnimationController m_CharacterGfx;
 
-        public Direction getDirectionFromSpeed(float horizontalSpeed, float verticalSpeed)
+        public Direction GETDirectionFromSpeed(float horizontalSpeed, float verticalSpeed)
         {
             if (verticalSpeed > 0.01f)
             {
-                return Direction.UP;
+                return Direction.Up;
             }
             else if(verticalSpeed < -0.01f)
             {
-                return Direction.DOWN;
+                return Direction.Down;
             }
             else if (horizontalSpeed > 0.01f)
             {
-                return Direction.RIGHT;
+                return Direction.Right;
             }
             else if(horizontalSpeed < -0.01f)
             {
-                return Direction.LEFT;
+                return Direction.Left;
             }
-            return Direction.IDLE;
+            return Direction.Idle;
         }
 
-        public Direction getDirectionFromVector(Vector2 distance)
+        public Direction GETDirectionFromVector(Vector2 distance)
         {
             if (Mathf.Abs(distance.x) > Mathf.Abs(distance.y))
             {
-                if (distance.x > 0.01f) return Direction.RIGHT;
-                if (distance.x < -0.01f) return Direction.LEFT;
-                return Direction.IDLE;
+                if (distance.x > 0.01f) return Direction.Right;
+                if (distance.x < -0.01f) return Direction.Left;
+                return Direction.Idle;
             }
             else
             {
-                if (distance.y > 0.01f) return Direction.UP;
-                if (distance.y < -0.01f) return Direction.DOWN;
-                return Direction.IDLE;
+                if (distance.y > 0.01f) return Direction.Up;
+                if (distance.y < -0.01f) return Direction.Down;
+                return Direction.Idle;
             }
         }
 
-        public void setCharacterVelocity(Vector2 direction)
+        public void SetCharacterVelocity(Vector2 direction)
         {
-            rb.velocity = direction;
+            m_Rb.velocity = direction;
         }
 
-        public void setCharacterDirection(Direction direction)
+        public void SetCharacterDirection(Direction direction)
         {
-            characterGFX.changeDirection(direction);
+            m_CharacterGfx.ChangeDirection(direction);
         }
 
-        public void setIsCharacterSwimming(bool isSwimming)
+        public void SetIsCharacterSwimming(bool isSwimming)
         {
-            characterGFX.characterSwim(isSwimming);
+            m_CharacterGfx.CharacterSwim(isSwimming);
         }
 
-        public void setRigidBody2D(Rigidbody2D newRb)
+        public void SetRigidBody2D(Rigidbody2D newRb)
         {
-            rb = newRb;
+            m_Rb = newRb;
         }
 
-        public void setCharacterAnimationController(CharacterAnimationController newChAnimationControllerC)
+        public void SetCharacterAnimationController(CharacterAnimationController newChAnimationControllerC)
         {
-            characterGFX = newChAnimationControllerC;
+            m_CharacterGfx = newChAnimationControllerC;
         }
 
-        public Vector2 getCurrentPosition()
+        public Vector2 GETCurrentPosition()
         {
-            return rb.position;
+            return m_Rb.position;
         }
 
-        public void characterDeath()
+        public void CharacterDeath()
         {
-            characterGFX.characterDeath();
+            m_CharacterGfx.CharacterDeath();
         }
     }
 }

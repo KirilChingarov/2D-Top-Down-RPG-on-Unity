@@ -9,19 +9,19 @@ namespace DatabasesScripts
 {
     public class EnemyDatabaseConn
     {
-        private string dbPath;
-        private SqliteConnection conn;
-        private int enemyCharacterId;
+        private string m_DBPath;
+        private SqliteConnection m_Conn;
+        private int m_EnemyCharacterId;
 
-        public EnemyDatabaseConn(String enemyName)
+        public EnemyDatabaseConn(string enemyName)
         {
             // databasePath - the path to the .db file in Databases folder
-            dbPath = "URI=file:" + Application.dataPath + "/Scripts/Database/Database.db";
-            conn = new SqliteConnection(dbPath);
+            m_DBPath = "URI=file:" + Application.dataPath + "/Scripts/Database/Database.db";
+            m_Conn = new SqliteConnection(m_DBPath);
             
-            conn.Open();
+            m_Conn.Open();
 
-            SqliteCommand cmd = conn.CreateCommand();
+            SqliteCommand cmd = m_Conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT characterId FROM Characters " + 
@@ -35,20 +35,20 @@ namespace DatabasesScripts
 
             SqliteDataReader result = cmd.ExecuteReader();
             result.Read();
-            enemyCharacterId = result.GetInt32(0);
-            conn.Close();
+            m_EnemyCharacterId = result.GetInt32(0);
+            m_Conn.Close();
         }
 
-        public int getEnemyCharacterId()
+        public int GETEnemyCharacterId()
         {
-            return enemyCharacterId;
+            return m_EnemyCharacterId;
         }
 
-        public float getEnemyMoveSpeed()
+        public float GETEnemyMoveSpeed()
         {
-            conn.Open();
+            m_Conn.Open();
 
-            SqliteCommand cmd = conn.CreateCommand();
+            SqliteCommand cmd = m_Conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT characterMoveSpeed FROM Characters " + 
@@ -56,7 +56,7 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
                 {
                     ParameterName = "characterId",
-                    Value = enemyCharacterId
+                    Value = m_EnemyCharacterId
                 }
             );
 
@@ -64,16 +64,16 @@ namespace DatabasesScripts
             result.Read();
             float moveSpeed = result.GetFloat(0);
             
-            conn.Close();
+            m_Conn.Close();
 
             return moveSpeed;
         }
         
-        public void setMoveSpeed(float newMoveSpeed)
+        public void SetMoveSpeed(float newMoveSpeed)
         {
-            conn.Open();
+            m_Conn.Open();
 
-            SqliteCommand cmd = conn.CreateCommand();
+            SqliteCommand cmd = m_Conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "UPDATE Characters " + 
@@ -87,19 +87,19 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
             {
                 ParameterName = "characterId",
-                Value = enemyCharacterId
+                Value = m_EnemyCharacterId
             });
 
             cmd.ExecuteNonQuery();
             
-            conn.Close();
+            m_Conn.Close();
         }
         
-        public float getEnemyHealth()
+        public float GETEnemyHealth()
         {
-            conn.Open();
+            m_Conn.Open();
 
-            SqliteCommand cmd = conn.CreateCommand();
+            SqliteCommand cmd = m_Conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT characterHealth FROM Characters " + 
@@ -107,7 +107,7 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
                 {
                     ParameterName = "characterId",
-                    Value = enemyCharacterId
+                    Value = m_EnemyCharacterId
                 }
             );
 
@@ -115,16 +115,16 @@ namespace DatabasesScripts
             result.Read();
             float health = result.GetFloat(0);
             
-            conn.Close();
+            m_Conn.Close();
 
             return health;
         }
 
-        public float getEnemyAttackDamage()
+        public float GETEnemyAttackDamage()
         {
-            conn.Open();
+            m_Conn.Open();
 
-            SqliteCommand cmd = conn.CreateCommand();
+            SqliteCommand cmd = m_Conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT characterAttackDamage FROM Characters " + 
@@ -132,7 +132,7 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
                 {
                     ParameterName = "characterId",
-                    Value = enemyCharacterId
+                    Value = m_EnemyCharacterId
                 }
             );
 
@@ -140,16 +140,16 @@ namespace DatabasesScripts
             result.Read();
             float attackDamage = result.GetFloat(0);
             
-            conn.Close();
+            m_Conn.Close();
 
             return attackDamage;
         }
         
-        public float getEnemyAttackRange()
+        public float GETEnemyAttackRange()
         {
-            conn.Open();
+            m_Conn.Open();
 
-            SqliteCommand cmd = conn.CreateCommand();
+            SqliteCommand cmd = m_Conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT characterAttackRange FROM Characters " + 
@@ -157,7 +157,7 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
                 {
                     ParameterName = "characterId",
-                    Value = enemyCharacterId
+                    Value = m_EnemyCharacterId
                 }
             );
 
@@ -165,16 +165,16 @@ namespace DatabasesScripts
             result.Read();
             float attackRange = result.GetFloat(0);
             
-            conn.Close();
+            m_Conn.Close();
 
             return attackRange;
         }
         
-        public float getEnemyAttackCooldown()
+        public float GETEnemyAttackCooldown()
         {
-            conn.Open();
+            m_Conn.Open();
 
-            SqliteCommand cmd = conn.CreateCommand();
+            SqliteCommand cmd = m_Conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT characterAttackCooldown FROM Characters " + 
@@ -182,7 +182,7 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
                 {
                     ParameterName = "characterId",
-                    Value = enemyCharacterId
+                    Value = m_EnemyCharacterId
                 }
             );
 
@@ -190,7 +190,7 @@ namespace DatabasesScripts
             result.Read();
             float attackCooldown = result.GetFloat(0);
             
-            conn.Close();
+            m_Conn.Close();
 
             return attackCooldown;
         }

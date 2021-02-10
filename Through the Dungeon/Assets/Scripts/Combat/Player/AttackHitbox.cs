@@ -6,15 +6,15 @@ using UnityEngine;
 
 public class AttackHitbox : MonoBehaviour
 {
-    private List<GameObject> enemies = new List<GameObject>();
-    private List<bool> inRange = new List<bool>();
+    private List<GameObject> m_Enemies = new List<GameObject>();
+    private List<bool> m_InRange = new List<bool>();
 
     public void Start()
     {
-        enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
-        for (int i = 0; i < enemies.Count; i++)
+        m_Enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+        for (int i = 0; i < m_Enemies.Count; i++)
         {
-            inRange.Add(false);
+            m_InRange.Add(false);
         }
     }
 
@@ -22,7 +22,7 @@ public class AttackHitbox : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            inRange[enemies.IndexOf(other.gameObject)] = true;
+            m_InRange[m_Enemies.IndexOf(other.gameObject)] = true;
         }
     }
     
@@ -30,22 +30,22 @@ public class AttackHitbox : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            inRange[enemies.IndexOf(other.gameObject)] = false;
+            m_InRange[m_Enemies.IndexOf(other.gameObject)] = false;
         }
     }
 
-    public void attack(float attackDamage)
+    public void Attack(float attackDamage)
     {
-        for (int i = 0; i < enemies.Count; i++)
+        for (int i = 0; i < m_Enemies.Count; i++)
         {
-            if (inRange[i])
+            if (m_InRange[i])
             {
-                enemies[i].GetComponent<EnemyController>().takeDamage(attackDamage);
+                m_Enemies[i].GetComponent<EnemyController>().TakeDamage(attackDamage);
             }
         }
     }
 
-    public void setAttackRange(float attackRange)
+    public void SetAttackRange(float attackRange)
     {
         GetComponent<CircleCollider2D>().radius = attackRange;
     }

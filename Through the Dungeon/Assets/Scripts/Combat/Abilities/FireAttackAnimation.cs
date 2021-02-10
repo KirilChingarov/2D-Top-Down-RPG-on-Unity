@@ -5,16 +5,16 @@ namespace Abilities
 {
     public class FireAttackAnimation : MonoBehaviour
     {
-        private Animator fireVFX;
+        private Animator m_FireVFX;
 
         public void Awake()
         {
-            fireVFX = GetComponent<Animator>();
+            m_FireVFX = GetComponent<Animator>();
         }
 
-        public void triggerFireVFX()
+        public void TriggerFireVFX()
         {
-            fireVFX.SetTrigger("FireVFX");
+            m_FireVFX.SetTrigger("FireVFX");
         }
     }
 }

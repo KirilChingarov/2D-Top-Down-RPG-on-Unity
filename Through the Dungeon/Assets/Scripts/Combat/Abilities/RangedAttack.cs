@@ -5,38 +5,46 @@ namespace Abilities
 {
     public class RangedAttack : Ability
     {
-        private Transform shootingPoint;
-        private GameObject projectile;
-        private float abilityRange = 0f;
-        private float projectileSpeed = 0f;
-        private float attackDamage = 0f;
+        private Transform m_ShootingPoint;
+        private GameObject m_Projectile;
+        private float m_AbilityRange = 0f;
+        private float m_ProjectileSpeed = 0f;
+        private float m_AttackDamage = 0f;
 
         public RangedAttack(Transform shootingPoint, GameObject projectilePrefab, AbilitiesDatabaseConn dbConn) : base(dbConn)
         {
-            this.shootingPoint = shootingPoint;
-            projectile = projectilePrefab;
+            this.m_ShootingPoint = shootingPoint;
+            m_Projectile = projectilePrefab;
 
-            abilityRange = dbConn.getAbilityAttackRange();
-            projectileSpeed = dbConn.getProjectileSpeed();
-            attackDamage = dbConn.getAbilityAttackDamage();
+            m_AbilityRange = dbConn.GETAbilityAttackRange();
+            m_ProjectileSpeed = dbConn.GETProjectileSpeed();
+            m_AttackDamage = dbConn.GETAbilityAttackDamage();
         }
         
-        public override void startAbility()
+        public override void StartAbility()
         {
-            Debug.Log("Shooting Wind Slash");
-            characterGFX.startRangedAttack();
-            Debug.Log(shootingPoint.rotation);
-            MonoBehaviour.Instantiate(projectile, shootingPoint.position, shootingPoint.rotation);
+            CharacterGfx.StartRangedAttack();
+            MonoBehaviour.Instantiate(m_Projectile, m_ShootingPoint.position, m_ShootingPoint.rotation);
         }
 
-        public override bool isAbilityActive()
+        public override bool IsAbilityActive()
         {
             return false;
         }
 
-        public float getRangedAttackDamage()
+        public void BuffRangedAttackDamage(float damage)
         {
-            return attackDamage;
+            m_AttackDamage += damage;
+        }
+
+        public void setAttackDamage(float damage)
+        {
+            m_AttackDamage = damage;
+        }
+        
+        public float GETRangedAttackDamage()
+        {
+            return m_AttackDamage;
         }
     }
 }

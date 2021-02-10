@@ -4,26 +4,36 @@ namespace Abilities
 {
     public class HealingAbility : Ability
     {
-        private float healAmount;
+        private float m_HealAmount;
         
         public HealingAbility(AbilitiesDatabaseConn dbConn) : base(dbConn)
         {
-            healAmount = dbConn.getAbilityHealingAmount();
+            m_HealAmount = dbConn.GETAbilityHealingAmount();
         }
 
-        public override void startAbility()
+        public override void StartAbility()
         {
-            characterGFX.startHealingAbility();
+            CharacterGfx.StartHealingAbility();
         }
 
-        public override bool isAbilityActive()
+        public override bool IsAbilityActive()
         {
             return false;
         }
 
-        public float getHealingAmount()
+        public void BuffHealingAmount(float amount)
         {
-            return healAmount;
+            m_HealAmount += amount;
+        }
+
+        public void setHealingAmount(float amount)
+        {
+            m_HealAmount = amount;
+        }
+        
+        public float GETHealingAmount()
+        {
+            return m_HealAmount;
         }
     }
 }

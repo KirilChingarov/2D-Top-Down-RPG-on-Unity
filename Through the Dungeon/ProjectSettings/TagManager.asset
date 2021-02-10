@@ -52,11 +52,17 @@ TagManager:
   - name: Water
     uniqueID: 379844261
     locked: 0
+  - name: Objects
+    uniqueID: 2376692859
+    locked: 0
   - name: Buildings
     uniqueID: 4061562079
     locked: 0
   - name: Traps
     uniqueID: 874736839
+    locked: 0
+  - name: PickUps
+    uniqueID: 4177045531
     locked: 0
   - name: NPCs
     uniqueID: 370178429
@@ -66,4 +72,7 @@ TagManager:
     locked: 0
   - name: VFX
     uniqueID: 2718536269
+    locked: 0
+  - name: UI
+    uniqueID: 2653574483
     locked: 0

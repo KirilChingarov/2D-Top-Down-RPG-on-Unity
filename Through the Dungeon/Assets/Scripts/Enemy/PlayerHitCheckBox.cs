@@ -6,18 +6,18 @@ using UnityEngine;
 
 public class PlayerHitCheckBox : MonoBehaviour
 {
-    private EnemyController enemyController;
+    private EnemyController m_EnemyController;
     
     void Awake()
     {
-        enemyController = GetComponentInParent<EnemyController>();
+        m_EnemyController = GetComponentInParent<EnemyController>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.name == "PlayerCharacter")
         {
-            enemyController.setReachedEndOfPath(true);
+            m_EnemyController.SetReachedEndOfPath(true);
         }
     }
     
@@ -25,7 +25,7 @@ public class PlayerHitCheckBox : MonoBehaviour
     {
         if (other.gameObject.name == "PlayerCharacter")
         {
-            enemyController.setReachedEndOfPath(false);
+            m_EnemyController.SetReachedEndOfPath(false);
         }
     }
 }
