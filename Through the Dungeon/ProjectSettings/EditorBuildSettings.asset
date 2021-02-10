@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/DeathScreen.unity
     guid: 8c52cd998e38cfa4cbdd6ffb52dc96f3
   - enabled: 1
+    path: Assets/Scenes/Menus/WinnerScreen.unity
+    guid: d28ac58d4263cc843a49fbf077b13cd1
+  - enabled: 1
     path: Assets/Scenes/Rooms/Forest_Entry.unity
     guid: e1d634b03cf9bc64f9cc679a11266e8c
   - enabled: 1

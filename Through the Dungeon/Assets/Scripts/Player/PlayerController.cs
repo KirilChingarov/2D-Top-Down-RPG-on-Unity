@@ -75,7 +75,6 @@ namespace Player
             Move();
             if (!m_IsSwimming)
             {
-                Attack();
                 UseAttackAbilities();
                 UseDefensiveAbilities();
             }
@@ -110,15 +109,6 @@ namespace Player
             m_CharacterMovement.SetIsCharacterSwimming(m_IsSwimming);
         }
 
-        private void Attack()
-        {
-            if (Input.GetMouseButton(0) && Time.time >= m_NextAttack)
-            {
-                m_PlayerAttackController.Attack();
-                m_NextAttack = Time.time + m_CharacterStats.GETAttackCooldown();
-            }
-        }
-
         private void SetUpPlayerAttackController()
         {
             m_PlayerAttackController = GetComponentInChildren<PlayerAttackController>();
@@ -136,7 +126,12 @@ namespace Player
 
         private void UseAttackAbilities()
         {
-            if(Input.GetKey(m_PlayerAttackController.GETFireAttackKeyCode()) && Time.time >= m_NextFireAttack)
+            if (Input.GetMouseButton(0) && Time.time >= m_NextAttack)
+            {
+                m_PlayerAttackController.Attack();
+                m_NextAttack = Time.time + m_CharacterStats.GETAttackCooldown();
+            }
+            else if(Input.GetKey(m_PlayerAttackController.GETFireAttackKeyCode()) && Time.time >= m_NextFireAttack)
             {
                 m_PlayerAttackController.FireAttack();
                 m_NextFireAttack = Time.time + m_PlayerAttackController.GETFireAttackCooldown();
