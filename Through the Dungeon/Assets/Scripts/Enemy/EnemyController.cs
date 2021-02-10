@@ -153,19 +153,20 @@ namespace Enemy
         public void FreezePosition()
         {
             m_CanMove = false;
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
         public void UnfreezePosition()
         {
             m_CanMove = true;
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         }
 
         public void TakeDamage(float damage)
         {
             m_CharacterStats.TakeDamage(damage);
             healthBar.TakeDamage(damage);
-            Debug.Log(this.gameObject.name + " health : " + m_CharacterStats.GETHealth());
-            if (m_CharacterStats.GETHealth() <= 0f)
+            if (m_CharacterStats.GETHealth() <= 0f && !m_IsDead)
             {
                 GetComponentInChildren<CharacterAnimationController>().CharacterDeath();
                 m_IsDead = true;

@@ -1,3 +1,4 @@
+using System;
 using DatabasesScripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,7 +13,13 @@ namespace UIScripts
         public GameObject levelsScreen;
         public GameObject controlsScreen;
         public LevelSelectController levels;
-        
+
+        private void Awake()
+        {
+            levels.gameObject.SetActive(true);
+            levels.gameObject.SetActive(false);
+        }
+
         public void Play()
         {
             SceneManager.LoadScene("Scenes/Rooms/Forest_Entry", LoadSceneMode.Single);

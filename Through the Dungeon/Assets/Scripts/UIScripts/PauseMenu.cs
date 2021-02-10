@@ -26,7 +26,7 @@ namespace UIScripts
             }
         }
 
-        public void Pause()
+        private void Pause()
         {
             isPaused = true;
             pauseMenu.SetActive(true);

@@ -188,11 +188,13 @@ namespace Player
         public void FreezePosition()
         {
             m_CanMove = false;
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
         public void UnfreezePosition()
         {
             m_CanMove = true;
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         }
 
         public void TakeDamage(float damage)
@@ -203,8 +205,6 @@ namespace Player
             }
             m_CharacterStats.TakeDamage(damage);
             healthBar.TakeDamage(damage);
-            Debug.Log("Damage to Player: " + damage);
-            Debug.Log(this.gameObject.name + " health : " + m_CharacterStats.GETHealth());
             if (m_CharacterStats.GETHealth() == 0f)
             {
                 Debug.Log("Player Died");
@@ -222,7 +222,6 @@ namespace Player
             float healingAmount = m_PlayerAttackController.GETHealingAmount();
             m_CharacterStats.Heal(healingAmount);
             healthBar.Heal(healingAmount);
-            Debug.Log(this.gameObject.name + "healed to health : " + m_CharacterStats.GETHealth());
         }
 
         public void SetIsSwimming(bool isCharacterSwimming)

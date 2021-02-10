@@ -21,7 +21,7 @@ namespace SaveScripts
         public float waterCooldown;
         public float waterHealingAmount;
 
-        public string[] levels = new[] {"Forest_1", "Forest_2", "Forest_3", "Forest_Buffs"};
+        public string[] levels = {"Forest_1", "Forest_2", "Forest_3", "Forest_Buffs", "Forest_Boss"};
         public int nextLevel = -1;
         public void Awake()
         {

@@ -33,7 +33,6 @@ namespace Objects
                 gameStateController.isTransition = true;
                 gameStateController.nextLevel++;
                 nextScene = gameStateController.levels[gameStateController.nextLevel];
-                Debug.Log(nextScene);
                 SceneManager.LoadScene(nextScene);
             }
         }
