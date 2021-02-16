@@ -15378,10 +15378,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b379008ff9dc41118f7d427e84807a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoaded: 0
-  levelPath: 
-  playerPosition: []
+  isLoadedFromSave: 0
+  isTransition: 0
   playerHealth: 0
+  fireCooldown: 0
+  fireDamage: 0
+  windCooldown: 0
+  windDamage: 0
+  earthCooldown: 0
+  earthDamageReduction: 0
+  waterCooldown: 0
+  waterHealingAmount: 0
+  levels:
+  - Forest_1
+  - Forest_2
+  - Forest_3
+  - Forest_Buffs
+  - Forest_Boss
+  nextLevel: -1
 --- !u!114 &1356725456 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5507027695827398467, guid: 4c5283b67e0e98244840d0ca1720d87b,

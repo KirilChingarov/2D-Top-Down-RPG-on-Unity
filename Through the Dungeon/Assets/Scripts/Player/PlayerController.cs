@@ -201,7 +201,7 @@ namespace Player
             }
             m_CharacterStats.TakeDamage(damage);
             healthBar.TakeDamage(damage);
-            if (m_CharacterStats.GETHealth() == 0f)
+            if (m_CharacterStats.GETHealth() <= Mathf.Epsilon)
             {
                 Debug.Log("Player Died");
                 GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");

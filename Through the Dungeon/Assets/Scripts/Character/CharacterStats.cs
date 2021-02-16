@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using DatabasesScripts;
+using UnityEngine;
 
 namespace Character
 {
@@ -85,11 +86,10 @@ namespace Character
 
         public void TakeDamage(float damage)
         {
+            Debug.Log("currentHealth: " + m_Health);
+            Debug.Log("damage: " + damage);
             m_Health -= damage;
-            if (m_Health < 0f)
-            {
-                m_Health = 0f;
-            }
+            Debug.Log("Health: " + m_Health);
         }
 
         public void Heal(float healAmount)

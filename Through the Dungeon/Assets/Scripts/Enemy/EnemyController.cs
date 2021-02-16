@@ -8,6 +8,7 @@ using UnityEngine;
 using Pathfinding;
 using Player;
 using UIScripts;
+using UnityEngine.Assertions.Comparers;
 
 namespace Enemy
 {
@@ -44,6 +45,7 @@ namespace Enemy
             m_DBConn = new EnemyDatabaseConn(characterName);
             m_CharacterStats = new CharacterStats(m_DBConn);
             healthBar.SetMaxHealth(m_CharacterStats.GETHealth());
+            m_IsDead = false;
 
             m_EnemyAttackController = GetComponentInChildren<EnemyAttackController>();
             m_EnemyAttackController.SetAttackRange(m_CharacterStats.GETAttackRange());
@@ -86,7 +88,7 @@ namespace Enemy
 
         private void Attack()
         {
-            if (m_PlayerInRange && Time.time >= m_NextAttack)
+            if (m_PlayerInRange && Time.time >= m_NextAttack && !m_IsDead)
             {
                 m_EnemyAttackController.Attack();
                 m_NextAttack = Time.time + m_CharacterStats.GETAttackCooldown();
@@ -166,10 +168,13 @@ namespace Enemy
         {
             m_CharacterStats.TakeDamage(damage);
             healthBar.TakeDamage(damage);
-            if (m_CharacterStats.GETHealth() <= 0f && !m_IsDead)
+            Debug.Log("isDead: " + m_IsDead);
+            Debug.Log("health from function: " + m_CharacterStats.GETHealth());
+            if (m_CharacterStats.GETHealth() < Mathf.Epsilon && !m_IsDead)
             {
-                GetComponentInChildren<CharacterAnimationController>().CharacterDeath();
+                Debug.Log("Enemy health has gone below 0");
                 m_IsDead = true;
+                GetComponentInChildren<CharacterAnimationController>().CharacterDeath();
             }
             else if(!m_IsDead)
             {
