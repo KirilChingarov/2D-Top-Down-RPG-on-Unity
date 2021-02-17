@@ -1334,6 +1334,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigSlime
       objectReference: {fileID: 0}
+    - target: {fileID: 2261975825372002282, guid: 1345eb8605a3fce4d97b6b4f98d1068f,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261975825372002282, guid: 1345eb8605a3fce4d97b6b4f98d1068f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4589496115163195759, guid: 1345eb8605a3fce4d97b6b4f98d1068f,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -17118,6 +17128,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BigSlime
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261975825372002282, guid: 1345eb8605a3fce4d97b6b4f98d1068f,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261975825372002282, guid: 1345eb8605a3fce4d97b6b4f98d1068f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4589496115163195759, guid: 1345eb8605a3fce4d97b6b4f98d1068f,
         type: 3}

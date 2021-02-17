@@ -24,14 +24,11 @@ namespace UIScripts
             gameStateController.levels = new string[levels.Length + 2];
             for (int i = 0; i < levels.Length; i++)
             {
-                Debug.Log(i + " level: " + levels[i].getCurrentLevel());
                 gameStateController.levels[i] = levels[i].getCurrentLevel();
             }
 
             gameStateController.levels[3] = "Forest_Buffs";
-            Debug.Log("3 level: " + gameStateController.levels[3]);
             gameStateController.levels[4] = "Scenes/Menus/WinnerScreen";
-            Debug.Log("4 level: " + gameStateController.levels[4]);
         }
     }
 }

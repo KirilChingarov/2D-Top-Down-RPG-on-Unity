@@ -86,10 +86,7 @@ namespace Character
 
         public void TakeDamage(float damage)
         {
-            Debug.Log("currentHealth: " + m_Health);
-            Debug.Log("damage: " + damage);
             m_Health -= damage;
-            Debug.Log("Health: " + m_Health);
         }
 
         public void Heal(float healAmount)

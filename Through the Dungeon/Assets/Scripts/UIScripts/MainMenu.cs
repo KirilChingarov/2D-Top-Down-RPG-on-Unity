@@ -29,6 +29,7 @@ namespace UIScripts
 
             gameStateController.isLoadedFromSave = false;
             gameStateController.playerHealth = new PlayerDatabaseConn().GETPlayerHealth();
+            gameStateController.nextLevel = -1;
             levels.Load();
         }
 

@@ -8,17 +8,12 @@ using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
 {
-    private CharacterAnimationController m_CharacterAnimationController;
+    public CharacterAnimationController m_CharacterAnimationController;
     private float m_BasicAttackDamage = 0f;
     private FireAttack m_FireAttack;
     private RangedAttack m_RangedAttack;
     private DefensiveAbility m_DefensiveAbility;
     private HealingAbility m_HealingAbility;
-    
-    void Awake()
-    {
-        m_CharacterAnimationController = transform.parent.gameObject.GetComponentInChildren<CharacterAnimationController>();
-    }
 
     public void Attack()
     {

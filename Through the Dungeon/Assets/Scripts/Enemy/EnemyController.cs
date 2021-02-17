@@ -168,8 +168,6 @@ namespace Enemy
         {
             m_CharacterStats.TakeDamage(damage);
             healthBar.TakeDamage(damage);
-            Debug.Log("isDead: " + m_IsDead);
-            Debug.Log("health from function: " + m_CharacterStats.GETHealth());
             if (m_CharacterStats.GETHealth() < Mathf.Epsilon && !m_IsDead)
             {
                 Debug.Log("Enemy health has gone below 0");

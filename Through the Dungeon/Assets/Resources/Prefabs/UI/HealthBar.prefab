@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283d90a63f754f36a3d1de7efc601123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 3386069755049051069}
   flashColor:
     serializedVersion: 2
     rgba: 4291743487

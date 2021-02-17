@@ -12,11 +12,6 @@ namespace UIScripts
         public Color32 flashColor;
         public Color32 baseColor;
 
-        private void Awake()
-        {
-            healthBar = GetComponent<Slider>();
-        }
-
         public void SetHealth(float health)
         {
             healthBar.value = health;
@@ -31,7 +26,7 @@ namespace UIScripts
         public void TakeDamage(float damage)
         {
             float targethealth = healthBar.value - damage;
-            if (targethealth <= 0f) targethealth = 0f;
+            if (targethealth <= 0f) targethealth = 0f;    
 
             StartCoroutine(FlashHealthBar(targethealth));
         }
