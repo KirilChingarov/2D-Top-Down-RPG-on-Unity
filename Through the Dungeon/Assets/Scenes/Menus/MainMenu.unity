@@ -4467,7 +4467,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Imbue yourself with the power of the elements. Lookout for pickups and
+  m_Text: Imbue yourself with the power of the elements. Look out for pickups and
     increase your power.
 --- !u!222 &1535994376
 CanvasRenderer:
