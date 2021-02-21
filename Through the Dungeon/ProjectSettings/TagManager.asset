@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Object
+  - Trap
+  - Projectile
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -13,10 +18,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Objects
+  - Enemies
+  - Player
   - 
   - 
   - 
@@ -40,4 +45,34 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 1091013931
+    locked: 0
+  - name: Water
+    uniqueID: 379844261
+    locked: 0
+  - name: Objects
+    uniqueID: 2376692859
+    locked: 0
+  - name: Buildings
+    uniqueID: 4061562079
+    locked: 0
+  - name: Traps
+    uniqueID: 874736839
+    locked: 0
+  - name: PickUps
+    uniqueID: 4177045531
+    locked: 0
+  - name: NPCs
+    uniqueID: 370178429
+    locked: 0
+  - name: Player
+    uniqueID: 1055280785
+    locked: 0
+  - name: VFX
+    uniqueID: 2718536269
+    locked: 0
+  - name: UI
+    uniqueID: 2653574483
     locked: 0
