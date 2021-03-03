@@ -208,6 +208,7 @@ namespace Player
                 foreach (GameObject enemy in enemies)
                 {
                     enemy.GetComponent<EnemyController>().PlayerIsDead();
+                    enemy.GetComponent<DeathBossController>().PlayerIsDead();
                 }
                 Destroy(this.gameObject);
                 SceneManager.LoadScene("Scenes/Menus/DeathScreen");

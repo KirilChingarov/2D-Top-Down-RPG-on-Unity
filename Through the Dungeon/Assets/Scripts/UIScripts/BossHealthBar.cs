@@ -30,6 +30,9 @@ namespace UIScripts
                     MapFloat(Time.time, startTime, endTime, 0f, 50f));
                 yield return null;
             }
+
+            canvasGroup.alpha = 1;
+            Destroy(canvasGroup);
         }
         
         private float MapFloat(float value, float low1, float high1, float low2, float high2)

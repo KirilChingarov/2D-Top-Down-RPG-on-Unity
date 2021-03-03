@@ -141,7 +141,7 @@ namespace Character
         
         public void UnfreezeEnemyBossPosition()
         {
-            GetComponentInParent<DeathBossController>().FreezePosition();
+            GetComponentInParent<DeathBossController>().UnfreezePosition();
         }
 
         public void DestroyObject()

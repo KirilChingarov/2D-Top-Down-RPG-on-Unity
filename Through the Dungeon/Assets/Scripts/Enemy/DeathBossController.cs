@@ -108,7 +108,8 @@ namespace Enemy
         public void Summon()
         {
             Debug.Log("Summoning a ghost");
-            Instantiate(deathGhost, spawnPoint.position, spawnPoint.rotation);
+            GameObject deathGhostInstantiate = Instantiate(deathGhost, spawnPoint.position, spawnPoint.rotation);
+            deathGhostInstantiate.name = "DeathGhost";
         }
 
         private void Move()
@@ -146,17 +147,6 @@ namespace Enemy
             m_CharacterMovement.SetCharacterVelocity(force);
         }
 
-        private Vector2 GETVectorToTarget()
-        {
-            Vector2 currPosition = m_CharacterMovement.GETCurrentPosition();
-            Vector2 targetPosition = m_Target.position;
-
-            float distanceX = targetPosition.x - currPosition.x;
-            float distanceY = targetPosition.y - currPosition.y;
-            
-            return new Vector2(distanceX, distanceY);
-        }
-
         public void SetReachedEndOfPath(bool check)
         {
             m_PlayerInRange = check;
@@ -183,10 +173,6 @@ namespace Enemy
                 Debug.Log("Enemy health has gone below 0");
                 m_IsDead = true;
                 GetComponentInChildren<CharacterAnimationController>().CharacterDeath();
-            }
-            else if(!m_IsDead)
-            {
-                GetComponentInChildren<CharacterAnimationController>().TakeHit();
             }
         }
 

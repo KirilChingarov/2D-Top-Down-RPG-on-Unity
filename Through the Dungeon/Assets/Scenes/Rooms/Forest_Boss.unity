@@ -19519,6 +19519,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1763318607}
+    - target: {fileID: 5618671283939911045, guid: 4c5283b67e0e98244840d0ca1720d87b,
+        type: 3}
+      propertyPath: m_PlaneDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7134892870131942618, guid: 4c5283b67e0e98244840d0ca1720d87b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -19787,9 +19792,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 500
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 500
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -19849,13 +19854,13 @@ MonoBehaviour:
   healthBar: {fileID: 3785298127516379846}
   flashColor:
     serializedVersion: 2
-    rgba: 13553407
+    rgba: 4291743487
   baseColor:
     serializedVersion: 2
-    rgba: 723946
+    rgba: 4278914026
   canvasGroup: {fileID: 3785298127516379850}
   transform: {fileID: 3785298127516379847}
-  timeUntilFull: 0.5
+  timeUntilFull: 0.3
 --- !u!225 &3785298127516379850
 CanvasGroup:
   m_ObjectHideFlags: 0

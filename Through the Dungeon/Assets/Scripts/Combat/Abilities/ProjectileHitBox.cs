@@ -37,7 +37,8 @@ namespace Abilities
         {
             if (other.gameObject.tag == "Enemy")
             {
-                other.gameObject.GetComponent<EnemyController>().TakeDamage(m_ProjectileDamage);
+                if(other.gameObject.GetComponent<EnemyController>() != null) other.gameObject.GetComponent<EnemyController>().TakeDamage(m_ProjectileDamage);
+                else other.gameObject.GetComponent<DeathBossController>().TakeDamage(m_ProjectileDamage);
             }
         }
     }
