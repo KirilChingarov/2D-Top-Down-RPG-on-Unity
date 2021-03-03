@@ -138,5 +138,15 @@ namespace Character
         {
             Destroy(transform.parent.gameObject);
         }
+
+        public void BossAttack(string trigger)
+        {
+            m_CharacterGfx.SetTrigger(trigger);
+        }
+
+        public void Summon()
+        {
+            
+        }
     }
 }

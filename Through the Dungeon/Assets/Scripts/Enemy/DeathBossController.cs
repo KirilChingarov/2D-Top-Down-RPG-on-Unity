@@ -25,10 +25,14 @@ namespace Enemy
         private EnemyAttackController m_EnemyAttackController;
         private bool m_CanMove = true;
         private float m_NextAttack = 0f;
+        private float summonCooldown = 4f;
+        private float m_NextSummon = 0f;
 
         private bool m_PlayerDead = false;
         public AggroRange aggroRange;
         public HealthBar healthBar;
+
+        public GameObject deathGhost;
         
         void Awake()
         {
@@ -39,6 +43,7 @@ namespace Enemy
             characterName = gameObject.name;
             m_DBConn = new EnemyDatabaseConn(characterName);
             m_CharacterStats = new CharacterStats(m_DBConn);
+            summonCooldown = new AbilitiesDatabaseConn("Summon").GETAbilityCooldown();
             healthBar.SetMaxHealth(m_CharacterStats.GETHealth());
             m_IsDead = false;
 
@@ -83,11 +88,22 @@ namespace Enemy
 
         private void Attack()
         {
+            
             if (m_PlayerInRange && Time.time >= m_NextAttack && !m_IsDead)
             {
-                m_EnemyAttackController.Attack();
+                m_EnemyAttackController.BossAttack(Random.Range(1, 3));
                 m_NextAttack = Time.time + m_CharacterStats.GETAttackCooldown();
             }
+            else if (Time.time >= m_NextSummon && !m_IsDead)
+            {
+                m_EnemyAttackController.BossAttack(4);
+                m_NextSummon = Time.time + summonCooldown;
+            }
+        }
+
+        private void Summon()
+        {
+            
         }
 
         private void Move()

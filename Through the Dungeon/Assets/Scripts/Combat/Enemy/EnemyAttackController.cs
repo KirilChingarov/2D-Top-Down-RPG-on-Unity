@@ -32,4 +32,9 @@ public class EnemyAttackController : MonoBehaviour
     {
         m_BasicAttackDamage = attackDamage;
     }
+
+    public void BossAttack(int attackChoice)
+    {
+        
+    }
 }
