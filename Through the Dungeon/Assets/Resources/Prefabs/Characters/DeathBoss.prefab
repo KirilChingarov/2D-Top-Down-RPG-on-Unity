@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 2210652589473414697}
   - component: {fileID: 2210652589473414696}
   - component: {fileID: 2210652589473414711}
-  - component: {fileID: 2210652589473414710}
+  - component: {fileID: 4901838885460801963}
   - component: {fileID: 2210652589473414709}
   m_Layer: 0
   m_Name: DeathBoss
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0616bb12eee14090af23a5b7d03032fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2210652589473414710
+--- !u!114 &4901838885460801963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,9 +210,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2210652589473414707}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb202e9c6e64034fb364f5927d14e77, type: 3}
+  m_Script: {fileID: 11500000, guid: 1216e815db884866ade91e3161e3dc7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aggroRange: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!114 &2210652589473414709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,7 +372,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 370178429
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: -4243389574673483943, guid: d8063e6c7fb25ec4fae4194e9ce7bd87,
     type: 3}

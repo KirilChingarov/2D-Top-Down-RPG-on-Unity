@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using DatabasesScripts;
 using UnityEngine;
 using UnityEngine.UI;
 
