@@ -21,14 +21,15 @@ namespace UIScripts
             GameStateController gameStateController =
                 GameObject.Find("GameStateController").GetComponent<GameStateController>().GetInstance();
 
-            gameStateController.levels = new string[levels.Length + 2];
+            gameStateController.levels = new string[levels.Length + 3];
             for (int i = 0; i < levels.Length; i++)
             {
                 gameStateController.levels[i] = levels[i].getCurrentLevel();
             }
 
             gameStateController.levels[3] = "Forest_Buffs";
-            gameStateController.levels[4] = "Scenes/Menus/WinnerScreen";
+            gameStateController.levels[4] = "Forest_Boss";
+            gameStateController.levels[5] = "Scenes/Menus/WinnerScreen";
         }
     }
 }

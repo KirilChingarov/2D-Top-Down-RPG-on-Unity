@@ -780,6 +780,7 @@ GameObject:
   - component: {fileID: 762174217}
   - component: {fileID: 762174219}
   - component: {fileID: 762174218}
+  - component: {fileID: 762174220}
   m_Layer: 0
   m_Name: Fences
   m_TagString: Untagged
@@ -1437,6 +1438,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &762174220
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762174216}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1001 &810875739
 PrefabInstance:
   m_ObjectHideFlags: 0
