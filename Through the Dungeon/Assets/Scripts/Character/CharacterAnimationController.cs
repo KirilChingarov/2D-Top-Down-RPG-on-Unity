@@ -123,6 +123,11 @@ namespace Character
         {
             GetComponentInParent<EnemyController>().FreezePosition();
         }
+        
+        public void FreezeEnemyBossPosition()
+        {
+            GetComponentInParent<DeathBossController>().FreezePosition();
+        }
 
         public void UnfreezePlayerPosition()
         {
@@ -132,6 +137,11 @@ namespace Character
         public void UnfreezeEnemyPosition()
         {
             GetComponentInParent<EnemyController>().UnfreezePosition();
+        }
+        
+        public void UnfreezeEnemyBossPosition()
+        {
+            GetComponentInParent<DeathBossController>().FreezePosition();
         }
 
         public void DestroyObject()
@@ -146,7 +156,7 @@ namespace Character
 
         public void Summon()
         {
-            
+            GetComponentInParent<DeathBossController>().Summon();
         }
     }
 }

@@ -33,6 +33,7 @@ namespace Enemy
         public HealthBar healthBar;
 
         public GameObject deathGhost;
+        public Transform spawnPoint;
         
         void Awake()
         {
@@ -44,6 +45,7 @@ namespace Enemy
             m_DBConn = new EnemyDatabaseConn(characterName);
             m_CharacterStats = new CharacterStats(m_DBConn);
             summonCooldown = new AbilitiesDatabaseConn("Summon").GETAbilityCooldown();
+            m_NextSummon = Time.time + 2 * summonCooldown;
             healthBar.SetMaxHealth(m_CharacterStats.GETHealth());
             m_IsDead = false;
 
@@ -53,6 +55,8 @@ namespace Enemy
 
             m_Target = GameObject.Find("PlayerCharacter").GetComponent<Transform>();
             m_Seeker = GetComponent<Seeker>();
+
+            deathGhost.GetComponent<EnemyController>().aggroRange = aggroRange;
 
             InvokeRepeating("UpdatePath", 0f, 0.5f);
         }
@@ -101,9 +105,10 @@ namespace Enemy
             }
         }
 
-        private void Summon()
+        public void Summon()
         {
-            
+            Debug.Log("Summoning a ghost");
+            Instantiate(deathGhost, spawnPoint.position, spawnPoint.rotation);
         }
 
         private void Move()
@@ -111,17 +116,14 @@ namespace Enemy
             if (m_AIPath == null)
             {
                 m_CharacterMovement.SetCharacterVelocity(new Vector2(0f, 0f));
-                m_CharacterMovement.SetCharacterDirection(Direction.Idle);
                 return;
             }
 
             Vector2 force;
-            Direction targetDirection;
             
             if (m_PlayerInRange || !m_CanMove || GameObject.Find("PlayerCharacter").GetComponent<PlayerController>().GETIsSwimming())
             {
                 force = new Vector2(0f, 0f);
-                targetDirection = Direction.Idle;
             }
             else if (m_CurrentWaypoint >= m_AIPath.vectorPath.Count)
             {
@@ -139,12 +141,9 @@ namespace Enemy
                 {
                     m_CurrentWaypoint++;
                 }
-
-                targetDirection = m_CharacterMovement.GETDirectionFromVector(GETVectorToTarget());
             }
             
             m_CharacterMovement.SetCharacterVelocity(force);
-            m_CharacterMovement.SetCharacterDirection(targetDirection);
         }
 
         private Vector2 GETVectorToTarget()

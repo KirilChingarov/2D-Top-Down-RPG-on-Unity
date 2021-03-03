@@ -35,6 +35,20 @@ public class EnemyAttackController : MonoBehaviour
 
     public void BossAttack(int attackChoice)
     {
-        
+        switch (attackChoice)
+        {
+            case 1:
+                m_CharacterAnimationController.BossAttack("Attack_1");
+                break;
+            case 2:
+                m_CharacterAnimationController.BossAttack("Attack_2");
+                break;
+            case 3:
+                m_CharacterAnimationController.BossAttack("Attack_3");
+                break;
+            case 4:
+                m_CharacterAnimationController.BossAttack("Summon");
+                break;
+        }
     }
 }

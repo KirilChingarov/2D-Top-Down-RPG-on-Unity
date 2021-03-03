@@ -116,7 +116,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: FreezeEnemyPosition
+    functionName: FreezeEnemyBossPosition
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -137,7 +137,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.625
-    functionName: UnfreezeEnemyPosition
+    functionName: UnfreezeEnemyBossPosition
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
