@@ -107,7 +107,6 @@ namespace Enemy
 
         public void Summon()
         {
-            Debug.Log("Summoning a ghost");
             GameObject deathGhostInstantiate = Instantiate(deathGhost, spawnPoint.position, spawnPoint.rotation);
             deathGhostInstantiate.name = "DeathGhost";
         }
@@ -170,7 +169,6 @@ namespace Enemy
             healthBar.TakeDamage(damage);
             if (m_CharacterStats.GETHealth() < Mathf.Epsilon && !m_IsDead)
             {
-                Debug.Log("Enemy health has gone below 0");
                 m_IsDead = true;
                 GetComponentInChildren<CharacterAnimationController>().CharacterDeath();
             }

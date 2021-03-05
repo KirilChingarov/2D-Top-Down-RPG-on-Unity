@@ -416,7 +416,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Water Touch
 
-    F'
+    G'
 --- !u!222 &39413434
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -668,7 +668,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Earth Skin
 
-    G'
+    F'
 --- !u!222 &121395754
 CanvasRenderer:
   m_ObjectHideFlags: 0

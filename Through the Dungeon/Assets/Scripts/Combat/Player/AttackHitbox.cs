@@ -43,8 +43,6 @@ public class AttackHitbox : MonoBehaviour
     {
         for (int i = 0; i < m_Enemies.Count; i++)
         {
-            Debug.Log(i);
-            Debug.Log(m_InRange[i]);
             if (m_InRange[i])
             {
                 if(m_Enemies[i].GetComponent<EnemyController>() != null) m_Enemies[i].GetComponent<EnemyController>().TakeDamage(attackDamage);

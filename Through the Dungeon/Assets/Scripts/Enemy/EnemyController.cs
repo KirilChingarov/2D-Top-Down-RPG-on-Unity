@@ -170,7 +170,6 @@ namespace Enemy
             healthBar.TakeDamage(damage);
             if (m_CharacterStats.GETHealth() < Mathf.Epsilon && !m_IsDead)
             {
-                Debug.Log("Enemy health has gone below 0");
                 m_IsDead = true;
                 GetComponentInChildren<CharacterAnimationController>().CharacterDeath();
             }
