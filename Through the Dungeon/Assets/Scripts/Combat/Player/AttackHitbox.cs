@@ -20,15 +20,20 @@ public class AttackHitbox : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            m_InRange[m_Enemies.IndexOf(other.gameObject)] = true;
+            if (!m_Enemies.Contains(other.gameObject))
+            {
+                m_Enemies.Add(other.gameObject);
+                m_InRange.Add(true);
+            }
+            else m_InRange[m_Enemies.IndexOf(other.gameObject)] = true;
         }
     }
     
     public void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.CompareTag("Enemy"))
         {
             m_InRange[m_Enemies.IndexOf(other.gameObject)] = false;
         }
@@ -40,7 +45,8 @@ public class AttackHitbox : MonoBehaviour
         {
             if (m_InRange[i])
             {
-                m_Enemies[i].GetComponent<EnemyController>().TakeDamage(attackDamage);
+                if(m_Enemies[i].GetComponent<EnemyController>() != null) m_Enemies[i].GetComponent<EnemyController>().TakeDamage(attackDamage);
+                else m_Enemies[i].GetComponent<DeathBossController>().TakeDamage(attackDamage);
             }
         }
     }

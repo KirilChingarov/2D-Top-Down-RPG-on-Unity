@@ -18,6 +18,11 @@ namespace Character
             m_CharacterGfx = GetComponent<Animator>();
         }
 
+        public string GetCurrentAnimation()
+        {
+            return m_CharacterGfx.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+        }
+
         public void ChangeDirection(Direction direction){
             switch (direction)
             {
@@ -123,6 +128,11 @@ namespace Character
         {
             GetComponentInParent<EnemyController>().FreezePosition();
         }
+        
+        public void FreezeEnemyBossPosition()
+        {
+            GetComponentInParent<DeathBossController>().FreezePosition();
+        }
 
         public void UnfreezePlayerPosition()
         {
@@ -133,10 +143,25 @@ namespace Character
         {
             GetComponentInParent<EnemyController>().UnfreezePosition();
         }
+        
+        public void UnfreezeEnemyBossPosition()
+        {
+            GetComponentInParent<DeathBossController>().UnfreezePosition();
+        }
 
         public void DestroyObject()
         {
             Destroy(transform.parent.gameObject);
+        }
+
+        public void BossAttack(string trigger)
+        {
+            m_CharacterGfx.SetTrigger(trigger);
+        }
+
+        public void Summon()
+        {
+            GetComponentInParent<DeathBossController>().Summon();
         }
     }
 }

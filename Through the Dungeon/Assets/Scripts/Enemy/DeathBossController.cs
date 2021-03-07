@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using Character;
 using DatabasesScripts;
 using Enums;
-using UnityEngine;
 using Pathfinding;
 using Player;
 using UIScripts;
-using UnityEngine.Assertions.Comparers;
+using UnityEngine;
 
 namespace Enemy
 {
-    
-    public class EnemyController : MonoBehaviour
+    public class DeathBossController : MonoBehaviour
     {
         private CharacterMovement m_CharacterMovement;
         private EnemyDatabaseConn m_DBConn;
@@ -30,10 +25,15 @@ namespace Enemy
         private EnemyAttackController m_EnemyAttackController;
         private bool m_CanMove = true;
         private float m_NextAttack = 0f;
+        private float summonCooldown = 4f;
+        private float m_NextSummon = 0f;
 
         private bool m_PlayerDead = false;
         public AggroRange aggroRange;
         public HealthBar healthBar;
+
+        public GameObject deathGhost;
+        public Transform spawnPoint;
         
         void Awake()
         {
@@ -44,6 +44,8 @@ namespace Enemy
             characterName = gameObject.name;
             m_DBConn = new EnemyDatabaseConn(characterName);
             m_CharacterStats = new CharacterStats(m_DBConn);
+            summonCooldown = new AbilitiesDatabaseConn("Summon").GETAbilityCooldown();
+            m_NextSummon = Time.time + 2 * summonCooldown;
             healthBar.SetMaxHealth(m_CharacterStats.GETHealth());
             m_IsDead = false;
 
@@ -53,6 +55,8 @@ namespace Enemy
 
             m_Target = GameObject.Find("PlayerCharacter").GetComponent<Transform>();
             m_Seeker = GetComponent<Seeker>();
+
+            deathGhost.GetComponent<EnemyController>().aggroRange = aggroRange;
 
             InvokeRepeating("UpdatePath", 0f, 0.5f);
         }
@@ -90,9 +94,20 @@ namespace Enemy
         {
             if (m_PlayerInRange && Time.time >= m_NextAttack && !m_IsDead)
             {
-                m_EnemyAttackController.Attack();
+                m_EnemyAttackController.BossAttack((DeathBossAttacks) Random.Range(0, 2));
                 m_NextAttack = Time.time + m_CharacterStats.GETAttackCooldown();
             }
+            else if (Time.time >= m_NextSummon && !m_IsDead && m_EnemyAttackController.GetCurrentAnimation() == "Idle")
+            {
+                m_EnemyAttackController.BossAttack(DeathBossAttacks.Summon);
+                m_NextSummon = Time.time + summonCooldown;
+            }
+        }
+
+        public void Summon()
+        {
+            GameObject deathGhostInstantiate = Instantiate(deathGhost, spawnPoint.position, spawnPoint.rotation);
+            deathGhostInstantiate.name = "DeathGhost";
         }
 
         private void Move()
@@ -100,17 +115,14 @@ namespace Enemy
             if (m_AIPath == null)
             {
                 m_CharacterMovement.SetCharacterVelocity(new Vector2(0f, 0f));
-                m_CharacterMovement.SetCharacterDirection(Direction.Idle);
                 return;
             }
 
             Vector2 force;
-            Direction targetDirection;
             
             if (m_PlayerInRange || !m_CanMove || GameObject.Find("PlayerCharacter").GetComponent<PlayerController>().GETIsSwimming())
             {
                 force = new Vector2(0f, 0f);
-                targetDirection = Direction.Idle;
             }
             else if (m_CurrentWaypoint >= m_AIPath.vectorPath.Count)
             {
@@ -128,23 +140,9 @@ namespace Enemy
                 {
                     m_CurrentWaypoint++;
                 }
-
-                targetDirection = m_CharacterMovement.GETDirectionFromVector(GETVectorToTarget());
             }
             
             m_CharacterMovement.SetCharacterVelocity(force);
-            m_CharacterMovement.SetCharacterDirection(targetDirection);
-        }
-
-        private Vector2 GETVectorToTarget()
-        {
-            Vector2 currPosition = m_CharacterMovement.GETCurrentPosition();
-            Vector2 targetPosition = m_Target.position;
-
-            float distanceX = targetPosition.x - currPosition.x;
-            float distanceY = targetPosition.y - currPosition.y;
-            
-            return new Vector2(distanceX, distanceY);
         }
 
         public void SetReachedEndOfPath(bool check)
@@ -173,10 +171,6 @@ namespace Enemy
                 m_IsDead = true;
                 GetComponentInChildren<CharacterAnimationController>().CharacterDeath();
             }
-            else if(!m_IsDead)
-            {
-                GetComponentInChildren<CharacterAnimationController>().TakeHit();
-            }
         }
 
         public void PlayerIsDead()
@@ -185,5 +179,4 @@ namespace Enemy
             m_CharacterMovement.SetCharacterDirection(Direction.Idle);
         }
     }
-
 }

@@ -21,6 +21,7 @@ namespace Player
         private bool m_IsSwimming = false;
         private float m_NextAttack = 0f;
         public HealthBar healthBar;
+        private bool isDead = false;
         
         
         private float m_NextFireAttack = 0f;
@@ -68,6 +69,7 @@ namespace Player
                 m_PlayerAttackController.setHealingAmount(gameStateController.waterHealingAmount);
             }
             healthBar.SetHealth(gameStateController.playerHealth);
+            isDead = false;
         }
 
         private void FixedUpdate()
@@ -201,15 +203,17 @@ namespace Player
             }
             m_CharacterStats.TakeDamage(damage);
             healthBar.TakeDamage(damage);
-            if (m_CharacterStats.GETHealth() <= Mathf.Epsilon)
+            if (m_CharacterStats.GETHealth() <= Mathf.Epsilon && !isDead)
             {
                 Debug.Log("Player Died");
+                isDead = true;
                 GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
                 foreach (GameObject enemy in enemies)
                 {
-                    enemy.GetComponent<EnemyController>().PlayerIsDead();
+                    if(enemy.GetComponent<EnemyController>() != null) enemy.GetComponent<EnemyController>().PlayerIsDead();
+                    else enemy.GetComponent<DeathBossController>().PlayerIsDead();
                 }
-                Destroy(this.gameObject);
+                Destroy(gameObject);
                 SceneManager.LoadScene("Scenes/Menus/DeathScreen");
             }
         }
