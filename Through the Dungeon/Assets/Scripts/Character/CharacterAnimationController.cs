@@ -18,6 +18,11 @@ namespace Character
             m_CharacterGfx = GetComponent<Animator>();
         }
 
+        public string GetCurrentAnimation()
+        {
+            return m_CharacterGfx.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+        }
+
         public void ChangeDirection(Direction direction){
             switch (direction)
             {

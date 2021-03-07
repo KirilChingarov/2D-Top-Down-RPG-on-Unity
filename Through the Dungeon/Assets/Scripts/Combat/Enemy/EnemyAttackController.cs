@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Character;
+using Enums;
 using UnityEngine;
 
 public class EnemyAttackController : MonoBehaviour
@@ -33,20 +34,25 @@ public class EnemyAttackController : MonoBehaviour
         m_BasicAttackDamage = attackDamage;
     }
 
-    public void BossAttack(int attackChoice)
+    public string GetCurrentAnimation()
+    {
+        return m_CharacterAnimationController.GetCurrentAnimation();
+    }
+
+    public void BossAttack(DeathBossAttacks attackChoice)
     {
         switch (attackChoice)
         {
-            case 1:
+            case DeathBossAttacks.Attack_1:
                 m_CharacterAnimationController.BossAttack("Attack_1");
                 break;
-            case 2:
+            case DeathBossAttacks.Attack_2:
                 m_CharacterAnimationController.BossAttack("Attack_2");
                 break;
-            case 3:
+            case DeathBossAttacks.Attack_3:
                 m_CharacterAnimationController.BossAttack("Attack_3");
                 break;
-            case 4:
+            case DeathBossAttacks.Summon:
                 m_CharacterAnimationController.BossAttack("Summon");
                 break;
         }

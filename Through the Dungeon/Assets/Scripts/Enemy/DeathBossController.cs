@@ -92,15 +92,14 @@ namespace Enemy
 
         private void Attack()
         {
-            
             if (m_PlayerInRange && Time.time >= m_NextAttack && !m_IsDead)
             {
-                m_EnemyAttackController.BossAttack(Random.Range(1, 3));
+                m_EnemyAttackController.BossAttack((DeathBossAttacks) Random.Range(0, 2));
                 m_NextAttack = Time.time + m_CharacterStats.GETAttackCooldown();
             }
-            else if (Time.time >= m_NextSummon && !m_IsDead)
+            else if (Time.time >= m_NextSummon && !m_IsDead && m_EnemyAttackController.GetCurrentAnimation() == "Idle")
             {
-                m_EnemyAttackController.BossAttack(4);
+                m_EnemyAttackController.BossAttack(DeathBossAttacks.Summon);
                 m_NextSummon = Time.time + summonCooldown;
             }
         }
