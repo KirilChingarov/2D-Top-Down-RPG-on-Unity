@@ -1,4 +1,6 @@
 ﻿using System;
+using Combat.Enemy;
+using Combat.Player;
 using Enemy;
 using UnityEngine;
 using Enums;

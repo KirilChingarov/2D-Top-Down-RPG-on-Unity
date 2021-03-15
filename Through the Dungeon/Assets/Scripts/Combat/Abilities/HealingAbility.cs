@@ -1,6 +1,6 @@
 using DatabasesScripts;
 
-namespace Abilities
+namespace Combat.Abilities
 {
     public class HealingAbility : Ability
     {

@@ -1,45 +1,45 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Player;
+﻿using Player;
 using UnityEngine;
 
-public class EnemyBasicAttack : MonoBehaviour
+namespace Combat.Enemy
 {
-    private GameObject m_Player;
-    private bool m_InRange = false;
-
-    void Start()
+    public class EnemyBasicAttack : MonoBehaviour
     {
-        m_Player = GameObject.Find("PlayerCharacter");
-    }
+        private GameObject m_Player;
+        private bool m_InRange = false;
 
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player")
+        void Start()
         {
-            m_InRange = true;
+            m_Player = GameObject.Find("PlayerCharacter");
         }
-    }
 
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player")
+        public void OnTriggerEnter2D(Collider2D other)
         {
-            m_InRange = false;
+            if (other.gameObject.tag == "Player")
+            {
+                m_InRange = true;
+            }
         }
-    }
 
-    public void Attack(float attackDamage)
-    {
-        if (m_InRange)
+        public void OnTriggerExit2D(Collider2D other)
         {
-            m_Player.GetComponent<PlayerController>().TakeDamage(attackDamage);
+            if (other.gameObject.tag == "Player")
+            {
+                m_InRange = false;
+            }
         }
-    }
 
-    public void SetAttackRange(float attackRange)
-    {
-        GetComponent<CircleCollider2D>().radius = attackRange;
+        public void Attack(float attackDamage)
+        {
+            if (m_InRange)
+            {
+                m_Player.GetComponent<PlayerController>().TakeDamage(attackDamage);
+            }
+        }
+
+        public void SetAttackRange(float attackRange)
+        {
+            GetComponent<CircleCollider2D>().radius = attackRange;
+        }
     }
 }

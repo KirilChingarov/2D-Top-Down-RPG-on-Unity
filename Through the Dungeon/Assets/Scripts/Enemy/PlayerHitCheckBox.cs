@@ -1,28 +1,30 @@
-﻿using Enemy;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerHitCheckBox : MonoBehaviour
+namespace Enemy
 {
-    private EnemyController m_EnemyController;
+    public class PlayerHitCheckBox : MonoBehaviour
+    {
+        private EnemyController m_EnemyController;
     
-    void Awake()
-    {
-        m_EnemyController = GetComponentInParent<EnemyController>();
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.name == "PlayerCharacter")
+        void Awake()
         {
-            m_EnemyController.SetReachedEndOfPath(true);
+            m_EnemyController = GetComponentInParent<EnemyController>();
         }
-    }
-    
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.name == "PlayerCharacter")
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            m_EnemyController.SetReachedEndOfPath(false);
+            if (other.gameObject.name == "PlayerCharacter")
+            {
+                m_EnemyController.SetReachedEndOfPath(true);
+            }
+        }
+    
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.gameObject.name == "PlayerCharacter")
+            {
+                m_EnemyController.SetReachedEndOfPath(false);
+            }
         }
     }
 }

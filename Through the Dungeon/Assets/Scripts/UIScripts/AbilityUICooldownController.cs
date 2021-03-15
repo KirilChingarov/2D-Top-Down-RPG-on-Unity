@@ -19,11 +19,10 @@ namespace UIScripts
             fillImage.fillAmount = 0f;
             float startCooldownTime = Time.time;
             float endCooldownTime = Time.time + m_Cooldown;
-            float fillAmount;
 
             while (Time.time < endCooldownTime)
             {
-                fillAmount = MapFloat(Time.time, startCooldownTime, endCooldownTime, 0f, 1f);
+                float fillAmount = MapFloat(Time.time, startCooldownTime, endCooldownTime, 0f, 1f);
                 fillImage.fillAmount = fillAmount;
                 yield return null;
             }

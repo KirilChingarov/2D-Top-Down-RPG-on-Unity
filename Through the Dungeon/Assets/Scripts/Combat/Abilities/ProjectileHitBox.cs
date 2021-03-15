@@ -1,11 +1,8 @@
-using System;
-using System.Security.Cryptography;
 using DatabasesScripts;
 using Enemy;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-namespace Abilities
+namespace Combat.Abilities
 {
     public class ProjectileHitBox : MonoBehaviour
     {

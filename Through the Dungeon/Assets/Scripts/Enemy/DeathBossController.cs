@@ -1,4 +1,5 @@
 using Character;
+using Combat.Enemy;
 using DatabasesScripts;
 using Enums;
 using Pathfinding;

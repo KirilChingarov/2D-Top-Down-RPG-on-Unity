@@ -1,36 +1,36 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AggroRange : MonoBehaviour
+namespace Enemy
 {
-    private Collider2D m_Collider;
-    private bool m_IsPlayerInAggroRange = false;
+    public class AggroRange : MonoBehaviour
+    {
+        private Collider2D m_Collider;
+        private bool m_IsPlayerInAggroRange = false;
     
-    void Start()
-    {
-        m_Collider = GetComponent<Collider2D>();
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player")
+        void Start()
         {
-            m_IsPlayerInAggroRange = true;
+            m_Collider = GetComponent<Collider2D>();
         }
-    }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player")
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            m_IsPlayerInAggroRange = false;
+            if (other.gameObject.tag == "Player")
+            {
+                m_IsPlayerInAggroRange = true;
+            }
         }
-    }
 
-    public bool IsPlayerInAggroRange()
-    {
-        return m_IsPlayerInAggroRange;
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                m_IsPlayerInAggroRange = false;
+            }
+        }
+
+        public bool IsPlayerInAggroRange()
+        {
+            return m_IsPlayerInAggroRange;
+        }
     }
 }

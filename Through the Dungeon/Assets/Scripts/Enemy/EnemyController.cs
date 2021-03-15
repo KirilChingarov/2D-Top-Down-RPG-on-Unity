@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Character;
+using Combat.Enemy;
 using DatabasesScripts;
 using Enums;
 using UnityEngine;

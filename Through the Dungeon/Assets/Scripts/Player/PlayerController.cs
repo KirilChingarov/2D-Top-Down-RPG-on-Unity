@@ -1,5 +1,6 @@
 ﻿using System;
 using Character;
+using Combat.Player;
 using DatabasesScripts;
 using Enemy;
 using Enums;
@@ -13,11 +14,11 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        private CharacterMovement m_CharacterMovement;
-        private PlayerDatabaseConn m_DBConn;
-        private CharacterStats m_CharacterStats;
-        private PlayerAttackController m_PlayerAttackController;
-        private bool m_CanMove = true;
+        private CharacterMovement characterMovement;
+        private PlayerDatabaseConn DBConn;
+        private CharacterStats characterStats;
+        private PlayerAttackController playerAttackController;
+        private bool canMove = true;
         private bool m_IsSwimming = false;
         private float m_NextAttack = 0f;
         public HealthBar healthBar;
@@ -39,18 +40,18 @@ namespace Player
         {
             gameStateController = GameObject.Find("GameStateController").GetComponent<GameStateController>().GetInstance();
             
-            m_CharacterMovement = GetComponent<CharacterMovement>();
-            m_CharacterMovement.SetRigidBody2D(GetComponent<Rigidbody2D>());
-            m_CharacterMovement.SetCharacterAnimationController(GetComponentInChildren<CharacterAnimationController>());
-            m_DBConn = new PlayerDatabaseConn();
-            m_CharacterStats = new CharacterStats(m_DBConn);
-            healthBar.SetMaxHealth(m_CharacterStats.GETHealth());
+            characterMovement = GetComponent<CharacterMovement>();
+            characterMovement.SetRigidBody2D(GetComponent<Rigidbody2D>());
+            characterMovement.SetCharacterAnimationController(GetComponentInChildren<CharacterAnimationController>());
+            DBConn = new PlayerDatabaseConn();
+            characterStats = new CharacterStats(DBConn);
+            healthBar.SetMaxHealth(characterStats.GETHealth());
             
             SetUpPlayerAttackController();
             
             if (gameStateController != null && gameStateController.isLoadedFromSave)
             {
-                m_CharacterStats.SetHealth(gameStateController.playerHealth);
+                characterStats.SetHealth(gameStateController.playerHealth);
                 m_NextFireAttack = Time.time + gameStateController.fireCooldown;
                 fireCooldown.StartCoroutine(fireCooldown.CooldownFillTime(gameStateController.fireCooldown));
                 m_NextRangedAttack = Time.time + gameStateController.windCooldown;
@@ -62,11 +63,11 @@ namespace Player
             }
             if (gameStateController != null && gameStateController.isTransition)
             {
-                m_CharacterStats.SetHealth(gameStateController.playerHealth);
-                m_PlayerAttackController.setFireAttackDamage(gameStateController.fireDamage);
-                m_PlayerAttackController.setRangedAttackDamage(gameStateController.windDamage);
-                m_PlayerAttackController.setDefenseDamageReduction(gameStateController.earthDamageReduction);
-                m_PlayerAttackController.setHealingAmount(gameStateController.waterHealingAmount);
+                characterStats.SetHealth(gameStateController.playerHealth);
+                playerAttackController.setFireAttackDamage(gameStateController.fireDamage);
+                playerAttackController.setRangedAttackDamage(gameStateController.windDamage);
+                playerAttackController.setDefenseDamageReduction(gameStateController.earthDamageReduction);
+                playerAttackController.setHealingAmount(gameStateController.waterHealingAmount);
             }
             healthBar.SetHealth(gameStateController.playerHealth);
             isDead = false;
@@ -86,13 +87,13 @@ namespace Player
         {
             float horizontalSpeed = Input.GetAxisRaw("Horizontal");
             float verticalSpeed = Input.GetAxisRaw("Vertical");
-            float moveSpeed = m_CharacterStats.GETMoveSpeed();
+            float moveSpeed = characterStats.GETMoveSpeed();
             Vector2 force;
             Direction direction;
 
-            if(m_CanMove){
+            if(canMove){
                 force = new Vector2(horizontalSpeed, verticalSpeed) * (moveSpeed * Time.deltaTime);
-                direction = m_CharacterMovement.GETDirectionFromVector(force);
+                direction = characterMovement.GETDirectionFromVector(force);
             }
             else
             {
@@ -106,104 +107,104 @@ namespace Player
                 force.y = force.y * 0.7f;
             }
             
-            m_CharacterMovement.SetCharacterVelocity(force);
-            m_CharacterMovement.SetCharacterDirection(direction);
-            m_CharacterMovement.SetIsCharacterSwimming(m_IsSwimming);
+            characterMovement.SetCharacterVelocity(force);
+            characterMovement.SetCharacterDirection(direction);
+            characterMovement.SetIsCharacterSwimming(m_IsSwimming);
         }
 
         private void SetUpPlayerAttackController()
         {
-            m_PlayerAttackController = GetComponentInChildren<PlayerAttackController>();
-            m_PlayerAttackController.SetAttackRange(m_CharacterStats.GETAttackRange());
-            m_PlayerAttackController.SetBasicAttackDamage(m_CharacterStats.GETAttackDamage());
-            m_PlayerAttackController.SetUpFireAttack();
-            fireCooldown.SetCooldown(m_PlayerAttackController.GETFireAttackCooldown());
-            m_PlayerAttackController.SetUpRangedAttack();
-            rangedCooldown.SetCooldown(m_PlayerAttackController.GETRangedAttackCooldown());
-            m_PlayerAttackController.SetUpDefensiveAbility();
-            defensiveCooldown.SetCooldown(m_PlayerAttackController.GETDefensiveAbilityCooldown());
-            m_PlayerAttackController.SetUpHealingAbility();
-            healingCooldown.SetCooldown(m_PlayerAttackController.GETHealingAbilityCooldown());
+            playerAttackController = GetComponentInChildren<PlayerAttackController>();
+            playerAttackController.SetAttackRange(characterStats.GETAttackRange());
+            playerAttackController.SetBasicAttackDamage(characterStats.GETAttackDamage());
+            playerAttackController.SetUpFireAttack();
+            fireCooldown.SetCooldown(playerAttackController.GETFireAttackCooldown());
+            playerAttackController.SetUpRangedAttack();
+            rangedCooldown.SetCooldown(playerAttackController.GETRangedAttackCooldown());
+            playerAttackController.SetUpDefensiveAbility();
+            defensiveCooldown.SetCooldown(playerAttackController.GETDefensiveAbilityCooldown());
+            playerAttackController.SetUpHealingAbility();
+            healingCooldown.SetCooldown(playerAttackController.GETHealingAbilityCooldown());
         }
 
         private void UseAttackAbilities()
         {
             if (Input.GetMouseButton(0) && Time.time >= m_NextAttack)
             {
-                m_PlayerAttackController.Attack();
-                m_NextAttack = Time.time + m_CharacterStats.GETAttackCooldown();
+                playerAttackController.Attack();
+                m_NextAttack = Time.time + characterStats.GETAttackCooldown();
             }
-            else if(Input.GetKey(m_PlayerAttackController.GETFireAttackKeyCode()) && Time.time >= m_NextFireAttack)
+            else if(Input.GetKey(playerAttackController.GETFireAttackKeyCode()) && Time.time >= m_NextFireAttack)
             {
-                m_PlayerAttackController.FireAttack();
-                m_NextFireAttack = Time.time + m_PlayerAttackController.GETFireAttackCooldown();
+                playerAttackController.FireAttack();
+                m_NextFireAttack = Time.time + playerAttackController.GETFireAttackCooldown();
                 fireCooldown.StartCoroutine("CooldownFill");
             }
-            else if(Input.GetKey(m_PlayerAttackController.GETRangedAttackKeyCode()) && Time.time >= m_NextRangedAttack)
+            else if(Input.GetKey(playerAttackController.GETRangedAttackKeyCode()) && Time.time >= m_NextRangedAttack)
             {
-                m_PlayerAttackController.RangedAttack();
-                m_NextRangedAttack = Time.time + m_PlayerAttackController.GETRangedAttackCooldown();
+                playerAttackController.RangedAttack();
+                m_NextRangedAttack = Time.time + playerAttackController.GETRangedAttackCooldown();
                 rangedCooldown.StartCoroutine("CooldownFill");
             }
         }
 
         private void UseDefensiveAbilities()
         {
-            if (Input.GetKey(m_PlayerAttackController.GETDefensiveAbilityKeyCode()) && Time.time >= m_NextDefensiveAbility)
+            if (Input.GetKey(playerAttackController.GETDefensiveAbilityKeyCode()) && Time.time >= m_NextDefensiveAbility)
             {
-                m_PlayerAttackController.DefensiveAbility();
-                m_NextDefensiveAbility = Time.time + m_PlayerAttackController.GETDefensiveAbilityCooldown();
+                playerAttackController.DefensiveAbility();
+                m_NextDefensiveAbility = Time.time + playerAttackController.GETDefensiveAbilityCooldown();
                 defensiveCooldown.StartCoroutine("CooldownFill");
             }
-            else if (Input.GetKey(m_PlayerAttackController.GETHealingAbilityKeyCode()) && Time.time >= m_NextHealingAbility)
+            else if (Input.GetKey(playerAttackController.GETHealingAbilityKeyCode()) && Time.time >= m_NextHealingAbility)
             {
-                m_PlayerAttackController.Heal();
-                m_NextHealingAbility = Time.time + m_PlayerAttackController.GETHealingAbilityCooldown();
+                playerAttackController.Heal();
+                m_NextHealingAbility = Time.time + playerAttackController.GETHealingAbilityCooldown();
                 healingCooldown.StartCoroutine("CooldownFill");
             }
         }
 
         public void BuffFireAttackDamage(float damage)
         {
-            m_PlayerAttackController.BuffFireAttackDamage(damage);
+            playerAttackController.BuffFireAttackDamage(damage);
         }
 
         public void BuffRangedAttackDamage(float damage)
         {
-            m_PlayerAttackController.BuffRangedAttackDamage(damage);
+            playerAttackController.BuffRangedAttackDamage(damage);
         }
 
         public void BuffDefensiveAbilityDamageReduction(float amount)
         {
-            m_PlayerAttackController.BuffDefensiveDamageReduction(amount);
+            playerAttackController.BuffDefensiveDamageReduction(amount);
         }
 
         public void BuffHealingAbilityAmount(float amount)
         {
-            m_PlayerAttackController.BuffHealingAbilityAmount(amount);
+            playerAttackController.BuffHealingAbilityAmount(amount);
         }
 
         public void FreezePosition()
         {
-            m_CanMove = false;
+            canMove = false;
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
         public void UnfreezePosition()
         {
-            m_CanMove = true;
+            canMove = true;
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         }
 
         public void TakeDamage(float damage)
         {
-            if (m_PlayerAttackController.IsDefensiveAbilityActive())
+            if (playerAttackController.IsDefensiveAbilityActive())
             {
-                damage -= damage * (m_PlayerAttackController.GETDefensiveAbilityDmgReduction() / 100);
+                damage -= damage * (playerAttackController.GETDefensiveAbilityDmgReduction() / 100);
             }
-            m_CharacterStats.TakeDamage(damage);
+            characterStats.TakeDamage(damage);
             healthBar.TakeDamage(damage);
-            if (m_CharacterStats.GETHealth() <= Mathf.Epsilon && !isDead)
+            if (characterStats.GETHealth() <= Mathf.Epsilon && !isDead)
             {
                 Debug.Log("Player Died");
                 isDead = true;
@@ -220,8 +221,8 @@ namespace Player
 
         public void HealPlayer()
         {
-            float healingAmount = m_PlayerAttackController.GETHealingAmount();
-            m_CharacterStats.Heal(healingAmount);
+            float healingAmount = playerAttackController.GETHealingAmount();
+            characterStats.Heal(healingAmount);
             healthBar.Heal(healingAmount);
         }
 
@@ -237,7 +238,7 @@ namespace Player
 
         public float GETPlayerHealth()
         {
-            return m_CharacterStats.GETHealth();
+            return characterStats.GETHealth();
         }
 
         public float getFireCooldown()
@@ -247,7 +248,7 @@ namespace Player
 
         public float getFireDamage()
         {
-            return m_PlayerAttackController.getFireAttackDamage();
+            return playerAttackController.getFireAttackDamage();
         }
 
         public float getWindCooldown()
@@ -257,7 +258,7 @@ namespace Player
 
         public float getWindDamage()
         {
-            return m_PlayerAttackController.getRangedAttackDamage();
+            return playerAttackController.getRangedAttackDamage();
         }
 
         public float getEarthCooldown()
@@ -267,7 +268,7 @@ namespace Player
 
         public float getEarthDamageReduction()
         {
-            return m_PlayerAttackController.getDefensiveDamageReduction();
+            return playerAttackController.getDefensiveDamageReduction();
         }
 
         public float getWaterCooldown()
@@ -277,7 +278,7 @@ namespace Player
 
         public float getWaterHealingAmount()
         {
-            return m_PlayerAttackController.GETHealingAmount();
+            return playerAttackController.GETHealingAmount();
         }
     }
 }

@@ -1,9 +1,7 @@
-using UnityEngine;
-using Abilities;
-using Character;
 using DatabasesScripts;
+using UnityEngine;
 
-namespace Abilities
+namespace Combat.Abilities
 {
     public class FireAttack : Ability
     {
