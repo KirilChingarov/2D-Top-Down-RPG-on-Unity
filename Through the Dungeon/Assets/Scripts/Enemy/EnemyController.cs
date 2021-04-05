@@ -16,58 +16,58 @@ namespace Enemy
     
     public class EnemyController : MonoBehaviour
     {
-        private CharacterMovement m_CharacterMovement;
-        private EnemyDatabaseConn m_DBConn;
-        private CharacterStats m_CharacterStats;
-        private bool m_IsDead = false;
+        private CharacterMovement characterMovement;
+        private EnemyDatabaseConn DBConn;
+        private CharacterStats characterStats;
+        private bool isDead = false;
 
-        private Transform m_Target;
-        private float m_NextWaypointDistance = 2f;
-        private Path m_AIPath;
-        private int m_CurrentWaypoint;
-        private bool m_PlayerInRange = false;
-        private Seeker m_Seeker;
+        private Transform target;
+        private float nextWaypointDistance = 2f;
+        private Path AIPath;
+        private int currentWaypoint;
+        private bool playerInRange = false;
+        private Seeker seeker;
 
-        private EnemyAttackController m_EnemyAttackController;
-        private bool m_CanMove = true;
-        private float m_NextAttack = 0f;
+        private EnemyAttackController enemyAttackController;
+        private bool canMove = true;
+        private float nextAttack = 0f;
 
-        private bool m_PlayerDead = false;
+        private bool playerDead = false;
         public AggroRange aggroRange;
         public HealthBar healthBar;
         
         void Awake()
         {
             string characterName = "";
-            m_CharacterMovement = GetComponent<CharacterMovement>();
-            m_CharacterMovement.SetRigidBody2D(GetComponent<Rigidbody2D>());
-            m_CharacterMovement.SetCharacterAnimationController(GetComponentInChildren<CharacterAnimationController>());
+            characterMovement = GetComponent<CharacterMovement>();
+            characterMovement.SetRigidBody2D(GetComponent<Rigidbody2D>());
+            characterMovement.SetCharacterAnimationController(GetComponentInChildren<CharacterAnimationController>());
             characterName = gameObject.name;
-            m_DBConn = new EnemyDatabaseConn(characterName);
-            m_CharacterStats = new CharacterStats(m_DBConn);
-            healthBar.SetMaxHealth(m_CharacterStats.GETHealth());
-            m_IsDead = false;
+            DBConn = new EnemyDatabaseConn(characterName);
+            characterStats = new CharacterStats(DBConn);
+            healthBar.SetMaxHealth(characterStats.GETHealth());
+            isDead = false;
 
-            m_EnemyAttackController = GetComponentInChildren<EnemyAttackController>();
-            m_EnemyAttackController.SetAttackRange(m_CharacterStats.GETAttackRange());
-            m_EnemyAttackController.SetBasicAttackDamage(m_CharacterStats.GETAttackDamage());
+            enemyAttackController = GetComponentInChildren<EnemyAttackController>();
+            enemyAttackController.SetAttackRange(characterStats.GETAttackRange());
+            enemyAttackController.SetBasicAttackDamage(characterStats.GETAttackDamage());
 
-            m_Target = GameObject.Find("PlayerCharacter").GetComponent<Transform>();
-            m_Seeker = GetComponent<Seeker>();
+            target = GameObject.Find("PlayerCharacter").GetComponent<Transform>();
+            seeker = GetComponent<Seeker>();
 
             InvokeRepeating("UpdatePath", 0f, 0.5f);
         }
 
         private void UpdatePath()
         {
-            if(m_PlayerInRange || m_PlayerDead) return;
+            if(playerInRange || playerDead) return;
             if (!aggroRange.IsPlayerInAggroRange())
             {
-                m_AIPath = null;
+                AIPath = null;
             }
-            else if (m_Seeker.IsDone())
+            else if (seeker.IsDone())
             {
-                m_Seeker.StartPath(m_CharacterMovement.GETCurrentPosition(), m_Target.position, ONPathComplete);
+                seeker.StartPath(characterMovement.GETCurrentPosition(), target.position, ONPathComplete);
             }
         }
 
@@ -75,72 +75,76 @@ namespace Enemy
         {
             if (!path.error)
             {
-                m_AIPath = path;
-                m_CurrentWaypoint = 0;
+                AIPath = path;
+                currentWaypoint = 0;
             }
         }
         
         void FixedUpdate()
         {
-            if(m_PlayerDead) return;
+            if(playerDead) return;
             Move();
             Attack();
         }
 
         private void Attack()
         {
-            if (m_PlayerInRange && Time.time >= m_NextAttack && !m_IsDead)
+            if (playerInRange && Time.time >= nextAttack && !isDead)
             {
-                m_EnemyAttackController.Attack();
-                m_NextAttack = Time.time + m_CharacterStats.GETAttackCooldown();
+                if (gameObject.transform.position.x > target.position.x)
+                {
+                    gameObject.transform.localScale = new Vector3(-1, 1, 1);
+                }
+                enemyAttackController.Attack();
+                nextAttack = Time.time + characterStats.GETAttackCooldown();
             }
         }
 
         private void Move()
         {
-            if (m_AIPath == null)
+            if (AIPath == null)
             {
-                m_CharacterMovement.SetCharacterVelocity(new Vector2(0f, 0f));
-                m_CharacterMovement.SetCharacterDirection(Direction.Idle);
+                characterMovement.SetCharacterVelocity(new Vector2(0f, 0f));
+                characterMovement.SetCharacterDirection(Direction.Idle);
                 return;
             }
 
             Vector2 force;
             Direction targetDirection;
             
-            if (m_PlayerInRange || !m_CanMove || GameObject.Find("PlayerCharacter").GetComponent<PlayerController>().GETIsSwimming())
+            if (playerInRange || !canMove || GameObject.Find("PlayerCharacter").GetComponent<PlayerController>().GETIsSwimming())
             {
                 force = new Vector2(0f, 0f);
                 targetDirection = Direction.Idle;
             }
-            else if (m_CurrentWaypoint >= m_AIPath.vectorPath.Count)
+            else if (currentWaypoint >= AIPath.vectorPath.Count)
             {
                 return;
             }
             else
             {
-                float moveSpeed = m_CharacterStats.GETMoveSpeed();
-                Vector2 direction = ((Vector2)m_AIPath.vectorPath[m_CurrentWaypoint] - m_CharacterMovement.GETCurrentPosition()).normalized;
+                float moveSpeed = characterStats.GETMoveSpeed();
+                Vector2 direction = ((Vector2)AIPath.vectorPath[currentWaypoint] - characterMovement.GETCurrentPosition()).normalized;
                 force = direction * (moveSpeed * Time.deltaTime);
 
-                float distance = Vector2.Distance(m_CharacterMovement.GETCurrentPosition(),
-                    m_AIPath.vectorPath[m_CurrentWaypoint]);
-                if (distance < m_NextWaypointDistance)
+                float distance = Vector2.Distance(characterMovement.GETCurrentPosition(),
+                    AIPath.vectorPath[currentWaypoint]);
+                if (distance < nextWaypointDistance)
                 {
-                    m_CurrentWaypoint++;
+                    currentWaypoint++;
                 }
 
-                targetDirection = m_CharacterMovement.GETDirectionFromVector(GETVectorToTarget());
+                targetDirection = characterMovement.GETDirectionFromVector(GETVectorToTarget());
             }
             
-            m_CharacterMovement.SetCharacterVelocity(force);
-            m_CharacterMovement.SetCharacterDirection(targetDirection);
+            characterMovement.SetCharacterVelocity(force);
+            characterMovement.SetCharacterDirection(targetDirection);
         }
 
         private Vector2 GETVectorToTarget()
         {
-            Vector2 currPosition = m_CharacterMovement.GETCurrentPosition();
-            Vector2 targetPosition = m_Target.position;
+            Vector2 currPosition = characterMovement.GETCurrentPosition();
+            Vector2 targetPosition = target.position;
 
             float distanceX = targetPosition.x - currPosition.x;
             float distanceY = targetPosition.y - currPosition.y;
@@ -150,31 +154,40 @@ namespace Enemy
 
         public void SetReachedEndOfPath(bool check)
         {
-            m_PlayerInRange = check;
+            playerInRange = check;
         }
 
         public void FreezePosition()
         {
-            m_CanMove = false;
+            canMove = false;
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
         public void UnfreezePosition()
         {
-            m_CanMove = true;
+            canMove = true;
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+            ResetScale();
+        }
+
+        public void ResetScale()
+        {
+            if (gameObject.transform.localScale.x < 0)
+            {
+                gameObject.transform.localScale = new Vector3(1, 1, 1);
+            }
         }
 
         public void TakeDamage(float damage)
         {
-            m_CharacterStats.TakeDamage(damage);
+            characterStats.TakeDamage(damage);
             healthBar.TakeDamage(damage);
-            if (m_CharacterStats.GETHealth() < Mathf.Epsilon && !m_IsDead)
+            if (characterStats.GETHealth() < Mathf.Epsilon && !isDead)
             {
-                m_IsDead = true;
+                isDead = true;
                 GetComponentInChildren<CharacterAnimationController>().CharacterDeath();
             }
-            else if(!m_IsDead)
+            else if(!isDead)
             {
                 GetComponentInChildren<CharacterAnimationController>().TakeHit();
             }
@@ -182,8 +195,8 @@ namespace Enemy
 
         public void PlayerIsDead()
         {
-            m_PlayerDead = true;
-            m_CharacterMovement.SetCharacterDirection(Direction.Idle);
+            playerDead = true;
+            characterMovement.SetCharacterDirection(Direction.Idle);
         }
     }
 

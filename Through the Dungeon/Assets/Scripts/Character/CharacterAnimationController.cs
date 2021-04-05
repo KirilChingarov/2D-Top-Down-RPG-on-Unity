@@ -10,95 +10,95 @@ namespace Character
 {
     public class CharacterAnimationController : MonoBehaviour
     {
-        private float m_HorizontalSpeed = 0f;
-        private float m_VerticalSpeed = 0f;
-        private bool m_IsIdle = true;
-        private Animator m_CharacterGfx;
+        private float horizontalSpeed = 0f;
+        private float verticalSpeed = 0f;
+        private bool isIdle = true;
+        private Animator characterGfx;
 
         public void Awake()
         {
-            m_CharacterGfx = GetComponent<Animator>();
+            characterGfx = GetComponent<Animator>();
         }
 
         public string GetCurrentAnimation()
         {
-            return m_CharacterGfx.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+            return characterGfx.GetCurrentAnimatorClipInfo(0)[0].clip.name;
         }
 
         public void ChangeDirection(Direction direction){
             switch (direction)
             {
                 case Direction.Down:
-                    m_HorizontalSpeed = 0f;
-                    m_VerticalSpeed = -1f;
-                    m_IsIdle = false;
+                    horizontalSpeed = 0f;
+                    verticalSpeed = -1f;
+                    isIdle = false;
                     break;
                 case Direction.Up:
-                    m_HorizontalSpeed = 0f;
-                    m_VerticalSpeed = 1f;
-                    m_IsIdle = false;
+                    horizontalSpeed = 0f;
+                    verticalSpeed = 1f;
+                    isIdle = false;
                     break;
                 case Direction.Right:
-                    m_HorizontalSpeed = 1f;
-                    m_VerticalSpeed = 0f;
-                    m_IsIdle = false;
+                    horizontalSpeed = 1f;
+                    verticalSpeed = 0f;
+                    isIdle = false;
                     break;
                 case Direction.Left:
-                    m_HorizontalSpeed = -1f;
-                    m_VerticalSpeed = 0f;
-                    m_IsIdle = false;
+                    horizontalSpeed = -1f;
+                    verticalSpeed = 0f;
+                    isIdle = false;
                     break;
                 default:
-                    m_HorizontalSpeed = 0f;
-                    m_VerticalSpeed = 0f;
-                    m_IsIdle = true;
+                    horizontalSpeed = 0f;
+                    verticalSpeed = 0f;
+                    isIdle = true;
                     break;
             }
         
         
-            m_CharacterGfx.SetFloat("HorizontalSpeed", m_HorizontalSpeed);
-            m_CharacterGfx.SetFloat("VerticalSpeed", m_VerticalSpeed);
-            m_CharacterGfx.SetBool("isIdle", m_IsIdle);
+            characterGfx.SetFloat("HorizontalSpeed", horizontalSpeed);
+            characterGfx.SetFloat("VerticalSpeed", verticalSpeed);
+            characterGfx.SetBool("isIdle", isIdle);
         }
 
         public void CharacterSwim(bool isSwimming)
         {
-            m_CharacterGfx.SetBool("isSwimming", isSwimming);
+            characterGfx.SetBool("isSwimming", isSwimming);
         }
 
         public void StartAttack()
         {
-            m_CharacterGfx.SetTrigger("Attack");
+            characterGfx.SetTrigger("Attack");
         }
 
         public void StartFireAttack()
         {
-            m_CharacterGfx.SetTrigger("FireAttack");
+            characterGfx.SetTrigger("FireAttack");
         }
 
         public void StartRangedAttack()
         {
-            m_CharacterGfx.SetTrigger("RangedAttack");
+            characterGfx.SetTrigger("RangedAttack");
         }
 
         public void StartDefensiveAbility()
         {
-            m_CharacterGfx.SetTrigger("DefensiveAbility");
+            characterGfx.SetTrigger("DefensiveAbility");
         }
 
         public void StartHealingAbility()
         {
-            m_CharacterGfx.SetTrigger("HealingAbility");
+            characterGfx.SetTrigger("HealingAbility");
         }
 
         public void TakeHit()
         {
-            m_CharacterGfx.SetTrigger("Hit");
+            characterGfx.SetTrigger("Hit");
         }
 
         public void CharacterDeath()
         {
-            m_CharacterGfx.SetTrigger("Death");
+            characterGfx.SetTrigger("Death");
         }
 
         public void ApplyDamageToEnemy()
@@ -151,6 +151,11 @@ namespace Character
             GetComponentInParent<DeathBossController>().UnfreezePosition();
         }
 
+        public void ResetScale()
+        {
+            GetComponentInParent<EnemyController>().ResetScale();
+        }
+
         public void DestroyObject()
         {
             Destroy(transform.parent.gameObject);
@@ -158,7 +163,7 @@ namespace Character
 
         public void BossAttack(string trigger)
         {
-            m_CharacterGfx.SetTrigger(trigger);
+            characterGfx.SetTrigger(trigger);
         }
 
         public void Summon()
