@@ -4,11 +4,11 @@ namespace Combat.Abilities
 {
     public class HealingAbility : Ability
     {
-        private float m_HealAmount;
+        private float healAmount;
         
         public HealingAbility(AbilitiesDatabaseConn dbConn) : base(dbConn)
         {
-            m_HealAmount = dbConn.GETAbilityHealingAmount();
+            healAmount = dbConn.GETAbilityHealingAmount();
         }
 
         public override void StartAbility()
@@ -23,17 +23,17 @@ namespace Combat.Abilities
 
         public void BuffHealingAmount(float amount)
         {
-            m_HealAmount += amount;
+            healAmount += amount;
         }
 
         public void setHealingAmount(float amount)
         {
-            m_HealAmount = amount;
+            healAmount = amount;
         }
         
         public float GETHealingAmount()
         {
-            return m_HealAmount;
+            return healAmount;
         }
     }
 }

@@ -5,19 +5,19 @@ namespace Combat.Enemy
 {
     public class EnemyBasicAttack : MonoBehaviour
     {
-        private GameObject m_Player;
-        private bool m_InRange = false;
+        private GameObject player;
+        private bool inRange = false;
 
         void Start()
         {
-            m_Player = GameObject.Find("PlayerCharacter");
+            player = GameObject.Find("PlayerCharacter");
         }
 
         public void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.tag == "Player")
             {
-                m_InRange = true;
+                inRange = true;
             }
         }
 
@@ -25,15 +25,15 @@ namespace Combat.Enemy
         {
             if (other.gameObject.tag == "Player")
             {
-                m_InRange = false;
+                inRange = false;
             }
         }
 
         public void Attack(float attackDamage)
         {
-            if (m_InRange)
+            if (inRange)
             {
-                m_Player.GetComponent<PlayerController>().TakeDamage(attackDamage);
+                player.GetComponent<PlayerController>().TakeDamage(attackDamage);
             }
         }
 

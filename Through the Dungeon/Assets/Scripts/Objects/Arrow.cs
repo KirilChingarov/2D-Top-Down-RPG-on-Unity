@@ -7,25 +7,25 @@ namespace Objects
 {
     public class Arrow : MonoBehaviour
     {
-        private float m_ProjectileSpeed;
-        private float m_ProjectileDamage;
-        private Rigidbody2D m_Rb;
-        private float m_Range;
+        private float projectileSpeed;
+        private float projectileDamage;
+        private Rigidbody2D rb;
+        private float range;
         private Vector3 startingPosition;
 
         private void Awake()
         {
-            m_Rb = GetComponent<Rigidbody2D>();
-            m_ProjectileSpeed = new TrapsDatabaseConn("Cannon").GETTrapProjectileSpeed();
-            m_ProjectileDamage = new TrapsDatabaseConn("Cannon").GETTrapDamage();
-            m_Range = new TrapsDatabaseConn("Cannon").GETTrapRange();
-            m_Rb.velocity = m_Rb.velocity = transform.up * m_ProjectileSpeed;
+            rb = GetComponent<Rigidbody2D>();
+            projectileSpeed = new TrapsDatabaseConn("Cannon").GETTrapProjectileSpeed();
+            projectileDamage = new TrapsDatabaseConn("Cannon").GETTrapDamage();
+            range = new TrapsDatabaseConn("Cannon").GETTrapRange();
+            rb.velocity = rb.velocity = transform.up * projectileSpeed;
             startingPosition = transform.position;
         }
 
         private void Update()
         {
-            if (Vector3.Distance(startingPosition, transform.position) > m_Range)
+            if (Vector3.Distance(startingPosition, transform.position) > range)
             {
                 Destroy(gameObject);
             }
@@ -35,7 +35,7 @@ namespace Objects
         {
             if (other.gameObject.tag == "Player")
             {
-                other.gameObject.GetComponent<PlayerController>().TakeDamage(m_ProjectileDamage);
+                other.gameObject.GetComponent<PlayerController>().TakeDamage(projectileDamage);
                 Destroy(gameObject);
             }
         }

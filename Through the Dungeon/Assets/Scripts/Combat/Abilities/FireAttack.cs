@@ -5,14 +5,14 @@ namespace Combat.Abilities
 {
     public class FireAttack : Ability
     {
-        private GameObject m_AttackObject;
-        private float m_AttackDamage = 0f;
+        private GameObject attackObject;
+        private float attackDamage = 0f;
 
         public FireAttack(GameObject attackObject, AbilitiesDatabaseConn dbConn) : base(dbConn)
         {
-            m_AttackObject = attackObject;
+            this.attackObject = attackObject;
 
-            m_AttackDamage = this.DBConn.GETAbilityAttackDamage();
+            attackDamage = this.DBConn.GETAbilityAttackDamage();
             float attackRange = dbConn.GETAbilityAttackRange();
             attackObject.GetComponent<CircleCollider2D>().radius = attackRange;
         }
@@ -29,17 +29,17 @@ namespace Combat.Abilities
 
         public void BuffAttackDamage(float damage)
         {
-            m_AttackDamage += damage;
+            attackDamage += damage;
         }
 
         public void setAttackDamage(float damage)
         {
-            m_AttackDamage = damage;
+            attackDamage = damage;
         }
         
         public float GETFireAttackDamage()
         {
-            return m_AttackDamage;
+            return attackDamage;
         }
     }
 }

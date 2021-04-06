@@ -20,6 +20,11 @@ namespace UIScripts
                 currentPage++;
                 ChangePage(currentPage);
             }
+            else if (currentPage >= pages.Length - 1)
+            {
+                currentPage = 0;
+                ChangePage(currentPage);
+            }
         }
 
         public void Left()
@@ -27,6 +32,11 @@ namespace UIScripts
             if (currentPage > 0)
             {
                 currentPage--;
+                ChangePage(currentPage);
+            }
+            else if (currentPage <= 0)
+            {
+                currentPage = pages.Length - 1;
                 ChangePage(currentPage);
             }
         }

@@ -5,26 +5,26 @@ namespace Combat.Abilities
 {
     public class RangedAttack : Ability
     {
-        private Transform m_ShootingPoint;
-        private GameObject m_Projectile;
-        private float m_AbilityRange = 0f;
-        private float m_ProjectileSpeed = 0f;
-        private float m_AttackDamage = 0f;
+        private Transform shootingPoint;
+        private GameObject projectile;
+        private float abilityRange = 0f;
+        private float projectileSpeed = 0f;
+        private float attackDamage = 0f;
 
         public RangedAttack(Transform shootingPoint, GameObject projectilePrefab, AbilitiesDatabaseConn dbConn) : base(dbConn)
         {
-            this.m_ShootingPoint = shootingPoint;
-            m_Projectile = projectilePrefab;
+            this.shootingPoint = shootingPoint;
+            projectile = projectilePrefab;
 
-            m_AbilityRange = dbConn.GETAbilityAttackRange();
-            m_ProjectileSpeed = dbConn.GETProjectileSpeed();
-            m_AttackDamage = dbConn.GETAbilityAttackDamage();
+            abilityRange = dbConn.GETAbilityAttackRange();
+            projectileSpeed = dbConn.GETProjectileSpeed();
+            attackDamage = dbConn.GETAbilityAttackDamage();
         }
         
         public override void StartAbility()
         {
             CharacterGfx.StartRangedAttack();
-            MonoBehaviour.Instantiate(m_Projectile, m_ShootingPoint.position, m_ShootingPoint.rotation);
+            MonoBehaviour.Instantiate(projectile, shootingPoint.position, shootingPoint.rotation);
         }
 
         public override bool IsAbilityActive()
@@ -34,17 +34,17 @@ namespace Combat.Abilities
 
         public void BuffRangedAttackDamage(float damage)
         {
-            m_AttackDamage += damage;
+            attackDamage += damage;
         }
 
         public void setAttackDamage(float damage)
         {
-            m_AttackDamage = damage;
+            attackDamage = damage;
         }
         
         public float GETRangedAttackDamage()
         {
-            return m_AttackDamage;
+            return attackDamage;
         }
     }
 }

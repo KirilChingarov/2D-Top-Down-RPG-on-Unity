@@ -9,13 +9,19 @@ namespace UIScripts
         private string levelName;
         public Text text;
         public string[] levels = {"Forest_1", "Forest_2", "Forest_3", "Forest_4"};
-        private int currentLevel;
+        private int currentLevel = 0;
 
         public void Right()
         {
             if (currentLevel < levels.Length - 1)
             {
                 currentLevel++;
+                levelName = levels[currentLevel];
+                text.text = levelName;
+            }
+            else if (currentLevel >= levels.Length - 1)
+            {
+                currentLevel = 0;
                 levelName = levels[currentLevel];
                 text.text = levelName;
             }
@@ -26,6 +32,12 @@ namespace UIScripts
             if (currentLevel > 0)
             {
                 currentLevel--;
+                levelName = levels[currentLevel];
+                text.text = levelName;
+            }
+            else if (currentLevel <= 0)
+            {
+                currentLevel = levels.Length - 1;
                 levelName = levels[currentLevel];
                 text.text = levelName;
             }

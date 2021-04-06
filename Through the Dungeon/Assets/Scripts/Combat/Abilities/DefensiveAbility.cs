@@ -4,13 +4,13 @@ namespace Combat.Abilities
 {
     public class DefensiveAbility : Ability
     {
-        private float m_DamageReduction;
-        private float m_AbilityDuration;
+        private float damageReduction;
+        private float abilityDuration;
         
         public DefensiveAbility(AbilitiesDatabaseConn dbConn) : base(dbConn)
         {
-            m_DamageReduction = dbConn.GETAbilityDamageReduction();
-            m_AbilityDuration = dbConn.GETAbilityDuration();
+            damageReduction = dbConn.GETAbilityDamageReduction();
+            abilityDuration = dbConn.GETAbilityDuration();
         }
         
         public override void StartAbility()
@@ -31,22 +31,22 @@ namespace Combat.Abilities
 
         public void BuffDamageReduction(float amount)
         {
-            m_DamageReduction += amount;
+            damageReduction += amount;
         }
 
         public void setDamageReduction(float damageReduction)
         {
-            m_DamageReduction = damageReduction;
+            this.damageReduction = damageReduction;
         }
         
         public float GETDamageReduction()
         {
-            return m_DamageReduction;
+            return damageReduction;
         }
 
         public float GETAbilityDuration()
         {
-            return m_AbilityDuration;
+            return abilityDuration;
         }
     }
 }

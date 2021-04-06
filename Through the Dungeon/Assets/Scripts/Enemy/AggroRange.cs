@@ -4,19 +4,19 @@ namespace Enemy
 {
     public class AggroRange : MonoBehaviour
     {
-        private Collider2D m_Collider;
-        private bool m_IsPlayerInAggroRange = false;
+        private Collider2D collider;
+        private bool isPlayerInAggroRange = false;
     
         void Start()
         {
-            m_Collider = GetComponent<Collider2D>();
+            collider = GetComponent<Collider2D>();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.tag == "Player")
             {
-                m_IsPlayerInAggroRange = true;
+                isPlayerInAggroRange = true;
             }
         }
 
@@ -24,13 +24,13 @@ namespace Enemy
         {
             if (other.gameObject.tag == "Player")
             {
-                m_IsPlayerInAggroRange = false;
+                isPlayerInAggroRange = false;
             }
         }
 
         public bool IsPlayerInAggroRange()
         {
-            return m_IsPlayerInAggroRange;
+            return isPlayerInAggroRange;
         }
     }
 }

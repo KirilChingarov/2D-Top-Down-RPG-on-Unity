@@ -4,18 +4,18 @@ namespace Enemy
 {
     public class PlayerHitCheckBoxBoss : MonoBehaviour
     {
-        private DeathBossController m_EnemyController;
+        private DeathBossController enemyController;
         
         void Awake()
         {
-            m_EnemyController = GetComponentInParent<DeathBossController>();
+            enemyController = GetComponentInParent<DeathBossController>();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.name == "PlayerCharacter")
             {
-                m_EnemyController.SetReachedEndOfPath(true);
+                enemyController.SetReachedEndOfPath(true);
             }
         }
     
@@ -23,7 +23,7 @@ namespace Enemy
         {
             if (other.gameObject.name == "PlayerCharacter")
             {
-                m_EnemyController.SetReachedEndOfPath(false);
+                enemyController.SetReachedEndOfPath(false);
             }
         }
     }

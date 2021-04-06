@@ -8,20 +8,20 @@ namespace DatabasesScripts
     public class AbilitiesDatabaseConn
     {
         
-        private string m_DBPath;
-        private SqliteConnection m_Conn;
-        private int m_AbilityId;
-        private string m_AbilityName = "";
+        private string dbPath;
+        private SqliteConnection conn;
+        private int abilityId;
+        private string abilityName = "";
 
         public AbilitiesDatabaseConn(string abilityName)
         {
-            this.m_AbilityName = abilityName;
-            m_DBPath = "URI=file:" + Application.dataPath + "/Database.db";
-            m_Conn = new SqliteConnection(m_DBPath);
+            this.abilityName = abilityName;
+            dbPath = "URI=file:" + Application.dataPath + "/Database.db";
+            conn = new SqliteConnection(dbPath);
             
-            m_Conn.Open();
+            conn.Open();
             
-            SqliteCommand cmd = m_Conn.CreateCommand();
+            SqliteCommand cmd = conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT abilityId FROM Abilities " + 
@@ -35,16 +35,16 @@ namespace DatabasesScripts
 
             SqliteDataReader result = cmd.ExecuteReader();
             result.Read();
-            m_AbilityId = result.GetInt32(0);
+            abilityId = result.GetInt32(0);
             
-            m_Conn.Close();
+            conn.Close();
         }
 
         public AbilityType GETAbilityType()
         {
-            m_Conn.Open();
+            conn.Open();
 
-            SqliteCommand cmd = m_Conn.CreateCommand();
+            SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT AbilityTypes.abilityTypeName FROM Abilities " +
@@ -54,14 +54,14 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
             {
                 ParameterName = "abilityId",
-                Value = m_AbilityId
+                Value = abilityId
             });
 
             SqliteDataReader result = cmd.ExecuteReader();
             result.Read();
             string abilityTypeName = result.GetString(0);
 
-            m_Conn.Close();
+            conn.Close();
 
             return AbilityTypeFromString(abilityTypeName);
         }
@@ -85,16 +85,16 @@ namespace DatabasesScripts
 
         public string GETAbiltyName()
         {
-            return m_AbilityName;
+            return abilityName;
         }
 
         public float GETAbilityCooldown()
         {
             float cooldown = 0f;
 
-            m_Conn.Open();
+            conn.Open();
 
-            SqliteCommand cmd = m_Conn.CreateCommand();
+            SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT abilityCooldown FROM Abilities " + 
@@ -102,14 +102,14 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
             {
                 ParameterName = "abilityId",
-                Value = m_AbilityId
+                Value = abilityId
             });
 
             SqliteDataReader result = cmd.ExecuteReader();
             result.Read();
             cooldown = result.GetFloat(0);
             
-            m_Conn.Close();
+            conn.Close();
 
             return cooldown;
         }
@@ -118,9 +118,9 @@ namespace DatabasesScripts
         {
             float attackDamage = 0f;
 
-            m_Conn.Open();
+            conn.Open();
 
-            SqliteCommand cmd = m_Conn.CreateCommand();
+            SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT attackDamage FROM Abilities " + 
@@ -128,14 +128,14 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
             {
                 ParameterName = "abilityId",
-                Value = m_AbilityId
+                Value = abilityId
             });
 
             SqliteDataReader result = cmd.ExecuteReader();
             result.Read();
             attackDamage = result.GetFloat(0);
             
-            m_Conn.Close();
+            conn.Close();
 
             return attackDamage;
         }
@@ -144,9 +144,9 @@ namespace DatabasesScripts
         {
             float attackRange = 0f;
 
-            m_Conn.Open();
+            conn.Open();
 
-            SqliteCommand cmd = m_Conn.CreateCommand();
+            SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT abilityRange FROM Abilities " + 
@@ -154,14 +154,14 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
             {
                 ParameterName = "abilityId",
-                Value = m_AbilityId
+                Value = abilityId
             });
 
             SqliteDataReader result = cmd.ExecuteReader();
             result.Read();
             attackRange = result.GetFloat(0);
             
-            m_Conn.Close();
+            conn.Close();
 
             return attackRange;
         }
@@ -170,9 +170,9 @@ namespace DatabasesScripts
         {
             float projectileSpeed = 0f;
 
-            m_Conn.Open();
+            conn.Open();
 
-            SqliteCommand cmd = m_Conn.CreateCommand();
+            SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT projectileSpeed FROM Abilities " + 
@@ -180,14 +180,14 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
             {
                 ParameterName = "abilityId",
-                Value = m_AbilityId
+                Value = abilityId
             });
 
             SqliteDataReader result = cmd.ExecuteReader();
             result.Read();
             projectileSpeed = result.GetFloat(0);
             
-            m_Conn.Close();
+            conn.Close();
 
             return projectileSpeed;
         }
@@ -196,9 +196,9 @@ namespace DatabasesScripts
         {
             int dmgReduction = 0;
 
-            m_Conn.Open();
+            conn.Open();
 
-            SqliteCommand cmd = m_Conn.CreateCommand();
+            SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT damageReduction FROM Abilities " + 
@@ -206,14 +206,14 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
             {
                 ParameterName = "abilityId",
-                Value = m_AbilityId
+                Value = abilityId
             });
 
             SqliteDataReader result = cmd.ExecuteReader();
             result.Read();
             dmgReduction = result.GetInt32(0);
             
-            m_Conn.Close();
+            conn.Close();
 
             return dmgReduction;
         }
@@ -222,9 +222,9 @@ namespace DatabasesScripts
         {
             float abilityDuration = 0f;
 
-            m_Conn.Open();
+            conn.Open();
 
-            SqliteCommand cmd = m_Conn.CreateCommand();
+            SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT abilityDuration FROM Abilities " + 
@@ -232,14 +232,14 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
             {
                 ParameterName = "abilityId",
-                Value = m_AbilityId
+                Value = abilityId
             });
 
             SqliteDataReader result = cmd.ExecuteReader();
             result.Read();
             abilityDuration = result.GetFloat(0);
             
-            m_Conn.Close();
+            conn.Close();
 
             return abilityDuration;
         }
@@ -248,9 +248,9 @@ namespace DatabasesScripts
         {
             float healingAmount = 0f;
 
-            m_Conn.Open();
+            conn.Open();
 
-            SqliteCommand cmd = m_Conn.CreateCommand();
+            SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT healingAmount FROM Abilities " + 
@@ -258,14 +258,14 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
             {
                 ParameterName = "abilityId",
-                Value = m_AbilityId
+                Value = abilityId
             });
 
             SqliteDataReader result = cmd.ExecuteReader();
             result.Read();
             healingAmount = result.GetFloat(0);
             
-            m_Conn.Close();
+            conn.Close();
 
             return healingAmount;
         }
@@ -274,9 +274,9 @@ namespace DatabasesScripts
         {
             string keyCode = "";
             
-            m_Conn.Open();
+            conn.Open();
 
-            SqliteCommand cmd = m_Conn.CreateCommand();
+            SqliteCommand cmd = conn.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT abilityKeyCode FROM Abilities " + 
@@ -284,14 +284,14 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
             {
                 ParameterName = "abilityId",
-                Value = m_AbilityId
+                Value = abilityId
             });
 
             SqliteDataReader result = cmd.ExecuteReader();
             result.Read();
             keyCode = result.GetString(0);
 
-            m_Conn.Close();
+            conn.Close();
 
             return keyCode;
         }
