@@ -24,7 +24,6 @@ namespace Objects
 
             while (loadingScreen.color.a < 1)
             {
-                Debug.Log(loadingScreen.color.a);
                 yield return null;
             }
 
@@ -35,7 +34,6 @@ namespace Objects
 
             var newPosition = spawningPoint.position;
             GameObject.FindGameObjectWithTag("Player").transform.position = newPosition;
-            //GameObject.FindGameObjectWithTag("MainCamera").transform.position = newPosition;
             
             roomLoaded = true;
             player.UnfreezePosition();
