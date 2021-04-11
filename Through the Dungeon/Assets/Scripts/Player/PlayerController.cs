@@ -60,6 +60,7 @@ namespace Player
                 defensiveCooldown.StartCoroutine(defensiveCooldown.CooldownFillTime(gameStateController.earthCooldown));
                 m_NextHealingAbility = Time.time + gameStateController.waterCooldown;
                 healingCooldown.StartCoroutine(healingCooldown.CooldownFillTime(gameStateController.waterCooldown));
+                healthBar.SetHealth(gameStateController.playerHealth);
             }
             if (gameStateController != null && gameStateController.isTransition)
             {
@@ -68,8 +69,8 @@ namespace Player
                 playerAttackController.setRangedAttackDamage(gameStateController.windDamage);
                 playerAttackController.setDefenseDamageReduction(gameStateController.earthDamageReduction);
                 playerAttackController.setHealingAmount(gameStateController.waterHealingAmount);
+                healthBar.SetHealth(gameStateController.playerHealth);
             }
-            healthBar.SetHealth(gameStateController.playerHealth);
             isDead = false;
         }
 
