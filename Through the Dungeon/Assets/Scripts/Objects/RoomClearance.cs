@@ -6,6 +6,7 @@ namespace Objects
     public class RoomClearance : MonoBehaviour
     {
         public DoorSpriteChanger[] doors;
+        public GameObject[] blockades;
 
         public void Awake()
         {
@@ -24,6 +25,10 @@ namespace Objects
             {
                 door.openDoor();
             }
+            foreach (var blockade in blockades)
+            {
+                blockade.SetActive(false);
+            }
         }
 
         private void closePaths()
@@ -31,6 +36,10 @@ namespace Objects
             foreach (var door in doors)
             {
                 door.closeDoor();
+            }
+            foreach (var blockade in blockades)
+            {
+                blockade.SetActive(true);
             }
         }
     }

@@ -17,7 +17,7 @@ namespace Objects
             StartCoroutine(enableRooms(roomIndex, spawningPoint));
         }
 
-        public IEnumerator enableRooms(int roomIndex, Transform spawningPoint)
+        private IEnumerator enableRooms(int roomIndex, Transform spawningPoint)
         {
             player.FreezePosition();
             StartCoroutine(showLoadingScreen());
@@ -48,7 +48,7 @@ namespace Objects
                 var tmpColor = loadingScreen.color;
                 tmpColor.a = MapFloat(i, 0, 255, 0, 1);
                 loadingScreen.color = tmpColor;
-                yield return new WaitForSecondsRealtime(0.001f);
+                yield return new WaitForSeconds(0.001f);
             }
         }
         
@@ -63,7 +63,7 @@ namespace Objects
                 var tmpColor = loadingScreen.color;
                 tmpColor.a = MapFloat(i, 0, 255, 0, 1);
                 loadingScreen.color = tmpColor;
-                yield return new WaitForSecondsRealtime(0.001f);
+                yield return new WaitForSeconds(0.001f);
             }
 
             roomLoaded = false;
