@@ -39,7 +39,5 @@ namespace SaveScripts
             }
             nextLevel = gameStateController.nextLevel;
         }
-        
-        
     }
 }

@@ -2,7 +2,7 @@ using Character;
 using DatabasesScripts;
 using Enums;
 
-namespace Abilities
+namespace Combat.Abilities
 {
     public abstract class Ability
     {

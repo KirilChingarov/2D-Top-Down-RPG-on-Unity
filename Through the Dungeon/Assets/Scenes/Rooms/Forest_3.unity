@@ -19031,7 +19031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpen: 1
-  nextScene: Forest_Buffs
+  nextScene: 
 --- !u!1 &4239495728216000702
 GameObject:
   m_ObjectHideFlags: 0

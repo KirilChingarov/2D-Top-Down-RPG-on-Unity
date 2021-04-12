@@ -1,33 +1,30 @@
-using System;
-using System.Security.Cryptography;
 using DatabasesScripts;
 using Enemy;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-namespace Abilities
+namespace Combat.Abilities
 {
     public class ProjectileHitBox : MonoBehaviour
     {
-        private Rigidbody2D m_Rb;
-        private float m_ProjectileSpeed = 0f;
-        private float m_ProjectileDamage = 0f;
-        private float m_ProjectileRange = 0f;
-        private Vector2 m_StartingPoint;
+        private Rigidbody2D rb;
+        private float projectileSpeed = 0f;
+        private float projectileDamage = 0f;
+        private float projectileRange = 0f;
+        private Vector2 startingPoint;
 
         public void Start()
         {
-            m_StartingPoint = transform.position;
-            m_Rb = GetComponent<Rigidbody2D>();
-            m_ProjectileSpeed = new AbilitiesDatabaseConn("RangedAttack").GETProjectileSpeed();
-            m_ProjectileDamage = new AbilitiesDatabaseConn("RangedAttack").GETAbilityAttackDamage();
-            m_ProjectileRange = new AbilitiesDatabaseConn("RangedAttack").GETAbilityAttackRange();
-            m_Rb.velocity = transform.right * m_ProjectileSpeed;
+            startingPoint = transform.position;
+            rb = GetComponent<Rigidbody2D>();
+            projectileSpeed = new AbilitiesDatabaseConn("RangedAttack").GETProjectileSpeed();
+            projectileDamage = new AbilitiesDatabaseConn("RangedAttack").GETAbilityAttackDamage();
+            projectileRange = new AbilitiesDatabaseConn("RangedAttack").GETAbilityAttackRange();
+            rb.velocity = transform.right * projectileSpeed;
         }
 
         public void FixedUpdate()
         {
-            if (Vector2.Distance(m_StartingPoint, transform.position) >= m_ProjectileRange)
+            if (Vector2.Distance(startingPoint, transform.position) >= projectileRange)
             {
                 Destroy(gameObject);
             }
@@ -37,8 +34,8 @@ namespace Abilities
         {
             if (other.gameObject.tag == "Enemy")
             {
-                if(other.gameObject.GetComponent<EnemyController>() != null) other.gameObject.GetComponent<EnemyController>().TakeDamage(m_ProjectileDamage);
-                else other.gameObject.GetComponent<DeathBossController>().TakeDamage(m_ProjectileDamage);
+                if(other.gameObject.GetComponent<EnemyController>() != null) other.gameObject.GetComponent<EnemyController>().TakeDamage(projectileDamage);
+                else other.gameObject.GetComponent<DeathBossController>().TakeDamage(projectileDamage);
             }
         }
     }

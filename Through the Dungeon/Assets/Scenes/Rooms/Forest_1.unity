@@ -17164,7 +17164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpen: 1
-  nextScene: Forest_2
+  nextScene: 
 --- !u!4 &4239495728181680737
 Transform:
   m_ObjectHideFlags: 0

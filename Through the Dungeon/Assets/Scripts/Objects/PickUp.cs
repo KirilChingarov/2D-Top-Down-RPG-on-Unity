@@ -1,5 +1,4 @@
 using System;
-using Abilities;
 using Enums;
 using Player;
 using UnityEngine;
@@ -13,7 +12,7 @@ namespace Objects
 
         public void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.tag == "Player")
+            if (other.gameObject.CompareTag("Player"))
             {
                 switch (targetAbility)
                 {

@@ -76,7 +76,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2261975825372002283}
+  - {fileID: 4589496115188557227}
   - {fileID: 122007102890765422}
   - {fileID: 122007103476671356}
   - {fileID: 122007101641044864}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aggroRange: {fileID: 0}
-  healthBar: {fileID: 2261975825372000343}
+  healthBar: {fileID: 4589496115624918891}
 --- !u!114 &122007101864109817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,13 +543,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96ee03694145e1e429a7ee834f78b507, type: 3}
---- !u!224 &2261975825372002283 stripped
+--- !u!224 &4589496115188557227 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2365811893039848204, guid: 96ee03694145e1e429a7ee834f78b507,
     type: 3}
   m_PrefabInstance: {fileID: 2261975825372004007}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2261975825372000343 stripped
+--- !u!114 &4589496115624918891 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2365811893744566732, guid: 96ee03694145e1e429a7ee834f78b507,
     type: 3}

@@ -6,18 +6,18 @@ namespace DatabasesScripts
 {
     public class TrapsDatabaseConn
     {
-        private string m_DBPath;
-        private SqliteConnection m_Conn;
-        private int m_TrapId;
+        private string dbPath;
+        private SqliteConnection conn;
+        private int trapId;
 
         public TrapsDatabaseConn(string trapName)
         {
-            m_DBPath = "URI=file:" + Application.dataPath + "/Database.db";
-            m_Conn = new SqliteConnection(m_DBPath);
+            dbPath = "URI=file:" + Application.dataPath + "/Database.db";
+            conn = new SqliteConnection(dbPath);
             
-            m_Conn.Open();
+            conn.Open();
             
-            SqliteCommand cmd = m_Conn.CreateCommand();
+            SqliteCommand cmd = conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT trapId FROM Traps " + 
@@ -31,23 +31,23 @@ namespace DatabasesScripts
 
             SqliteDataReader result = cmd.ExecuteReader();
             result.Read();
-            m_TrapId = result.GetInt32(0);
+            trapId = result.GetInt32(0);
             
-            m_Conn.Close();
+            conn.Close();
         }
 
         public int GETTrapId()
         {
-            return m_TrapId;
+            return trapId;
         }
 
         public float GETTrapCooldown()
         {
             float cooldown = 0f;
             
-            m_Conn.Open();
+            conn.Open();
             
-            SqliteCommand cmd = m_Conn.CreateCommand();
+            SqliteCommand cmd = conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT trapCooldown FROM Traps " + 
@@ -55,7 +55,7 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
                 {
                     ParameterName = "trapId",
-                    Value = m_TrapId
+                    Value = trapId
                 }
             );
 
@@ -63,7 +63,7 @@ namespace DatabasesScripts
             result.Read();
             cooldown = result.GetFloat(0);
             
-            m_Conn.Close();
+            conn.Close();
 
             return cooldown;
         }
@@ -72,9 +72,9 @@ namespace DatabasesScripts
         {
             float duration = 0f;
             
-            m_Conn.Open();
+            conn.Open();
             
-            SqliteCommand cmd = m_Conn.CreateCommand();
+            SqliteCommand cmd = conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT trapDuration FROM Traps " + 
@@ -82,7 +82,7 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
                 {
                     ParameterName = "trapId",
-                    Value = m_TrapId
+                    Value = trapId
                 }
             );
 
@@ -90,7 +90,7 @@ namespace DatabasesScripts
             result.Read();
             duration = result.GetFloat(0);
             
-            m_Conn.Close();
+            conn.Close();
 
             return duration;
         }
@@ -99,9 +99,9 @@ namespace DatabasesScripts
         {
             float damage = 0f;
             
-            m_Conn.Open();
+            conn.Open();
             
-            SqliteCommand cmd = m_Conn.CreateCommand();
+            SqliteCommand cmd = conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT trapDamage FROM Traps " + 
@@ -109,7 +109,7 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
                 {
                     ParameterName = "trapId",
-                    Value = m_TrapId
+                    Value = trapId
                 }
             );
 
@@ -117,7 +117,7 @@ namespace DatabasesScripts
             result.Read();
             damage = result.GetFloat(0);
             
-            m_Conn.Close();
+            conn.Close();
 
             return damage;
         }
@@ -126,9 +126,9 @@ namespace DatabasesScripts
         {
             float range = 0f;
             
-            m_Conn.Open();
+            conn.Open();
             
-            SqliteCommand cmd = m_Conn.CreateCommand();
+            SqliteCommand cmd = conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT trapRange FROM Traps " + 
@@ -136,7 +136,7 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
                 {
                     ParameterName = "trapId",
-                    Value = m_TrapId
+                    Value = trapId
                 }
             );
 
@@ -144,7 +144,7 @@ namespace DatabasesScripts
             result.Read();
             range = result.GetFloat(0);
             
-            m_Conn.Close();
+            conn.Close();
 
             return range;
         }
@@ -153,9 +153,9 @@ namespace DatabasesScripts
         {
             float speed = 0f;
             
-            m_Conn.Open();
+            conn.Open();
             
-            SqliteCommand cmd = m_Conn.CreateCommand();
+            SqliteCommand cmd = conn.CreateCommand();
             
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT trapProjectileSpeed FROM Traps " + 
@@ -163,7 +163,7 @@ namespace DatabasesScripts
             cmd.Parameters.Add(new SqliteParameter
                 {
                     ParameterName = "trapId",
-                    Value = m_TrapId
+                    Value = trapId
                 }
             );
 
@@ -171,7 +171,7 @@ namespace DatabasesScripts
             result.Read();
             speed = result.GetFloat(0);
             
-            m_Conn.Close();
+            conn.Close();
 
             return speed;
         }

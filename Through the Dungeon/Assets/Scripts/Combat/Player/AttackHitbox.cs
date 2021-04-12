@@ -1,58 +1,59 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Enemy;
 using UnityEngine;
 
-public class AttackHitbox : MonoBehaviour
+namespace Combat.Player
 {
-    private List<GameObject> m_Enemies = new List<GameObject>();
-    private List<bool> m_InRange = new List<bool>();
-
-    public void Start()
+    public class AttackHitbox : MonoBehaviour
     {
-        m_Enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
-        for (int i = 0; i < m_Enemies.Count; i++)
-        {
-            m_InRange.Add(false);
-        }
-    }
+        private List<GameObject> enemies = new List<GameObject>();
+        private List<bool> inRange = new List<bool>();
 
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
+        public void Start()
         {
-            if (!m_Enemies.Contains(other.gameObject))
+            enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+            for (int i = 0; i < enemies.Count; i++)
             {
-                m_Enemies.Add(other.gameObject);
-                m_InRange.Add(true);
+                inRange.Add(false);
             }
-            else m_InRange[m_Enemies.IndexOf(other.gameObject)] = true;
         }
-    }
+
+        public void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                if (!enemies.Contains(other.gameObject))
+                {
+                    enemies.Add(other.gameObject);
+                    inRange.Add(true);
+                }
+                else inRange[enemies.IndexOf(other.gameObject)] = true;
+            }
+        }
     
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
+        public void OnTriggerExit2D(Collider2D other)
         {
-            m_InRange[m_Enemies.IndexOf(other.gameObject)] = false;
-        }
-    }
-
-    public void Attack(float attackDamage)
-    {
-        for (int i = 0; i < m_Enemies.Count; i++)
-        {
-            if (m_InRange[i])
+            if (other.gameObject.CompareTag("Enemy"))
             {
-                if(m_Enemies[i].GetComponent<EnemyController>() != null) m_Enemies[i].GetComponent<EnemyController>().TakeDamage(attackDamage);
-                else m_Enemies[i].GetComponent<DeathBossController>().TakeDamage(attackDamage);
+                inRange[enemies.IndexOf(other.gameObject)] = false;
             }
         }
-    }
 
-    public void SetAttackRange(float attackRange)
-    {
-        GetComponent<CircleCollider2D>().radius = attackRange;
+        public void Attack(float attackDamage)
+        {
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                if (inRange[i])
+                {
+                    if(enemies[i].GetComponent<EnemyController>() != null) enemies[i].GetComponent<EnemyController>().TakeDamage(attackDamage);
+                    else enemies[i].GetComponent<DeathBossController>().TakeDamage(attackDamage);
+                }
+            }
+        }
+
+        public void SetAttackRange(float attackRange)
+        {
+            GetComponent<CircleCollider2D>().radius = attackRange;
+        }
     }
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2210652588934593456}
   - component: {fileID: 2210652588934593458}
+  - component: {fileID: 315982703638420003}
   m_Layer: 0
   m_Name: playerHitCheckbox
   m_TagString: Untagged
@@ -47,6 +48,18 @@ CircleCollider2D:
   m_Offset: {x: -0.2, y: -0.25}
   serializedVersion: 2
   m_Radius: 1
+--- !u!114 &315982703638420003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2210652588934593471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce920dd403c14785bcf306c54884b93a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2210652589292317515
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +217,7 @@ MonoBehaviour:
   aggroRange: {fileID: 0}
   healthBar: {fileID: 0}
   deathGhost: {fileID: 0}
-  spawnPoint: {fileID: 0}
+  spawnPoint: {fileID: 5512193729183376004}
 --- !u!114 &2210652589473414709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2210652590159735334}
   - component: {fileID: 2210652590159735320}
+  - component: {fileID: 3931931813460472004}
   m_Layer: 0
   m_Name: BasicAttack
   m_TagString: Untagged
@@ -280,6 +294,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.3
+--- !u!114 &3931931813460472004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2210652590159735333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d267112de9ea94ea7bbace734a5c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5181287874170402654
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +347,7 @@ GameObject:
   - component: {fileID: 5700802008841974967}
   - component: {fileID: 5700802008841974953}
   - component: {fileID: 5700802008841974952}
+  - component: {fileID: 8490133603466591783}
   m_Layer: 0
   m_Name: DeathBossGFX
   m_TagString: Untagged
@@ -405,3 +432,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf3abab85e8e7a24a924d57c8f1ee56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &8490133603466591783
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5700802008841974966}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 049aa061366e46243bb7e71945c79f8a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

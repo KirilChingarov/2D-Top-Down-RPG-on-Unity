@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Abilities
+namespace Combat.Abilities
 {
     public class RangeAttackFirePoint : MonoBehaviour
     {

@@ -5,8 +5,8 @@ namespace Character
 {
     public class CharacterMovement : MonoBehaviour
     {
-        private Rigidbody2D m_Rb;
-        private CharacterAnimationController m_CharacterGfx;
+        private Rigidbody2D rb;
+        private CharacterAnimationController characterGfx;
 
         public Direction GETDirectionFromSpeed(float horizontalSpeed, float verticalSpeed)
         {
@@ -47,37 +47,37 @@ namespace Character
 
         public void SetCharacterVelocity(Vector2 direction)
         {
-            m_Rb.velocity = direction;
+            rb.velocity = direction;
         }
 
         public void SetCharacterDirection(Direction direction)
         {
-            m_CharacterGfx.ChangeDirection(direction);
+            characterGfx.ChangeDirection(direction);
         }
 
         public void SetIsCharacterSwimming(bool isSwimming)
         {
-            m_CharacterGfx.CharacterSwim(isSwimming);
+            characterGfx.CharacterSwim(isSwimming);
         }
 
         public void SetRigidBody2D(Rigidbody2D newRb)
         {
-            m_Rb = newRb;
+            rb = newRb;
         }
 
         public void SetCharacterAnimationController(CharacterAnimationController newChAnimationControllerC)
         {
-            m_CharacterGfx = newChAnimationControllerC;
+            characterGfx = newChAnimationControllerC;
         }
 
         public Vector2 GETCurrentPosition()
         {
-            return m_Rb.position;
+            return rb.position;
         }
 
         public void CharacterDeath()
         {
-            m_CharacterGfx.CharacterDeath();
+            characterGfx.CharacterDeath();
         }
     }
 }

@@ -7,94 +7,94 @@ namespace Character
 {
     public class CharacterStats
     {
-        private float m_Health;
-        private float m_MAXHealth;
-        private float m_MoveSpeed;
-        private float m_AttackDamage;
-        private float m_AttackRange;
-        private float m_AttackCooldown;
+        private float health;
+        private float maxHealth;
+        private float moveSpeed;
+        private float attackDamage;
+        private float attackRange;
+        private float attackCooldown;
 
         public CharacterStats(PlayerDatabaseConn dbConn)
         {
-            m_Health = dbConn.GETPlayerHealth();
-            m_MAXHealth = m_Health;
-            m_MoveSpeed = dbConn.GETPlayerMoveSpeed();
-            m_AttackDamage = dbConn.GETPlayerAttackDamage();
-            m_AttackRange = dbConn.GETPlayerAttackRange();
-            m_AttackCooldown = dbConn.GETPlayerAttackCooldown();
+            health = dbConn.GETPlayerHealth();
+            maxHealth = health;
+            moveSpeed = dbConn.GETPlayerMoveSpeed();
+            attackDamage = dbConn.GETPlayerAttackDamage();
+            attackRange = dbConn.GETPlayerAttackRange();
+            attackCooldown = dbConn.GETPlayerAttackCooldown();
         }
         
         public CharacterStats(EnemyDatabaseConn dbConn)
         {
-            m_Health = dbConn.GETEnemyHealth();
-            m_MAXHealth = m_Health;
-            m_MoveSpeed = dbConn.GETEnemyMoveSpeed();
-            m_AttackDamage = dbConn.GETEnemyAttackDamage();
-            m_AttackRange = dbConn.GETEnemyAttackRange();
-            m_AttackCooldown = dbConn.GETEnemyAttackCooldown();
+            health = dbConn.GETEnemyHealth();
+            maxHealth = health;
+            moveSpeed = dbConn.GETEnemyMoveSpeed();
+            attackDamage = dbConn.GETEnemyAttackDamage();
+            attackRange = dbConn.GETEnemyAttackRange();
+            attackCooldown = dbConn.GETEnemyAttackCooldown();
         }
 
         public float GETMoveSpeed()
         {
-            return m_MoveSpeed;
+            return moveSpeed;
         }
 
         public void SetMoveSpeed(float moveSpeed)
         {
-            this.m_MoveSpeed = moveSpeed;
+            this.moveSpeed = moveSpeed;
         }
 
         public float GETHealth()
         {
-            return m_Health;
+            return health;
         }
 
         public void SetHealth(float health)
         {
-            this.m_Health = health;
+            this.health = health;
         }
 
         public float GETAttackDamage()
         {
-            return m_AttackDamage;
+            return attackDamage;
         }
 
         public void SetAttackDamage(float attackDamage)
         {
-            this.m_AttackDamage = attackDamage;
+            this.attackDamage = attackDamage;
         }
 
         public float GETAttackRange()
         {
-            return m_AttackRange;
+            return attackRange;
         }
 
         public void SetAttackRange(float attackRange)
         {
-            this.m_AttackRange = attackRange;
+            this.attackRange = attackRange;
         }
 
         public float GETAttackCooldown()
         {
-            return m_AttackCooldown;
+            return attackCooldown;
         }
 
         public void SetAttackCooldown(float attackCooldown)
         {
-            this.m_AttackCooldown = attackCooldown;
+            this.attackCooldown = attackCooldown;
         }
 
         public void TakeDamage(float damage)
         {
-            m_Health -= damage;
+            health -= damage;
         }
 
         public void Heal(float healAmount)
         {
-            m_Health += healAmount;
-            if (m_Health > m_MAXHealth)
+            health += healAmount;
+            if (health > maxHealth)
             {
-                m_Health = m_MAXHealth;
+                health = maxHealth;
             }
         }
     }    
