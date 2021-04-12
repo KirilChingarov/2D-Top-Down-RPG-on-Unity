@@ -1,4 +1,3 @@
-using System;
 using SaveScripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,12 +6,14 @@ namespace Objects
 {
     public class Door : MonoBehaviour
     {
-        public bool isOpen = false;
+        public bool isOpen;
         public string nextScene = "";
 
         private void Awake()
         {
             isOpen = false;
+            var spriteChanger = GetComponent<DoorSpriteChanger>();
+            if(spriteChanger != null) spriteChanger.closeDoor();
         }
 
         public void Update()
@@ -21,19 +22,28 @@ namespace Objects
             if (enemyCount <= 0)
             {
                 isOpen = true;
+                var spriteChanger = GetComponent<DoorSpriteChanger>();
+                if(spriteChanger != null) spriteChanger.openDoor();
             }
         }
 
         public void OnTriggerStay2D(Collider2D other)
         {
-            if (other.gameObject.tag == "Player" && isOpen)
+            if (other.gameObject.CompareTag("Player") && isOpen)
             {
-                GameStateController gameStateController = GameObject.Find("GameStateController").GetComponent<GameStateController>().GetInstance();
-                gameStateController.SaveCombatStats();
-                gameStateController.isTransition = true;
-                gameStateController.nextLevel++;
-                nextScene = gameStateController.levels[gameStateController.nextLevel];
-                SceneManager.LoadScene(nextScene);
+                if (nextScene == "")
+                {
+                    GameStateController gameStateController = GameObject.Find("GameStateController").GetComponent<GameStateController>().GetInstance();
+                    gameStateController.SaveCombatStats();
+                    gameStateController.isTransition = true;
+                    gameStateController.nextLevel++;
+                    nextScene = gameStateController.levels[gameStateController.nextLevel];
+                    SceneManager.LoadScene(nextScene);
+                }
+                else
+                {
+                    SceneManager.LoadScene(nextScene);
+                }
             }
         }
     }
