@@ -39,6 +39,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Rooms/Forest_Boss.unity
     guid: 4ac50850459f5664da60869d3f8a1069
   - enabled: 1
-    path: Assets/Scenes/Rooms/Castle/Castle.unity
+    path: Assets/Scenes/Rooms/Castle.unity
     guid: 635a877ab7f21db47a8af22120f3c037
   m_configObjects: {}

@@ -19269,7 +19269,7 @@ PrefabInstance:
     - target: {fileID: 4239495728696819940, guid: 029343839a9a8d744bb5b9ec796e2988,
         type: 3}
       propertyPath: nextScene
-      value: Castle/Castle
+      value: Castle
       objectReference: {fileID: 0}
     - target: {fileID: 4239495728696819941, guid: 029343839a9a8d744bb5b9ec796e2988,
         type: 3}
