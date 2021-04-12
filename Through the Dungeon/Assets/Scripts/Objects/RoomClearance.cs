@@ -1,12 +1,13 @@
-using System;
 using UnityEngine;
 
 namespace Objects
 {
     public class RoomClearance : MonoBehaviour
     {
+        //public Transform room;
         public DoorSpriteChanger[] doors;
         public GameObject[] blockades;
+        
 
         public void Awake()
         {
@@ -15,8 +16,12 @@ namespace Objects
 
         public void Update()
         {
-            var enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            if(enemies.Length <= 0) openPaths();
+            int enemiesCount = GameObject.FindGameObjectsWithTag("Enemy").Length;/*0;
+            for (int i = 0; i < room.childCount; i++)
+            {
+                if (room.GetChild(i).CompareTag("Enemy")) enemiesCount++;
+            }*/
+            if(enemiesCount <= 0) openPaths();
         }
 
         private void openPaths()
