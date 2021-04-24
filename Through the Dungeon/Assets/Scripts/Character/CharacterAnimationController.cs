@@ -161,6 +161,11 @@ namespace Character
             Destroy(transform.parent.gameObject);
         }
 
+        public void DestroyBoss()
+        {
+            transform.parent.gameObject.GetComponent<DeathBossController>().Death();
+        }
+
         public void BossAttack(string trigger)
         {
             characterGfx.SetTrigger(trigger);

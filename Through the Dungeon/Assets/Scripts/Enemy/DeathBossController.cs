@@ -187,6 +187,12 @@ namespace Enemy
             }
         }
 
+        public void Death()
+        {
+            Destroy(healthBar.gameObject);
+            Destroy(gameObject);
+        }
+
         public void PlayerIsDead()
         {
             playerDead = true;
