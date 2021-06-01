@@ -15482,6 +15482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpen: 0
   nextScene: 
+  crossFade: {fileID: 5618671285673956212}
 --- !u!114 &1379739176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75274,3 +75275,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c5283b67e0e98244840d0ca1720d87b, type: 3}
+--- !u!95 &5618671285673956212 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1421879503511417381, guid: 4c5283b67e0e98244840d0ca1720d87b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5618671285673956211}
+  m_PrefabAsset: {fileID: 0}

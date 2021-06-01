@@ -1111,6 +1111,11 @@ PrefabInstance:
       propertyPath: nextScene
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4239495728696819940, guid: 029343839a9a8d744bb5b9ec796e2988,
+        type: 3}
+      propertyPath: crossFade
+      value: 
+      objectReference: {fileID: 690072913}
     - target: {fileID: 4239495728696819941, guid: 029343839a9a8d744bb5b9ec796e2988,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8483,6 +8488,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283d90a63f754f36a3d1de7efc601123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &690072913 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1421879503511417381, guid: 4c5283b67e0e98244840d0ca1720d87b,
+    type: 3}
+  m_PrefabInstance: {fileID: 690072907}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &764995097
 PrefabInstance:
   m_ObjectHideFlags: 0

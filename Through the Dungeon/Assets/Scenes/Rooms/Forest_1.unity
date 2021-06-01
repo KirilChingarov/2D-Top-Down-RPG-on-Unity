@@ -1497,6 +1497,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43263677415b17148bab0e4246a448a1, type: 3}
+--- !u!95 &1237103565 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1421879503511417381, guid: 4c5283b67e0e98244840d0ca1720d87b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1380841235}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1380841235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17165,6 +17171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpen: 1
   nextScene: 
+  crossFade: {fileID: 1237103565}
 --- !u!4 &4239495728181680737
 Transform:
   m_ObjectHideFlags: 0

@@ -19271,6 +19271,11 @@ PrefabInstance:
       propertyPath: nextScene
       value: Castle
       objectReference: {fileID: 0}
+    - target: {fileID: 4239495728696819940, guid: 029343839a9a8d744bb5b9ec796e2988,
+        type: 3}
+      propertyPath: crossFade
+      value: 
+      objectReference: {fileID: 2086205697}
     - target: {fileID: 4239495728696819941, guid: 029343839a9a8d744bb5b9ec796e2988,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19454,6 +19459,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2694423750115198167, guid: 4c5283b67e0e98244840d0ca1720d87b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5618671283939911040, guid: 4c5283b67e0e98244840d0ca1720d87b,
         type: 3}
       propertyPath: m_Name
@@ -19584,6 +19594,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9150515510405876983, guid: 4c5283b67e0e98244840d0ca1720d87b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c5283b67e0e98244840d0ca1720d87b, type: 3}
 --- !u!114 &2086205691 stripped
@@ -19649,6 +19664,12 @@ MonoBehaviour:
 --- !u!224 &2086205696 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5618671283939911044, guid: 4c5283b67e0e98244840d0ca1720d87b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2086205690}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2086205697 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1421879503511417381, guid: 4c5283b67e0e98244840d0ca1720d87b,
     type: 3}
   m_PrefabInstance: {fileID: 2086205690}
   m_PrefabAsset: {fileID: 0}
