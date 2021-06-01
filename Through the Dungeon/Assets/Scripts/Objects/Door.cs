@@ -1,3 +1,4 @@
+using System.Collections;
 using SaveScripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,6 +9,7 @@ namespace Objects
     {
         public bool isOpen;
         public string nextScene = "";
+        public Animator crossFade;
 
         private void Awake()
         {
@@ -38,13 +40,24 @@ namespace Objects
                     gameStateController.isTransition = true;
                     gameStateController.nextLevel++;
                     nextScene = gameStateController.levels[gameStateController.nextLevel];
-                    SceneManager.LoadScene(nextScene);
+                    //SceneManager.LoadScene(nextScene);
+                    StartCoroutine(LoadNextLevel(nextScene));
                 }
                 else
                 {
-                    SceneManager.LoadScene(nextScene);
+                    //SceneManager.LoadScene(nextScene);
+                    StartCoroutine(LoadNextLevel(nextScene));
                 }
             }
+        }
+
+        IEnumerator LoadNextLevel(string levelName)
+        {
+            crossFade.SetTrigger("Start");
+            
+            yield return new WaitForSeconds(1f);
+
+            SceneManager.LoadScene(nextScene);
         }
     }
 }
